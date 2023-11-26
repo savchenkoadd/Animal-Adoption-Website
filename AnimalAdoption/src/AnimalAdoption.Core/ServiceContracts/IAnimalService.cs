@@ -5,12 +5,12 @@ namespace AnimalAdoption.Core.ServiceContracts
 {
 	public interface IAnimalService
 	{
-		Task<bool> CreateAnimalProfile(AnimalProfileAddRequest? animalProfile);
+		Task<bool> CreateAnimalProfile(AnimalProfileAddRequest? animalProfileAddRequest);
 
-		Task<int> DeleteAnimalProfile(Guid? animalId);
+		Task<int> DeleteAnimalProfile(Guid? id);
 
-		Task<int> UpdateAnimalProfile(Guid? id, AnimalProfileUpdateRequest? animalRequest);
+		Task<int> UpdateAnimalProfile(Guid? id, AnimalProfileUpdateRequest? animalProfileUpdateRequest);
 
-		Task<IEnumerable<AnimalProfileResponse>> GetAnimalProfiles();
+		Task<List<AnimalProfileResponse>> GetAnimalProfiles();
 	}
 }

@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace AnimalAdoption.Core.DTO
 {
-	internal class AnimalProfileAddRequest
+	public class AnimalProfileAddRequest
 	{
+		[Range(0, 100)]
+		public int? Age { get; set; }
+		public string? Name { get; set; }
+		public string? Description { get; set; }
+		[Url]
+		public string? ImageUrl { get; set; }
+		public string? Breed { get; set; }
 	}
 }

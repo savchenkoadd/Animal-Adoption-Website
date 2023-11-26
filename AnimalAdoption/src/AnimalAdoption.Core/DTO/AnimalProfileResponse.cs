@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AnimalAdoption.Core.DTO
+﻿namespace AnimalAdoption.Core.DTO
 {
-	internal class AnimalProfileResponse
+	public class AnimalProfileResponse
 	{
+		public Guid Id { get; set; }
+		public int? Age { get; set; }
+		public string? Name { get; set; }
+		public string? Description { get; set; }
+		public string? ImageUrl { get; set; }
+		public string? Breed { get; set; }
 	}
 }

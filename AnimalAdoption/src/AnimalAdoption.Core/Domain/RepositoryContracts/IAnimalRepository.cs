@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AnimalAdoption.Core.Domain.Entities;
+using AnimalAdoption.Core.DTO;
 
 namespace AnimalAdoption.Core.Domain.RepositoryContracts
 {
-	internal interface IAnimalRepository
+	public interface IAnimalRepository
 	{
+		Task<bool> CreateAnimalProfile(AnimalProfile animalProfile);
+
+		Task<int> DeleteAnimalProfile(Guid animalId);
+
+		Task<int> UpdateAnimalProfile(Guid id, AnimalProfileUpdateRequest animalRequest);
+
+		Task<IEnumerable<AnimalProfileResponse>?> GetAnimalProfiles();
 	}
 }

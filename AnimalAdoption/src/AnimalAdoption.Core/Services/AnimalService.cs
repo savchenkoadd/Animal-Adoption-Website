@@ -2,6 +2,7 @@
 using AnimalAdoption.Core.DTO;
 using AnimalAdoption.Core.ServiceContracts;
 using AnimalAdoption.Core.Domain.Entities;
+using AnimalAdoption.Core.Helpers;
 
 namespace AnimalAdoption.Core.Services
 {
@@ -16,31 +17,55 @@ namespace AnimalAdoption.Core.Services
             _animalRepository = animalRepository;
         }
 
-        public Task<bool> CreateAnimalProfile(AnimalProfileAddRequest? animalProfileRequest)
+		public async Task<bool> CreateAnimalProfile(AnimalProfileAddRequest? animalProfileAddRequest)
 		{
-			if (animalProfileRequest is null)
+			await ValidationHelper.ValidateRequest(animalProfileAddRequest);
+
+			var animalProfile = new AnimalProfile()
+			{
+				Id = Guid.NewGuid(),
+				Name = animalProfileAddRequest!.Name,
+				Age = animalProfileAddRequest!.Age,
+				Breed = animalProfileAddRequest!.Breed,
+				Description = animalProfileAddRequest!.Description,
+				ImageUrl = animalProfileAddRequest!.ImageUrl,
+			};
+
+			return await _animalRepository.CreateAnimalProfile(animalProfile);
+		}
+
+		public async Task<int> DeleteAnimalProfile(Guid? id)
+		{
+			if (id is null)
 			{
 				throw new ArgumentNullException();
 			}
 
-			var animalProfile1 = new AnimalProfile
-
-			_animalRepository.CreateAnimalProfile(animalProfileRequest);
+			return await _animalRepository.DeleteAnimalProfile(id.Value);
 		}
 
-		public Task<int> DeleteAnimalProfile(Guid? animalId)
+		public async Task<List<AnimalProfileResponse>> GetAnimalProfiles()
 		{
-			throw new NotImplementedException();
+			var profiles = await _animalRepository.GetAnimalProfiles();
+
+			if (profiles is null)
+			{
+				return new List<AnimalProfileResponse>();
+			}
+
+			return profiles.ToList();
 		}
 
-		public Task<List<AnimalProfileResponse>> GetAnimalProfiles()
+		public async Task<int> UpdateAnimalProfile(Guid? id, AnimalProfileUpdateRequest? animalProfileUpdateRequest)
 		{
-			throw new NotImplementedException();
-		}
+			if (id is null)
+			{
+				throw new ArgumentNullException();
+			}
 
-		public Task<int> UpdateAnimalProfile(AnimalProfileUpdateRequest? animalId)
-		{
-			throw new NotImplementedException();
+			await ValidationHelper.ValidateRequest(animalProfileUpdateRequest);
+
+			return await _animalRepository.UpdateAnimalProfile(id.Value, animalProfileUpdateRequest!);
 		}
 	}
 }

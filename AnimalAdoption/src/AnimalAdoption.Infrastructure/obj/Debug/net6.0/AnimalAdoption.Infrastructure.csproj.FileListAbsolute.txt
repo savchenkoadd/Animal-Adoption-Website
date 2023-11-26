@@ -1,0 +1,11 @@
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Infrastructure\bin\Debug\net6.0\AnimalAdoption.Infrastructure.deps.json
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Infrastructure\bin\Debug\net6.0\AnimalAdoption.Infrastructure.dll
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Infrastructure\bin\Debug\net6.0\AnimalAdoption.Infrastructure.pdb
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Infrastructure\obj\Debug\net6.0\AnimalAdoption.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Infrastructure\obj\Debug\net6.0\AnimalAdoption.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Infrastructure\obj\Debug\net6.0\AnimalAdoption.Infrastructure.AssemblyInfo.cs
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Infrastructure\obj\Debug\net6.0\AnimalAdoption.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Infrastructure\obj\Debug\net6.0\AnimalAdoption.Infrastructure.dll
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Infrastructure\obj\Debug\net6.0\refint\AnimalAdoption.Infrastructure.dll
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Infrastructure\obj\Debug\net6.0\AnimalAdoption.Infrastructure.pdb
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Infrastructure\obj\Debug\net6.0\ref\AnimalAdoption.Infrastructure.dll
