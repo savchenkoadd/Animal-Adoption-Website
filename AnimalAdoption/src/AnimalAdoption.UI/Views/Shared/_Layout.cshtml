@@ -2,12 +2,17 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewBag.Title</title>
+	<link rel="stylesheet" href="~/css/styles.css" />
 </head>
 <body>
-    <div >
-        @RenderBody()
-    </div>
+	<div id="navbar">
+		<button class="navbar-button"><a href="~/create">Create Profile</a></button>
+		<button class="navbar-button"><a href="~/main">Main</a></button>
+	</div>
+	<div>
+		@RenderBody()
+	</div>
 </body>
 </html>

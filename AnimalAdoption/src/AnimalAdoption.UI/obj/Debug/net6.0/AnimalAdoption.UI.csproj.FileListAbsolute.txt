@@ -77,3 +77,4 @@ C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\Anima
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.UI\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.UI\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.UI\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.UI\bin\Debug\net6.0\AnimalAdoption.UI.staticwebassets.runtime.json

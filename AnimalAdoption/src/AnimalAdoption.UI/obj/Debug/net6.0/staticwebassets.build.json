@@ -1,11 +1,37 @@
 {
   "Version": 1,
-  "Hash": "Pta6N1VGCI7lc5Ah7+/gF3HPhI5pbmfyqt6V1UaBNUk=",
+  "Hash": "HACkjpgQiYkJQISEcWaVrC9L0kaGc7ss46QdEupqLqY=",
   "Source": "AnimalAdoption.UI",
   "BasePath": "_content/AnimalAdoption.UI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "AnimalAdoption.UI\\wwwroot",
+      "Source": "AnimalAdoption.UI",
+      "ContentRoot": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\",
+      "BasePath": "_content/AnimalAdoption.UI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\styles.css",
+      "SourceId": "AnimalAdoption.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\",
+      "BasePath": "_content/AnimalAdoption.UI",
+      "RelativePath": "css/styles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\styles.css"
+    }
+  ]
 }

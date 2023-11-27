@@ -1,5 +1,4 @@
-﻿using AnimalAdoption.Core.DTO;
-using AnimalAdoption.Core.ServiceContracts;
+﻿using AnimalAdoption.Core.ServiceContracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AnimalAdoption.UI.Controllers
@@ -17,34 +16,19 @@ namespace AnimalAdoption.UI.Controllers
 
 		[HttpGet]
 		[Route("/")]
+		[Route("[action]")]
 		public async Task<IActionResult> Main()
 		{
 			return View();
 		}
 
 		[HttpGet]
-		[Route("/feed")]
+		[Route("[action]")]
 		public async Task<IActionResult> Feed()
 		{
 			var profileResponses = await _animalService.GetAnimalProfiles();
 
 			return View(profileResponses);
-		}
-
-		[HttpGet]
-		[Route("/create")]
-		public async Task<IActionResult> CreateProfile()
-		{
-			return View();
-		}
-
-		[HttpPost]
-		[Route("/create")]
-		public async Task<IActionResult> CreateProfile(AnimalProfileAddRequest animalProfileAddRequest)
-		{
-			await _animalService.CreateAnimalProfile(animalProfileAddRequest);
-
-			return View("Created");
 		}
 	}
 }
