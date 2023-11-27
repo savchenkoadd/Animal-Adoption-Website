@@ -1,0 +1,18 @@
+﻿@{
+	ViewBag.Title = "Feed";
+}
+
+@model List<AnimalProfileResponse>
+
+<h1>Feed</h1>
+<p>Here will be the implementation of the feed</p>
+
+/* To do */
+@foreach (var item in Model)
+{
+	<img src=@item.ImageUrl />
+	<h2>@item.Name</h2>
+	<h2>@item.Age</h2>
+}
+
+<a href="~/create">Create</a>

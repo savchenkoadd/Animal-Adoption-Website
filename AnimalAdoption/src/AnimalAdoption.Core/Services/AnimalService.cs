@@ -8,7 +8,7 @@ namespace AnimalAdoption.Core.Services
 {
 	public class AnimalService : IAnimalService
 	{
-		private IAnimalRepository _animalRepository;
+		private readonly IAnimalRepository _animalRepository;
 
         public AnimalService(
 				IAnimalRepository animalRepository

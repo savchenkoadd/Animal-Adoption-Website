@@ -1,4 +1,8 @@
+using AnimalAdoption.Core.Domain.RepositoryContracts;
+using AnimalAdoption.Core.ServiceContracts;
+using AnimalAdoption.Core.Services;
 using AnimalAdoption.Infrastructure.Db;
+using AnimalAdoption.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace AnimalAdoption.UI
@@ -9,6 +13,11 @@ namespace AnimalAdoption.UI
 		{
 			var builder = WebApplication.CreateBuilder(args);
 
+			builder.Services.AddControllersWithViews();
+
+			builder.Services.AddScoped<IAnimalRepository, AnimalRepository>();
+			builder.Services.AddScoped<IAnimalService, AnimalService>();
+
 			builder.Services.AddDbContext<ApplicationDbContext>(
 					options => options.UseSqlServer(
 						builder.Configuration.GetConnectionString("DefaultConnection")
@@ -16,6 +25,15 @@ namespace AnimalAdoption.UI
 				); ;
 
 			var app = builder.Build();
+
+			if (app.Environment.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+			}
+
+			app.UseStaticFiles();
+			app.UseRouting();
+			app.MapControllers();
 
 			app.Run();
 		}

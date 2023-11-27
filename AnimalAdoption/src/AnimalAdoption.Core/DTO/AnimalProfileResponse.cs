@@ -1,4 +1,6 @@
-﻿namespace AnimalAdoption.Core.DTO
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AnimalAdoption.Core.DTO
 {
 	public class AnimalProfileResponse
 	{
