@@ -9,3 +9,9 @@ C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\Anima
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Infrastructure\obj\Debug\net6.0\refint\AnimalAdoption.Infrastructure.dll
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Infrastructure\obj\Debug\net6.0\AnimalAdoption.Infrastructure.pdb
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Infrastructure\obj\Debug\net6.0\ref\AnimalAdoption.Infrastructure.dll
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Infrastructure\bin\Debug\net6.0\AnimalAdoption.Infrastructure.runtimeconfig.json
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Infrastructure\bin\Debug\net6.0\AnimalAdoption.Core.dll
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Infrastructure\bin\Debug\net6.0\AnimalAdoption.Core.pdb
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Infrastructure\obj\Debug\net6.0\AnimalAdoption.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Infrastructure\obj\Debug\net6.0\AnimalAdoption.Infrastructure.csproj.CopyComplete
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Infrastructure\obj\Debug\net6.0\AnimalAdoption.Infrastructure.genruntimeconfig.cache
