@@ -1,9 +1,9 @@
 ﻿using AnimalAdoption.Core.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace AnimalAdoption.Infrastructure.DbContext
+namespace AnimalAdoption.Infrastructure.Db
 {
-	public class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbContext
+	public class ApplicationDbContext : DbContext
 	{
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {

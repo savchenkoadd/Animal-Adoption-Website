@@ -53,7 +53,14 @@ namespace AnimalAdoption.Core.Services
 				return new List<AnimalProfileResponse>();
 			}
 
-			return profiles.ToList();
+			return profiles.Select(x => new AnimalProfileResponse() {
+				Id = x.Id,
+				Name = x.Name,
+				Age = x.Age,
+				Breed = x.Breed,
+				Description = x.Description,
+				ImageUrl = x.ImageUrl,
+			}).ToList();
 		}
 
 		public async Task<int> UpdateAnimalProfile(Guid? id, AnimalProfileUpdateRequest? animalProfileUpdateRequest)
@@ -65,7 +72,14 @@ namespace AnimalAdoption.Core.Services
 
 			await ValidationHelper.ValidateRequest(animalProfileUpdateRequest);
 
-			return await _animalRepository.UpdateAnimalProfile(id.Value, animalProfileUpdateRequest!);
+			return await _animalRepository.UpdateAnimalProfile(id.Value, new AnimalProfile()
+			{
+				ImageUrl = animalProfileUpdateRequest?.ImageUrl,
+				Breed = animalProfileUpdateRequest?.Breed,
+				Name = animalProfileUpdateRequest?.Name,
+				Description = animalProfileUpdateRequest?.Description,
+				Age = animalProfileUpdateRequest?.Age
+			});
 		}
 	}
 }

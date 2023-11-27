@@ -9,8 +9,8 @@ namespace AnimalAdoption.Core.Domain.RepositoryContracts
 
 		Task<int> DeleteAnimalProfile(Guid animalId);
 
-		Task<int> UpdateAnimalProfile(Guid id, AnimalProfileUpdateRequest animalRequest);
+		Task<int> UpdateAnimalProfile(Guid id, AnimalProfile animalRequest);
 
-		Task<IEnumerable<AnimalProfileResponse>?> GetAnimalProfiles();
+		Task<List<AnimalProfile>?> GetAnimalProfiles();
 	}
 }

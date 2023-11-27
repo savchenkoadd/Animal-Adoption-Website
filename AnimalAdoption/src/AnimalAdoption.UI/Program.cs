@@ -1,4 +1,4 @@
-using AnimalAdoption.Infrastructure.DbContext;
+using AnimalAdoption.Infrastructure.Db;
 using Microsoft.EntityFrameworkCore;
 
 namespace AnimalAdoption.UI
