@@ -1,9 +1,11 @@
 ﻿using AnimalAdoption.Core.Domain.Entities;
+using AnimalAdoption.Core.Domain.IdentityEntities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AnimalAdoption.Infrastructure.Db
 {
-	public class ApplicationDbContext : DbContext
+	public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
 	{
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {

@@ -1,0 +1,97 @@
+﻿@model RegisterDTO
+
+@{
+	ViewBag.Title = "Register";
+}
+
+<div>
+	Already Registered? <a asp-action="Login" asp-controller="Account">Login</a>
+	<h2>Register</h2>
+
+	<form asp-controller="Account" asp-action="Register" method="post">
+
+		<div>
+			<div>
+				<label asp-for="PersonName">Name</label>
+			</div>
+			<div>
+				<input asp-for="PersonName" />
+				<span asp-validation-for="PersonName"></span>
+			</div>
+		</div>
+
+		<div>
+			<div>
+				<label asp-for="Email">Email</label>
+			</div>
+			<div>
+				<input asp-for="Email" />
+				<span asp-validation-for="Email"></span>
+			</div>
+		</div>
+
+		<div>
+			<div>
+				<label asp-for="Phone">Phone</label>
+			</div>
+			<div>
+				<input asp-for="Phone" />
+				<span asp-validation-for="Phone"></span>
+			</div>
+		</div>
+
+		<div>
+			<div>
+				<label asp-for="Password">Password</label>
+			</div>
+			<div>
+				<input asp-for="Password" />
+				<span asp-validation-for="Password"></span>
+			</div>
+		</div>
+
+		<div>
+			<div>
+				<label asp-for="ConfirmPassword">Confirm Password</label>
+			</div>
+			<div>
+				<input asp-for="ConfirmPassword" />
+				<span asp-validation-for="ConfirmPassword"></span>
+			</div>
+		</div>
+
+		<div>
+			<div>
+			</div>
+			<div>
+				<button type="submit">Register!</button>
+
+				<div asp-validation-summary="All"></div>
+
+				@if (ViewBag.Errors != null)
+				{
+					<div>
+						<ul>
+							@foreach (var item in ViewBag.Errors)
+							{
+								<li>@item</li>
+							}
+						</ul>
+					</div>
+
+					ViewBag.Errors = null;
+				}
+			</div>
+		</div>
+
+	</form>
+</div>
+
+@section scripts
+	{
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" asp-fallback-test="window.jQuery" asp-fallback-src="~/jquery.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.4/jquery.validate.min.js" asp-fallback-test="window.jQuery.validator" asp-fallback-src="~/jquery.validate.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" asp-fallback-test="window.jQuery.validator.unobstrusive" asp-fallback-src="~/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -1,4 +1,5 @@
 ﻿using AnimalAdoption.Core.ServiceContracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AnimalAdoption.UI.Controllers
@@ -17,6 +18,7 @@ namespace AnimalAdoption.UI.Controllers
 		[HttpGet]
 		[Route("/")]
 		[Route("[action]")]
+		[AllowAnonymous]
 		public async Task<IActionResult> Main()
 		{
 			return View();

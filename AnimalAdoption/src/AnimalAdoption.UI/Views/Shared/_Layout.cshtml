@@ -14,5 +14,23 @@
 	<div>
 		@RenderBody()
 	</div>
+
+
+	<div>
+		@if (!User.Identity.IsAuthenticated)
+		{
+			<div>
+				<a href="~/register">Register</a>
+			</div>
+		}
+		else
+		{
+			@User.Identity?.Name
+			<div>
+				<a href="~/Logout">Logout</a>
+			</div>
+		}
+	</div>
+	@RenderSection("scripts", required: false)
 </body>
 </html>

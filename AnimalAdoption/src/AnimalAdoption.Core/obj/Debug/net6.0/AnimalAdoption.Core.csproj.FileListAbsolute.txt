@@ -9,3 +9,4 @@ C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\Anima
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Core\obj\Debug\net6.0\refint\AnimalAdoption.Core.dll
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Core\obj\Debug\net6.0\AnimalAdoption.Core.pdb
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Core\obj\Debug\net6.0\ref\AnimalAdoption.Core.dll
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.Core\obj\Debug\net6.0\AnimalAdoption.Core.csproj.AssemblyReference.cache
