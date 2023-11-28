@@ -109,9 +109,15 @@ namespace AnimalAdoption.UI.Controllers
 			return RedirectToAction(nameof(AnimalController.Main), "Animal");
 		}
 
-		public async Task<IActionResult> IsEmailAlreadyRegistered(string email)
+		[Route("/[action]")]
+		public async Task<IActionResult> IsEmailAlreadyRegistered(string Email)
 		{
-			ApplicationUser user = await _userManager.FindByEmailAsync(email);
+			if (string.IsNullOrEmpty(Email))
+			{
+				return Json(false);
+			}
+
+			ApplicationUser user = await _userManager.FindByEmailAsync(Email);
 
 			if (user == null)
 			{

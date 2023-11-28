@@ -62,6 +62,19 @@
 
 		<div>
 			<div>
+				<label asp-for="UserType">User Type</label>
+			</div>
+			<div>
+				<input type="radio" asp-for="UserType" value="User" checked />
+				<label>User</label>
+
+				<input type="radio" asp-for="UserType" value="Admin" />
+				<label>Admin</label>
+			</div>
+		</div>
+
+		<div>
+			<div>
 			</div>
 			<div>
 				<button type="submit">Register!</button>
