@@ -1,12 +1,16 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\ErrorViewStyles.css",
-      "PackagePath": "staticwebassets\\css\\ErrorViewStyles.css"
+      "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\AccountStyles.css",
+      "PackagePath": "staticwebassets\\css\\AccountStyles.css"
     },
     {
-      "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\LayoutViewStyles.css",
-      "PackagePath": "staticwebassets\\css\\LayoutViewStyles.css"
+      "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\AnimalLayoutViewStyles.css",
+      "PackagePath": "staticwebassets\\css\\AnimalLayoutViewStyles.css"
+    },
+    {
+      "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\ErrorViewStyles.css",
+      "PackagePath": "staticwebassets\\css\\ErrorViewStyles.css"
     },
     {
       "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\MainViewStyles.css",

@@ -1,0 +1,98 @@
+﻿body {
+    text-align: center;
+    margin-top: 60px;
+}
+
+h1 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+}
+
+p {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+}
+
+.input-area {
+    margin-top: 10px;
+}
+
+label {
+    font-size: 16px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+}
+
+input {
+
+    margin-top: 10px;
+    width: 25%;
+    height: 40px;
+    border-radius: 6px;
+    border: 0px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    padding: 0 20px;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+#header {
+    margin-bottom: 20px;
+}
+
+form {
+    margin-top: 35px;
+}
+
+.submit-btn {
+    margin-top: 30px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    width: 10%;
+    border-radius: 10px;
+    border: 0px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    height: 30px;
+    transition-duration: 400ms;
+}
+
+    .submit-btn:hover{
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+
+a {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+}
+
+span {
+    font-family: 'Manrope', sans-serif;
+    color: orangered;
+}
+
+.errors-summary {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+h4 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.login-link {
+    text-decoration: none;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+#not-registered-heading {
+    margin-top: 50px;
+}

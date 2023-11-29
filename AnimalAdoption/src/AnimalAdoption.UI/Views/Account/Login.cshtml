@@ -4,9 +4,10 @@
 	ViewBag.Title = "Login";
 }
 
-<div>
-	Not yet Registered? <a asp-action="Register" asp-controller="Account">Register</a>
-	<h2>Login</h2>
+<div class="main">
+	<div id="header">
+		<h1 class="registration-header">Login</h1>
+	</div>
 
 	<form asp-controller="Account" asp-action="Login" asp-route-ReturnUrl="@Context.Request.Query["ReturnUrl"]" method="post">
 
@@ -34,7 +35,7 @@
 			<div>
 			</div>
 			<div>
-				<button type="submit">Login</button>
+				<button class="submit-btn" type="submit">Login</button>
 
 				<div asp-validation-summary="All"></div>
 
@@ -55,6 +56,11 @@
 		</div>
 
 	</form>
+
+	<div id="not-registered-heading">
+		<h4>Not yet registered?</h4>
+		<a class="login-link" asp-action="Register" asp-controller="Account">Register</a>
+	</div>
 </div>
 
 @section scripts
