@@ -1,5 +1,4 @@
-﻿using AnimalAdoption.Core.Enums;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace AnimalAdoption.Core.DTO
@@ -27,7 +26,5 @@ namespace AnimalAdoption.Core.DTO
 		[DataType(DataType.Password)]
 		[Compare(nameof(Password), ErrorMessage = "The passwords do not match")]
 		public string ConfirmPassword { get; set; }
-
-		public UserTypeOptions UserType { get; set; } = UserTypeOptions.User;
 	}
 }

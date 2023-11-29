@@ -1,12 +1,24 @@
 ﻿@{
-	Layout = null;
 	ViewBag.Title = "Main";
+	Layout = null;
 }
 
-<h1>This is the main page</h1>
+<!DOCTYPE html>
 
-/* To do */
+<html>
+<head>
+	<title>@ViewBag.Title</title>
+	<link rel="stylesheet" href="~/css/styles.css" />
+</head>
+<body>
+	<div class="main">
+		<h1>This is the main page</h1>
 
-<p>Here will be the main page(first visit page)</p>
+		@* To do *@
 
-<a href="~/Feed">Feed</a>
+		<p>Here will be the main page(first visit page)</p>
+
+		<a href="~/Feed">Feed</a>
+	</div>
+</body>
+</html>
