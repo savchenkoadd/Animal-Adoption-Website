@@ -11,6 +11,11 @@
 			services.AddDbContextServices(configuration);
 			services.AddIdentityServices();
 			services.AddAuthorizationServices();
-		}
+
+            services.AddHttpLogging(options =>
+            {
+                options.LoggingFields = Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.RequestProperties | Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.ResponsePropertiesAndHeaders;
+            });
+        }
 	}
 }

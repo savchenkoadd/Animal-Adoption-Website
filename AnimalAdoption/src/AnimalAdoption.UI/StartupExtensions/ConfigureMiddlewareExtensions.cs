@@ -11,6 +11,8 @@ namespace AnimalAdoption.UI.StartupExtensions
 		{
 			ConfigureExceptionHandling(app);
 
+			app.UseHttpLogging();
+
 			app.UseHsts();
 			app.UseHttpsRedirection();
 

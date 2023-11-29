@@ -1,4 +1,5 @@
 using AnimalAdoption.UI.StartupExtensions;
+using Serilog;
 
 namespace AnimalAdoption.UI
 {
@@ -8,11 +9,11 @@ namespace AnimalAdoption.UI
 		{
 			var builder = WebApplication.CreateBuilder(args);
 
-			builder.Services.ConfigureServices(builder.Configuration);
+			Startup.ConfigureBuilder(builder);
 
 			var app = builder.Build();
 
-			app.ConfigureMiddleware();
+			Startup.ConfigureApp(app);
 
 			app.Run();
 		}
