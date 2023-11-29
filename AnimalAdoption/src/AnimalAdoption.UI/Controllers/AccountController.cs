@@ -30,6 +30,7 @@ namespace AnimalAdoption.UI.Controllers
 
 		[HttpPost]
 		[Route("/[action]")]
+		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Register(RegisterDTO registerDTO)  
 		{
 			if (ModelState.IsValid == false)
@@ -74,6 +75,7 @@ namespace AnimalAdoption.UI.Controllers
 
 		[HttpPost]
 		[Route("/[action]")]
+		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Login(LoginDTO loginDTO, string? ReturnUrl)
 		{
 			if (!ModelState.IsValid)
