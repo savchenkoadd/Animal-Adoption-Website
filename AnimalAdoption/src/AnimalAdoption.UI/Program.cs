@@ -12,21 +12,7 @@ namespace AnimalAdoption.UI
 
 			var app = builder.Build();
 
-			if (app.Environment.IsDevelopment())
-			{
-				app.UseDeveloperExceptionPage();
-			}
-
-			app.UseHsts();
-			app.UseHttpsRedirection();
-
-			app.UseStaticFiles();
-
-			app.UseRouting();
-			app.UseAuthentication(); //Reading Identity Cookie
-			app.UseAuthorization();
-
-			app.MapControllers();
+			app.ConfigureMiddleware();
 
 			app.Run();
 		}
