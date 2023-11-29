@@ -53,6 +53,9 @@ namespace AnimalAdoption.UI
 				app.UseDeveloperExceptionPage();
 			}
 
+			app.UseHsts();
+			app.UseHttpsRedirection();
+
 			app.UseStaticFiles();
 
 			app.UseRouting();
