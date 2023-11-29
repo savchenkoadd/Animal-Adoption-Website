@@ -78,7 +78,7 @@ namespace AnimalAdoption.UI.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Login(LoginDTO loginDTO, string? ReturnUrl)
 		{
-			if (!ModelState.IsValid)
+			if (ModelState.IsValid == false)
 			{
 				ViewBag.Errors = ModelState.Values.SelectMany(temp => temp.Errors).Select(temp => temp.ErrorMessage);
 
@@ -98,6 +98,7 @@ namespace AnimalAdoption.UI.Controllers
 			}
 
 			ModelState.AddModelError("Login", "Invalid email or password");
+			ViewBag.LoginError = "Invalid email or password";
 
 			return View(loginDTO);
 		}
