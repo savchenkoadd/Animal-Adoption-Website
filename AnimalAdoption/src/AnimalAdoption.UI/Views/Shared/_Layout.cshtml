@@ -17,13 +17,7 @@
 
 
 	<div>
-		@if (!User.Identity.IsAuthenticated)
-		{
-			<div>
-				<a href="~/register">Register</a>
-			</div>
-		}
-		else
+		@if (User.Identity.IsAuthenticated)
 		{
 			@User.Identity?.Name
 			<div>
