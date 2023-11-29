@@ -25,4 +25,8 @@
     <ProjectReference Include="..\AnimalAdoption.Infrastructure\AnimalAdoption.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="IntegrationTests"/>
+  </ItemGroup>
+  
 </Project>

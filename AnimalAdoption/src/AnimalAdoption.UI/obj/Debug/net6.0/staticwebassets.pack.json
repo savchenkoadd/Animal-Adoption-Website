@@ -1,8 +1,16 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\styles.css",
-      "PackagePath": "staticwebassets\\css\\styles.css"
+      "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\ErrorViewStyles.css",
+      "PackagePath": "staticwebassets\\css\\ErrorViewStyles.css"
+    },
+    {
+      "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\LayoutViewStyles.css",
+      "PackagePath": "staticwebassets\\css\\LayoutViewStyles.css"
+    },
+    {
+      "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\MainViewStyles.css",
+      "PackagePath": "staticwebassets\\css\\MainViewStyles.css"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.AnimalAdoption.UI.Microsoft.AspNetCore.StaticWebAssets.props",

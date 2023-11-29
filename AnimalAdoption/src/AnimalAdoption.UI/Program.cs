@@ -2,7 +2,7 @@ using AnimalAdoption.UI.StartupExtensions;
 
 namespace AnimalAdoption.UI
 {
-	public class Program
+	public partial class Program
 	{
 		public static void Main(string[] args)
 		{

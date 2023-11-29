@@ -25,7 +25,7 @@ namespace AnimalAdoption.UI.StartupExtensions
 
 		private static void ConfigureExceptionHandling(WebApplication app)
 		{
-			if (app.Environment.IsDevelopment())
+			if (app.Environment.IsDevelopment() || !app.Environment.IsEnvironment("Test"))
 			{
 				app.UseDeveloperExceptionPage();
 			}
