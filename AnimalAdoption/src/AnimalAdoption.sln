@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalAdoption.UI", "AnimalAdoption.UI\AnimalAdoption.UI.csproj", "{28E14500-AE9A-424E-8AF7-E923F65B22AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimalAdoption.UI", "AnimalAdoption.UI\AnimalAdoption.UI.csproj", "{28E14500-AE9A-424E-8AF7-E923F65B22AC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{598B3C7F-F114-463D-A698-859D6516E03D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{116F93CA-428A-48E4-8F31-DDCDD57E5E14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalAdoption.Core", "AnimalAdoption.Core\AnimalAdoption.Core.csproj", "{DA5AC27E-AA5D-4800-B9AD-A34DBAE4406C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimalAdoption.Core", "AnimalAdoption.Core\AnimalAdoption.Core.csproj", "{DA5AC27E-AA5D-4800-B9AD-A34DBAE4406C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalAdoption.Infrastructure", "AnimalAdoption.Infrastructure\AnimalAdoption.Infrastructure.csproj", "{A21C943B-31D2-4EA7-9D9E-63E97E251AE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimalAdoption.Infrastructure", "AnimalAdoption.Infrastructure\AnimalAdoption.Infrastructure.csproj", "{A21C943B-31D2-4EA7-9D9E-63E97E251AE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesTests", "ServicesTests\ServicesTests.csproj", "{6A72D8BA-3D1D-452A-AE17-3C76A2052ACC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{A21C943B-31D2-4EA7-9D9E-63E97E251AE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A21C943B-31D2-4EA7-9D9E-63E97E251AE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A21C943B-31D2-4EA7-9D9E-63E97E251AE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A72D8BA-3D1D-452A-AE17-3C76A2052ACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A72D8BA-3D1D-452A-AE17-3C76A2052ACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A72D8BA-3D1D-452A-AE17-3C76A2052ACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A72D8BA-3D1D-452A-AE17-3C76A2052ACC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{28E14500-AE9A-424E-8AF7-E923F65B22AC} = {598B3C7F-F114-463D-A698-859D6516E03D}
 		{DA5AC27E-AA5D-4800-B9AD-A34DBAE4406C} = {598B3C7F-F114-463D-A698-859D6516E03D}
 		{A21C943B-31D2-4EA7-9D9E-63E97E251AE4} = {598B3C7F-F114-463D-A698-859D6516E03D}
+		{6A72D8BA-3D1D-452A-AE17-3C76A2052ACC} = {116F93CA-428A-48E4-8F31-DDCDD57E5E14}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E6160104-02EF-4B3F-B19F-85138E7A412D}
