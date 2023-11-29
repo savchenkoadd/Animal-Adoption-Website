@@ -38,6 +38,13 @@ namespace AnimalAdoption.Infrastructure.Repositories
 			return await _db.SaveChangesAsync();
 		}
 
+		public async Task<AnimalProfile?> GetAnimalProfileById(Guid id)
+		{
+			var profile = await _db.AnimalProfiles.FindAsync(id);
+
+			return profile;
+		}
+
 		public async Task<List<AnimalProfile>?> GetAnimalProfiles()
 		{
 			return await _db.AnimalProfiles.ToListAsync();

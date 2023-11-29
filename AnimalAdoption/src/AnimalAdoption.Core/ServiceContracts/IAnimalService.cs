@@ -1,5 +1,4 @@
-﻿using AnimalAdoption.Core.Domain.Entities;
-using AnimalAdoption.Core.DTO;
+﻿using AnimalAdoption.Core.DTO;
 
 namespace AnimalAdoption.Core.ServiceContracts
 {
@@ -12,5 +11,7 @@ namespace AnimalAdoption.Core.ServiceContracts
 		Task<int> UpdateAnimalProfile(Guid? id, AnimalProfileUpdateRequest? animalProfileUpdateRequest);
 
 		Task<List<AnimalProfileResponse>> GetAnimalProfiles();
+
+		Task<AnimalProfileResponse> GetAnimalProfileById(Guid? id);
 	}
 }

@@ -12,5 +12,7 @@ namespace AnimalAdoption.Core.Domain.RepositoryContracts
 		Task<int> UpdateAnimalProfile(Guid id, AnimalProfile animalRequest);
 
 		Task<List<AnimalProfile>?> GetAnimalProfiles();
+
+		Task<AnimalProfile?> GetAnimalProfileById(Guid id);
 	}
 }

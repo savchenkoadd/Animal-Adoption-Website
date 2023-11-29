@@ -32,5 +32,20 @@ namespace AnimalAdoption.UI.Controllers
 
 			return View(profileResponses);
 		}
+
+		[HttpGet]
+		[Route("[action]/{id}")]
+		public async Task<IActionResult> Details(Guid? id)
+		{
+			if (id is null)
+			{
+				return RedirectToAction("Error", "Error");
+			}
+
+			var animalProfile = await _animalService.GetAnimalProfileById(id.Value);
+
+			ViewBag.Title = "Details";
+			return View(animalProfile);
+		}
 	}
 }

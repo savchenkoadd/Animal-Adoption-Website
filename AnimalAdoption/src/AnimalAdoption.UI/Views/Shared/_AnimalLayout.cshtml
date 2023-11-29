@@ -4,27 +4,31 @@
 <head>
 	<meta name="viewport" content="width=device-width" />
 	<title>@ViewBag.Title</title>
-	<link rel="stylesheet" href="~/css/_AnimalLayoutStyles.css" />
+	<link rel="stylesheet" href="~/css/AnimalLayoutViewStyles.css" />
+	<link rel="stylesheet" href="~/css/FeedViewStyles.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-	<div id="navbar">
-		<button class="navbar-button"><a href="~/create">Create Profile</a></button>
-		<button class="navbar-button"><a href="~/main">Main</a></button>
-	</div>
+	<nav>
+		<input type="checkbox" id="check">
+		<label for="check" class="checkbtn">
+			<i class="fas fa-bars"></i>
+		</label>
+		<label class="logo"></label>
+		<ul>
+			<li><a asp-controller="Animal" asp-action="Main">Main</a></li>
+			<li class="email">
+				<a class="logout-link" href="~/Logout">Logout</a>
+				<span class="user-email">@User.Identity?.Name</span>
+			</li>
+		</ul>
+	</nav>
 	<div>
 		@RenderBody()
 	</div>
 
-
-	<div>
-		@if (User.Identity.IsAuthenticated)
-		{
-			@User.Identity?.Name
-			<div>
-				<a href="~/Logout">Logout</a>
-			</div>
-		}
-	</div>
 	@RenderSection("scripts", required: false)
 </body>
 </html>

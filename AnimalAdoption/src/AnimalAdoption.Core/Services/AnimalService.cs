@@ -44,6 +44,31 @@ namespace AnimalAdoption.Core.Services
 			return await _animalRepository.DeleteAnimalProfile(id.Value);
 		}
 
+		public async Task<AnimalProfileResponse> GetAnimalProfileById(Guid? id)
+		{
+			if (id is null)
+			{
+				throw new ArgumentNullException();
+			}
+
+			var animalProfile = await _animalRepository.GetAnimalProfileById(id.Value);
+
+			if (animalProfile is null)
+			{
+				throw new InvalidOperationException();
+			}
+
+			return new AnimalProfileResponse()
+			{
+				Id = animalProfile.Id,
+				Name = animalProfile.Name,
+				Age = animalProfile.Age,
+				Breed = animalProfile.Breed,
+				Description = animalProfile.Description,
+				ImageUrl = animalProfile.ImageUrl
+			};
+		}
+
 		public async Task<List<AnimalProfileResponse>> GetAnimalProfiles()
 		{
 			var profiles = await _animalRepository.GetAnimalProfiles();
