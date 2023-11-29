@@ -1,6 +1,6 @@
 ﻿using Serilog;
 
-namespace AnimalAdoption.UI.StartupExtensions
+namespace AnimalAdoption.UI.StartupExtensions.Configuration
 {
     public static class SerilogConfigurator
     {

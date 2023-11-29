@@ -1,4 +1,5 @@
-﻿using Serilog;
+﻿using AnimalAdoption.UI.StartupExtensions.Configuration;
+using Serilog;
 
 namespace AnimalAdoption.UI.StartupExtensions
 {
