@@ -10,7 +10,7 @@ namespace AnimalAdoption.Core.DTO
 		[StringLength(20)]
 		public string? Name { get; set; }
 
-		[StringLength(1000)]
+		[StringLength(1500)]
 		public string? Description { get; set; }
 
 		[Url]

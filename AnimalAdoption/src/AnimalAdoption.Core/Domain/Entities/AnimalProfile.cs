@@ -12,7 +12,7 @@ namespace AnimalAdoption.Core.Domain.Entities
 		[StringLength(20)]
 		public string? Name { get; set; }
 
-		[StringLength(1000)]
+		[StringLength(1500)]
 		public string? Description { get; set; }
 
 		[StringLength(200)]
