@@ -4,6 +4,7 @@
 
 @model List<AnimalProfileResponse>
 
+<link rel="stylesheet" href="~/css/FeedViewStyles.css" />
 @foreach (var item in Model)
 {
 	<form asp-controller="Animal" asp-action="Details" asp-route-id="@item.Id" method="get">

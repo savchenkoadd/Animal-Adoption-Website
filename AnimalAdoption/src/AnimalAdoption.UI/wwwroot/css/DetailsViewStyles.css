@@ -1,0 +1,50 @@
+﻿.details-content {
+    width: 80%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.left-side {
+    width: 45%;
+}
+
+.right-side {
+    width: 45%;
+    margin-left: 5%;
+}
+
+.adopt-button {
+    margin-top: 20px;
+    margin-left: 35%;
+    padding: 15px;
+    width: 20%;
+    border-radius: 12px;
+    transition-duration: 200ms;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border: 0;
+    font-size: 16px;
+}
+
+    .adopt-button:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+        background-color: palegreen;
+    }
+
+.animal-image {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.details-name {
+    margin-bottom: 2px;
+}
+
+.details-age-breed {
+    font-size: 23px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}

@@ -1,12 +1,26 @@
 ﻿@model AnimalProfileResponse
 
-<img src="@Model.ImageUrl" />
-<h1>
-	@Model.Name
-</h1>
-<h2>
-	@Model.Age
-</h2>
-<p>
-	@Model.Description
-</p>
+<link rel="stylesheet" href="~/css/DetailsViewStyles.css" />
+<form method="get">
+	<div class="details-content">
+		<div class="left-side">
+			<img class="animal-image" src="@Model.ImageUrl">
+		</div>
+		<div class="right-side">
+			<h1 class="details-name">
+				@Model.Name
+			</h1>
+			<h2 class="details-age-breed">
+				@Model.Age, @Model.Breed
+			</h2>
+
+			<p class="details-description">
+				@Model.Description
+			</p>
+
+			<button class="adopt-button">
+				Adopt!
+			</button>
+		</div>
+	</div>
+</form>

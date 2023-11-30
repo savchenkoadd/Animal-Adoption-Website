@@ -11,7 +11,7 @@ body {
 }
 
 nav {
-    background: #2c3e50;
+    background: #343a40 !important;
     height: 80px;
     width: 100%;
 }
@@ -126,4 +126,8 @@ section {
 
 .user-email {
     font-size: 14px;
+}
+
+.feed-button {
+    margin-left: 65px;
 }

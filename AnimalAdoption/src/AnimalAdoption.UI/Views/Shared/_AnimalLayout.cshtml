@@ -5,7 +5,6 @@
 	<meta name="viewport" content="width=device-width" />
 	<title>@ViewBag.Title</title>
 	<link rel="stylesheet" href="~/css/AnimalLayoutViewStyles.css" />
-	<link rel="stylesheet" href="~/css/FeedViewStyles.css" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,6 +18,9 @@
 		<label class="logo"></label>
 		<ul>
 			<li><a asp-controller="Animal" asp-action="Main">Main</a></li>
+			<li class="feed-button">
+				<a asp-controller="Animal" asp-action="Feed">Feed</a>
+			</li>
 			<li class="email">
 				<a class="logout-link" href="~/Logout">Logout</a>
 				@if (User.Identity.IsAuthenticated)
