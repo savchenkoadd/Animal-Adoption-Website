@@ -1,8 +1,9 @@
 ﻿.feed-container {
     height: 400px;
     width: 900px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 80px;
-    margin-left: 80px;
     border-radius: 30px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     padding-top: 1px;
@@ -28,7 +29,7 @@
 }
 
 .animal-name {
-    height: 20%;
+    height: 15%;
     font-family: 'Manrope', sans-serif;
 }
 
@@ -39,7 +40,6 @@
 
 .animal-image {
     width: 95%;
-
 }
 
 button {
@@ -59,8 +59,13 @@ button {
     }
 
 .animal-description {
-    margin-top: 10px;
+    margin-top: 2px;
     font-family: 'Manrope', sans-serif;
     font-size: 14px;
-    height: 40%;
+    height: fit-content;
+}
+
+.animal-description-container {
+    width: fit-content;
+    height: 150px;
 }

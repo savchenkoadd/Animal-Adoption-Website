@@ -17,18 +17,20 @@
 					<h2 class="animal-age">
 						@item.Age
 					</h2>
-					@if (item.Description?.Length > 200)
-					{
-						<p class="animal-description">
-							@item.Description.Substring(0, 200)..
-						</p>
-					}
-					else
-					{
-						<p class="animal-description">
-							@item.Description
-						</p>
-					}
+					<div class="animal-description-container">
+						@if (item.Description?.Length > 200)
+						{
+							<p class="animal-description">
+								@item.Description.Substring(0, 200)..
+							</p>
+						}
+						else
+						{
+							<p class="animal-description">
+								@item.Description
+							</p>
+						}
+					</div>
 					<button type="submit">More..</button>
 				</div>
 				<div class="image-side">
