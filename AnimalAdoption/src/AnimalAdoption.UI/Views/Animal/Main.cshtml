@@ -4,21 +4,60 @@
 }
 
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
-	<title>@ViewBag.Title</title>
-	<link rel="stylesheet" href="~/css/MainViewStyles.css" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/MainViewStyles.css" />
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <meta content="noindex, nofollow" name="robots" />
 </head>
 <body>
-	<div class="man">
-		<h1>This is the main page</h1>
+    <!-- Header Section -->
+    <header class="bg-dark text-white text-center p-4">
+        <h1>
+            Welcome to Animal Shelter 
+        </h1>
+        <p>
+            Find your perfect furry friend!
+        </p>
+    </header>
+    <!-- Main Content Section -->
+    <section class="container mt-5" id="main-content">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>
+                    About Us
+                </h2>
+                <p>
 
-		@* To do *@
-
-		<p>Here will be the main page(first visit page)</p>
-
-		<a href="~/Feed">Feed</a>
-	</div>
+                    Welcome to the Animal Shelter, where compassion meets technology to make a difference in the lives of our furry friends. We are more than just an app; we are a community dedicated to the well-being of animals. Our story is one of love, commitment, and a shared passion for creating a better world for our four-legged companions.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <h2>
+                    Adopt a Pet
+                </h2>
+                <p>
+                    Choose from our wide selection of adorable animals available for adoption. Find your new best friend today!
+                </p>
+                <a class="btn btn-primary" asp-controller="Animal" asp-action="feed">
+                    View Available Pets
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Footer Section -->
+    <footer class="bg-dark text-white text-center p-4">
+        © 2021 Animal Shelter App. All rights reserved.
+    </footer>
+    <!-- Bootstrap & jQuery JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
+    </script>
 </body>
 </html>
+
