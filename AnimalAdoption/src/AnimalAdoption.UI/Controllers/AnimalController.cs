@@ -112,10 +112,31 @@ namespace AnimalAdoption.UI.Controllers
 		}
 
 		[HttpGet]
+		[Authorize(Roles = $"{nameof(UserTypeOptions.Admin)}")]
 		[Route("[action]")]
-		public async Task<IActionResult> Edit()
+		public async Task<IActionResult> Edit(Guid? id)
 		{
-			return View();
+			var profile = await _animalService.GetAnimalProfileById(id);
+
+			return View(profile);
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		[Authorize(Roles = $"{nameof(UserTypeOptions.Admin)}")]
+		[Route("[action]")]
+		public async Task<IActionResult> Edit(AnimalProfileResponse? animalProfileResponse)
+		{
+			await _animalService.UpdateAnimalProfile(animalProfileResponse.Id, new AnimalProfileUpdateRequest()
+			{
+				Age = animalProfileResponse.Age,
+				Breed = animalProfileResponse.Breed,
+				Description = animalProfileResponse.Description,
+				ImageUrl = animalProfileResponse.ImageUrl,
+				Name = animalProfileResponse.Name
+			});
+
+			return RedirectToAction(nameof(this.Feed));
 		}
 
 		[HttpPost]

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "E4MKXO8g+2UPeakuNqpsZwwYAfULi1Wl4mWJEIf0Dig=",
+  "Hash": "1cYOXUt1wTRQIoHCo1zrOYdhYs0ogz1pl9bH4tzDBOc=",
   "Source": "AnimalAdoption.UI",
   "BasePath": "_content/AnimalAdoption.UI",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\DetailsViewStyles.css"
+    },
+    {
+      "Identity": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\EditViewStyles.css",
+      "SourceId": "AnimalAdoption.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\",
+      "BasePath": "_content/AnimalAdoption.UI",
+      "RelativePath": "css/EditViewStyles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\EditViewStyles.css"
     },
     {
       "Identity": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\ErrorViewStyles.css",

@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\css\\DetailsViewStyles.css"
     },
     {
+      "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\EditViewStyles.css",
+      "PackagePath": "staticwebassets\\css\\EditViewStyles.css"
+    },
+    {
       "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\ErrorViewStyles.css",
       "PackagePath": "staticwebassets\\css\\ErrorViewStyles.css"
     },
