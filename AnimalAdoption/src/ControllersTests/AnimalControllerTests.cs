@@ -64,7 +64,7 @@ namespace ControllersTests
                 .Setup(temp => temp.GetAnimalProfiles())
                 .ReturnsAsync(list);
 
-            IActionResult? actionResult = await animalController.Feed();
+            IActionResult? actionResult = await animalController.Feed(1);
 
             actionResult.Should().BeOfType<ViewResult>();
 
