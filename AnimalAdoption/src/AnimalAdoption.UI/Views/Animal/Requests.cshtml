@@ -8,7 +8,7 @@
 
 @foreach(var request in Model)
 {
-	<form asp-controller="Animal" method="post">
+	<form method="post">
 		<div class="container">
 			<div class="request-container">
 				<h1>
@@ -26,13 +26,17 @@
 				</div>
 			</div>
 			<div class="buttons-container">
-				<button class="approve-button" asp-action="Approve">
+				<button type="submit" class="approve-button" asp-controller="Animal" asp-action="Approve">
 					Approve
 				</button>
-				<button class="reject-button" asp-action="Reject">
+				<button type="submit" class="reject-button" asp-controller="Animal" asp-action="Reject">
 					Reject
 				</button>
+				<input type="hidden" name="Id" value="@request.Id" />
+
 			</div>
 		</div>
+
+
 	</form>
 }

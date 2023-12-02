@@ -1,4 +1,4 @@
-﻿using AnimalAdoption.Core.Enums;
+﻿using AnimalAdoption.Core.DTO;
 using AnimalAdoption.Core.ServiceContracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -59,6 +59,36 @@ namespace AnimalAdoption.UI.Controllers
 			var requests = await _requestService.GetRequests();
 
 			return View(requests);
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		[Route("[action]")]
+		public async Task<IActionResult> Approve(Guid? id)
+		{
+			var succeeded = await _requestService.ApproveRequest(id);
+
+			if (succeeded)
+			{
+				return RedirectToAction(nameof(this.Requests));
+			}
+
+			return RedirectToAction("Error", "Error");
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		[Route("[action]")]
+		public async Task<IActionResult> Reject(Guid? id)
+		{
+			var succeeded = await _requestService.RejectRequest(id);
+
+			if (succeeded)
+			{
+				return RedirectToAction(nameof(this.Requests));
+			}
+
+			return RedirectToAction("Error", "Error");
 		}
 	}
 }
