@@ -24,6 +24,7 @@ input {
     padding: 0 20px;
     font-size: 16px;
     font-weight: 400;
+    font-family: 'Manrope', sans-serif;
     margin-bottom: 5px;
 }
 
@@ -49,3 +50,4 @@ input {
 .red-text {
     color: red;
 }
+

@@ -62,7 +62,8 @@
 				<label asp-for="Description">Description</label>
 			</div>
 			<div>
-				<input class="input-description" maxlength="1500" asp-for="Description" placeholder="Description" /><br />
+				<textarea class="input-description" maxlength="1500" asp-for="Description" placeholder="Description"></textarea>
+					<br />
 				<span class="red-text" asp-validation-for="Description"></span>
 			</div>
 		</div>
