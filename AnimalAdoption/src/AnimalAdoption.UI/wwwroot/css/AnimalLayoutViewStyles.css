@@ -172,3 +172,22 @@ textarea {
     margin-bottom: 5px;
     font-family: 'Manrope', sans-serif;
 }
+
+footer {
+    background: #343a40;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    color: white;
+}
+
+#footer-heading {
+    width: fit-content;
+    height: fit-content;
+    margin: 23px auto;
+}
+
+.body {
+    margin-bottom: 100px;
+}
