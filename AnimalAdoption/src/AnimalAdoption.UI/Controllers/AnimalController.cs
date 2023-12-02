@@ -3,11 +3,13 @@ using AnimalAdoption.Core.Enums;
 using AnimalAdoption.Core.ServiceContracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace AnimalAdoption.UI.Controllers
 {
 	public class AnimalController : Controller
 	{
+		private const int PROFILES_PER_PAGE = 5;
 		private readonly IAnimalService _animalService;
 		private readonly IRequestService _requestService;
 
@@ -31,11 +33,13 @@ namespace AnimalAdoption.UI.Controllers
 
 		[HttpGet]
 		[Route("[action]")]
-		public async Task<IActionResult> Feed()
+		public async Task<IActionResult> Feed(int? page)
 		{
 			var profileResponses = await _animalService.GetAnimalProfiles();
 
-			return View(profileResponses);
+			int pageNumber = (page ?? 1);
+
+			return View(await profileResponses.ToPagedListAsync(pageNumber, PROFILES_PER_PAGE));
 		}
 
 		[HttpGet]
@@ -68,19 +72,22 @@ namespace AnimalAdoption.UI.Controllers
 			return RedirectToAction(nameof(this.Feed));
 		}
 
-		[HttpPost]
-		[ValidateAntiForgeryToken]
+		[HttpGet]
 		[Route("[action]")]
-		public async Task<IActionResult> SearchByName(string? name)
+		public async Task<IActionResult> SearchByName(string? searchValue, int? page)
 		{
-			if (name is null)
+			if (searchValue is null)
 			{
 				return RedirectToAction(nameof(this.Feed));
 			}
 
-			var results = await _animalService.SearchByName(name);
+			var results = await _animalService.SearchByName(searchValue);
 
-			return View(nameof(this.Feed), results);
+			int pageNumber = (page ?? 1);
+
+			ViewBag.SearchValue = searchValue;
+
+			return View(nameof(this.Feed), await results.ToPagedListAsync(pageNumber, PROFILES_PER_PAGE));
 		}
 
 		[HttpGet]

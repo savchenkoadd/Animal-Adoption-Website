@@ -2,16 +2,27 @@
 	ViewBag.Title = "Feed";
 }
 
-@model List<AnimalProfileResponse>
+@model IPagedList<AnimalProfileResponse>
 
 <link rel="stylesheet" href="~/css/FeedViewStyles.css" />
 
 
-<form asp-controller="Animal" asp-action="SearchByName" method="post">
+<form asp-controller="Animal" asp-action="SearchByName" method="get">
 	<div class="input-area">
 		<div class="input-and-button">
 			<div>
-				<input class="input-name" placeholder="Search by name.." name="name" /><br />
+				@if (ViewBag.SearchValue != null)
+				{
+					<input class="input-name" value="@ViewBag.SearchValue" placeholder="Search by name.." name ="searchValue" />
+
+					<br />
+				}
+				else
+				{
+					<input class="input-name" placeholder="Search by name.." name="searchValue" />
+
+					<br />
+				}
 			</div>
 			<button class="search-button" type="submit">
 				Search
@@ -68,3 +79,25 @@
 
 	</form>
 }
+
+@if (ViewBag.SearchValue is not null)
+{
+	<br />
+	<div class="pagination-area">
+		<p class="page-count-line">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</p>
+
+		@Html.PagedListPager(Model, (page) => Url.Action("SearchByName",
+	new { page, searchValue = ViewBag.SearchValue }) )
+	</div>
+}
+else
+{
+	<br />
+	<div class="pagination-area">
+		<p class="page-count-line">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</p>
+
+		@Html.PagedListPager(Model, (page) => Url.Action("Feed",
+	new { page }))
+	</div>
+}
+
