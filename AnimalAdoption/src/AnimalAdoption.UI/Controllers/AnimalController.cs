@@ -1,4 +1,5 @@
 ﻿using AnimalAdoption.Core.DTO;
+using AnimalAdoption.Core.Enums;
 using AnimalAdoption.Core.ServiceContracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -53,6 +54,7 @@ namespace AnimalAdoption.UI.Controllers
 		}
 
 		[HttpGet]
+		[Authorize(Roles = $"{nameof(UserTypeOptions.Admin)}")]
 		[Route("[action]")]
 		public async Task<IActionResult> Requests()
 		{
@@ -62,6 +64,7 @@ namespace AnimalAdoption.UI.Controllers
 		}
 
 		[HttpPost]
+		[Authorize(Roles = $"{nameof(UserTypeOptions.Admin)}")]
 		[ValidateAntiForgeryToken]
 		[Route("[action]")]
 		public async Task<IActionResult> Approve(Guid? id)
@@ -77,6 +80,7 @@ namespace AnimalAdoption.UI.Controllers
 		}
 
 		[HttpPost]
+		[Authorize(Roles = $"{nameof(UserTypeOptions.Admin)}")]
 		[ValidateAntiForgeryToken]
 		[Route("[action]")]
 		public async Task<IActionResult> Reject(Guid? id)
