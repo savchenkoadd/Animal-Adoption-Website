@@ -45,6 +45,10 @@ else
 					</div>
 					<div class="image-side">
 						<img class="animal-image" src="@item.ImageUrl">
+						@if (User.IsInRole("Admin"))
+						{
+							<a class="trash-icon" href=""><i class="fa fa-trash-o" style="font-size:24px"></i></a>
+						}
 					</div>
 				</div>
 			</div>

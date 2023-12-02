@@ -8,6 +8,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 	<nav>
@@ -17,13 +18,13 @@
 		</label>
 		<label class="logo"></label>
 		<ul>
-			<li><a asp-controller="Animal" asp-action="Create">Create</a></li>
-			<li class="main-button"><a asp-controller="Animal" asp-action="Main">Main</a></li>
+			<li><a class="nav-button" asp-controller="Animal" asp-action="Create">Create</a></li>
+			<li class="main-button"><a class="nav-button" asp-controller="Animal" asp-action="Main">Main</a></li>
 			<li class="feed-button">
-				<a asp-controller="Animal" asp-action="Feed">Feed</a>
+				<a class="nav-button" asp-controller="Animal" asp-action="Feed">Feed</a>
 			</li>
 			<li class="email">
-				<a class="logout-link" href="~/Logout">Logout</a>
+				<a class="logout-link nav-button" href="~/Logout">Logout</a>
 				@if (User.Identity.IsAuthenticated)
 				{
 					<span class="user-email">@User.Identity?.Name</span>
@@ -32,7 +33,7 @@
 			@if (User.IsInRole("Admin"))
 			{
 				<li>
-					<a href="~/Requests">Requests</a>
+					<a class="nav-button" href="~/Requests">Requests</a>
 				</li>
 			}
 		</ul>
