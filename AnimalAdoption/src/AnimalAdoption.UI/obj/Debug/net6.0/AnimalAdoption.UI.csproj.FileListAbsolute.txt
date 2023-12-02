@@ -115,3 +115,4 @@ C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\Anima
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.UI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.UI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.UI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\AnimalAdoption.UI\obj\Debug\net6.0\AnimalAdoption.UI.MvcApplicationPartsAssemblyInfo.cs

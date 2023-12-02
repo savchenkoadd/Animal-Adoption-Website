@@ -28,6 +28,12 @@
 					<span class="user-email">@User.Identity?.Name</span>
 				}
 			</li>
+			@if (User.IsInRole("Admin"))
+			{
+				<li>
+					<a href="~/Requests">Requests</a>
+				</li>
+			}
 		</ul>
 	</nav>
 	<div>
