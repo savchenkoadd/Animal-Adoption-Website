@@ -1,7 +1,7 @@
 ﻿@model AnimalProfileResponse
 
 <link rel="stylesheet" href="~/css/DetailsViewStyles.css" />
-<form method="get">
+<form method="post">
 	<div class="details-content">
 		<div class="left-side">
 			<img class="animal-image" src="@Model.ImageUrl">
@@ -18,9 +18,11 @@
 				@Model.Description
 			</p>
 
-			<button class="adopt-button">
+			<button type="submit" asp-controller="Animal" asp-action="Adopt" class="adopt-button">
 				Adopt!
 			</button>
+
+			<input type="hidden" name="id" value="@Model.Id" />
 		</div>
 	</div>
 </form>

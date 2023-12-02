@@ -42,11 +42,6 @@ namespace AnimalAdoption.UI.Controllers
 		[Route("[action]/{id}")]
 		public async Task<IActionResult> Details(Guid? id)
 		{
-			if (id is null)
-			{
-				return RedirectToAction("Error", "Error");
-			}
-
 			var animalProfile = await _animalService.GetAnimalProfileById(id.Value);
 
 			ViewBag.Title = "Details";
@@ -61,6 +56,16 @@ namespace AnimalAdoption.UI.Controllers
 			var requests = await _requestService.GetRequests();
 
 			return View(requests);
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		[Route("[action]")]
+		public async Task<IActionResult> Adopt(Guid? id)
+		{
+			await _animalService.DeleteAnimalProfile(id);
+
+			return View("Thanks");
 		}
 
 		[HttpPost]
