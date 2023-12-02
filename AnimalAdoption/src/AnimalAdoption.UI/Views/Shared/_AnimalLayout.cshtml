@@ -17,7 +17,8 @@
 		</label>
 		<label class="logo"></label>
 		<ul>
-			<li><a asp-controller="Animal" asp-action="Main">Main</a></li>
+			<li><a asp-controller="Animal" asp-action="Create">Create</a></li>
+			<li class="main-button"><a asp-controller="Animal" asp-action="Main">Main</a></li>
 			<li class="feed-button">
 				<a asp-controller="Animal" asp-action="Feed">Feed</a>
 			</li>
@@ -28,6 +29,12 @@
 					<span class="user-email">@User.Identity?.Name</span>
 				}
 			</li>
+			@if (User.IsInRole("Admin"))
+			{
+				<li>
+					<a href="~/Requests">Requests</a>
+				</li>
+			}
 		</ul>
 	</nav>
 	<div>

@@ -11,17 +11,22 @@ namespace ControllersTests
 	{
 		private readonly IAnimalService _animalService;
         private readonly Mock<IAnimalService> _animalServiceMock;
+		private readonly IRequestService _requestService;
+		private readonly Mock<IRequestService> _requestServiceMock;
 
-        public AnimalControllerTests()
+		public AnimalControllerTests()
         {
             _animalServiceMock = new Mock<IAnimalService>();
             _animalService = _animalServiceMock.Object;
-        }
+
+			_requestServiceMock = new Mock<IRequestService>();
+			_requestService = _requestServiceMock.Object;
+		}
 
         [Fact]
         public async Task Main_ShouldReturnMainView()
         {
-            AnimalController animalController = new AnimalController(_animalService);
+            AnimalController animalController = new AnimalController(_animalService, _requestService);
 
             IActionResult? actionResult = await animalController.Main();
 
@@ -53,7 +58,7 @@ namespace ControllersTests
                 }
             };
 
-            AnimalController animalController = new AnimalController(_animalService);
+            AnimalController animalController = new AnimalController(_animalService, _requestService);
 
             _animalServiceMock
                 .Setup(temp => temp.GetAnimalProfiles())

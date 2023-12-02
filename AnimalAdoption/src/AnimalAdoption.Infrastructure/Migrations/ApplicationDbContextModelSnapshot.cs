@@ -52,6 +52,36 @@ namespace AnimalAdoption.Infrastructure.Migrations
                     b.ToTable("AnimalProfiles", (string)null);
                 });
 
+            modelBuilder.Entity("AnimalAdoption.Core.Domain.Entities.Request", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Breed")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1500)
+                        .HasColumnType("nvarchar(1500)");
+
+                    b.Property<string>("ImageUrl")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Requests", (string)null);
+                });
+
             modelBuilder.Entity("AnimalAdoption.Core.Domain.IdentityEntities.ApplicationRole", b =>
                 {
                     b.Property<Guid>("Id")

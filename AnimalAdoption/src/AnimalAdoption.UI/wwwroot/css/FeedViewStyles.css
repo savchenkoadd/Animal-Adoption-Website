@@ -70,3 +70,12 @@ button {
     width: fit-content;
     height: 150px;
 }
+
+.no-profiles-heading {
+    margin: 20px 40px;
+}
+
+.no-profiles-line {
+    margin: 20px 40px;
+    font-size: 18px;
+}
