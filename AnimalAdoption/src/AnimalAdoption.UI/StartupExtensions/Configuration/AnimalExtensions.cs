@@ -10,11 +10,13 @@ namespace AnimalAdoption.UI.StartupExtensions.Configuration
         public static void AddAnimalServicesScoped(this IServiceCollection services)
         {
             services.AddScoped<IAnimalService, AnimalService>();
+            services.AddScoped<IRequestService, RequestService>();
         }
 
         public static void AddAnimalRepositoriesScoped(this IServiceCollection services)
         {
             services.AddScoped<IAnimalRepository, AnimalRepository>();
-        }
+			services.AddScoped<IRequestRepository, RequestRepository>();
+		}
     }
 }

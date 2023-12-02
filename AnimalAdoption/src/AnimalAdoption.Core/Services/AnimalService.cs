@@ -19,7 +19,7 @@ namespace AnimalAdoption.Core.Services
 
 		public async Task<bool> CreateAnimalProfile(AnimalProfileAddRequest? animalProfileAddRequest)
 		{
-			await ValidationHelper.ValidateRequest(animalProfileAddRequest);
+			await ValidationHelper.ValidateObject(animalProfileAddRequest);
 
 			var animalProfile = new AnimalProfile()
 			{
@@ -95,7 +95,7 @@ namespace AnimalAdoption.Core.Services
 				throw new ArgumentNullException();
 			}
 
-			await ValidationHelper.ValidateRequest(animalProfileUpdateRequest);
+			await ValidationHelper.ValidateObject(animalProfileUpdateRequest);
 
 			return await _animalRepository.UpdateAnimalProfile(id.Value, new AnimalProfile()
 			{

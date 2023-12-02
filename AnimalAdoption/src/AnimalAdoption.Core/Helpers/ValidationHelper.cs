@@ -4,7 +4,7 @@ namespace AnimalAdoption.Core.Helpers
 {
 	internal class ValidationHelper
 	{
-		internal static async Task ValidateRequest(object? obj)
+		internal static async Task ValidateObject(object? obj)
 		{
 			if (obj is null)
 			{
