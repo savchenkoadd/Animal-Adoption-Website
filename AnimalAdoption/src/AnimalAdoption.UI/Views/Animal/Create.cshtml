@@ -1,0 +1,85 @@
+﻿@model AddRequest
+
+@{
+	ViewBag.Title = "Create";
+}
+
+<link rel="stylesheet" href="~/css/CreateViewStyles.css">
+
+<form asp-controller="Animal" asp-action="Create" method="post">
+	<div class="create-form">
+
+		<h1 class="create-form-heading">
+			Create your own pet's profile!
+		</h1>
+
+		<h3 class="create-form-line">
+			Please, fill out this form.
+		</h3>
+
+		<div class="input-area">
+			<div class="label-area">
+				<label asp-for="Name">Name</label>
+			</div>
+			<div>
+				<input class="input-name" asp-for="Name" placeholder="Animal name" /><br />
+				<span class="red-text" asp-validation-for="Name"></span>
+			</div>
+		</div>
+
+		<div class="input-area">
+			<div class="label-area">
+				<label asp-for="Age">Age</label>
+			</div>
+			<div>
+				<input class="input-age" asp-for="Age" placeholder="Animal age" /><br />
+				<span class="red-text" asp-validation-for="Age"></span>
+			</div>
+		</div>
+
+		<div class="input-area">
+			<div class="label-area">
+				<label asp-for="Breed">Breed</label>
+			</div>
+			<div>
+				<input class="input-breed" asp-for="Breed" placeholder="Breed" /><br />
+				<span class="red-text" asp-validation-for="Breed"></span>
+			</div>
+		</div>
+
+		<div class="input-area">
+			<div class="label-area">
+				<label asp-for="ImageUrl">Image url</label>
+			</div>
+			<div>
+				<input class="input-age" asp-for="ImageUrl" placeholder="Image url" /><br />
+				<span class="red-text" asp-validation-for="ImageUrl"></span>
+			</div>
+		</div>
+
+		<div class="input-area">
+			<div class="label-area">
+				<label asp-for="Description">Description</label>
+			</div>
+			<div>
+				<input class="input-description" maxlength="1500" asp-for="Description" placeholder="Description" /><br />
+				<span class="red-text" asp-validation-for="Description"></span>
+			</div>
+		</div>
+
+		<button class="submit-btn" type="submit">
+			Submit!
+		</button>
+
+	</div>
+</form>
+
+
+@section scripts
+	{
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" asp-fallback-test="window.jQuery" asp-fallback-src="~/jquery.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.4/jquery.validate.min.js" asp-fallback-test="window.jQuery.validator" asp-fallback-src="~/jquery.validate.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" asp-fallback-test="window.jQuery.validator.unobstrusive" asp-fallback-src="~/jquery.validate.unobtrusive.min.js"></script>
+	}

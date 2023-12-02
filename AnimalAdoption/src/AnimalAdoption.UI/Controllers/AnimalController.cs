@@ -58,6 +58,26 @@ namespace AnimalAdoption.UI.Controllers
 			return View(requests);
 		}
 
+		[HttpGet]
+		[Route("[action]")]
+		public async Task<IActionResult> Create()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		[Route("[action]")]
+		public async Task<IActionResult> Create(AddRequest? addRequest)
+		{
+			if (await _requestService.AddRequest(addRequest))
+			{
+				return View("ThanksForCreating");
+			}
+
+			return RedirectToAction(nameof(ErrorController.Error), nameof(ErrorController.Error));
+		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		[Route("[action]")]
@@ -65,7 +85,7 @@ namespace AnimalAdoption.UI.Controllers
 		{
 			await _animalService.DeleteAnimalProfile(id);
 
-			return View("Thanks");
+			return View("ThanksForAdoption");
 		}
 
 		[HttpPost]
