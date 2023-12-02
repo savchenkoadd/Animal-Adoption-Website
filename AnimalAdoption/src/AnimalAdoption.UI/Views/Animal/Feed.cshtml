@@ -5,7 +5,7 @@
 @model IPagedList<AnimalProfileResponse>
 
 <link rel="stylesheet" href="~/css/FeedViewStyles.css" />
-
+<script src="https://kit.fontawesome.com/7e8bad01d9.js" crossorigin="anonymous"></script>
 
 <form asp-controller="Animal" asp-action="SearchByName" method="get">
 	<div class="input-area">
@@ -69,9 +69,18 @@
 				</div>
 				<div class="image-side">
 					<img class="animal-image" src="@item.ImageUrl">
+
 					@if (User.IsInRole("Admin"))
 					{
-						<a class="trash-icon" asp-route-id="@item.Id" asp-action="Delete"><i class="fa fa-trash-o" style="font-size:24px"></i></a>
+						<div class="icons">
+							<a class="trash-icon" asp-route-id="@item.Id" asp-action="Delete">
+								<i class="fas fa-trash-o" style="font-size:24px"></i>
+							</a>
+
+							<a class="edit-icon" asp-route-id="@item.Id" asp-action="Edit">
+								<i class="fas fa-edit" style="font-size:24px"></i>
+							</a>
+						</div>
 					}
 				</div>
 			</div>

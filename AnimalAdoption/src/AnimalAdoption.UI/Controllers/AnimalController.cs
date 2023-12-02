@@ -97,6 +97,7 @@ namespace AnimalAdoption.UI.Controllers
 			return View();
 		}
 
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		[Route("[action]")]
@@ -108,6 +109,13 @@ namespace AnimalAdoption.UI.Controllers
 			}
 
 			return RedirectToAction(nameof(ErrorController.Error), nameof(ErrorController.Error));
+		}
+
+		[HttpGet]
+		[Route("[action]")]
+		public async Task<IActionResult> Edit()
+		{
+			return View();
 		}
 
 		[HttpPost]
