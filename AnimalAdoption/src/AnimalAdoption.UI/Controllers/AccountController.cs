@@ -67,6 +67,8 @@ namespace AnimalAdoption.UI.Controllers
 
 						await _roleManager.CreateAsync(adminRole);
 					}
+
+					await _userManager.AddToRoleAsync(user, nameof(UserTypeOptions.Admin));
 				}
 				else
 				{
@@ -79,9 +81,10 @@ namespace AnimalAdoption.UI.Controllers
 
 						await _roleManager.CreateAsync(userRole);
 					}
+
+					await _userManager.AddToRoleAsync(user, nameof(UserTypeOptions.User));
 				}
 
-				//Sign in
 				await _signInManager.SignInAsync(user, isPersistent: false);
 
 				return RedirectToAction(nameof(AnimalController.Main), "Animal");
