@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1JCtMZYMYsaxMJixU4Ppzf5Uj9ESAFyNGaCxXPe1uJ8=",
+  "Hash": "J6Yc0ySAioFu0hax37v5vr5QP0W4JYTUuMcZNwHYsgY=",
   "Source": "AnimalAdoption.UI",
   "BasePath": "_content/AnimalAdoption.UI",
   "Mode": "Default",
@@ -16,6 +16,23 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\AccessDeniedViewStyles.css",
+      "SourceId": "AnimalAdoption.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\",
+      "BasePath": "_content/AnimalAdoption.UI",
+      "RelativePath": "css/AccessDeniedViewStyles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\AccessDeniedViewStyles.css"
+    },
     {
       "Identity": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\AccountStyles.css",
       "SourceId": "AnimalAdoption.UI",

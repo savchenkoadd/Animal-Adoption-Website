@@ -144,6 +144,13 @@ namespace AnimalAdoption.UI.Controllers
 			return RedirectToAction(nameof(AnimalController.Main), "Animal");
 		}
 
+		[HttpGet]
+		[Route("[controller]/[action]")]
+		public async Task<IActionResult> AccessDenied()
+		{
+			return View();
+		}
+
 		[Route("/[action]")]
 		public async Task<IActionResult> IsEmailAlreadyRegistered(string Email)
 		{
