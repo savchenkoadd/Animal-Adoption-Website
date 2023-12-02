@@ -69,6 +69,15 @@ namespace AnimalAdoption.UI.Controllers
 		}
 
 		[HttpGet]
+		[Route("[action]/{name}")]
+		public async Task<IActionResult> SearchByName(string? name)
+		{
+			var results = await _animalService.SearchByName(name);
+
+			return View("Feed", results);
+		}
+
+		[HttpGet]
 		[Route("[action]")]
 		public async Task<IActionResult> Create()
 		{
