@@ -100,3 +100,13 @@
                 border: 0;
                 box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
             }
+
+
+.no-requests-heading {
+    margin: 20px 40px;
+}
+
+.no-requests-line {
+    margin: 20px 40px;
+    font-size: 18px;
+}
