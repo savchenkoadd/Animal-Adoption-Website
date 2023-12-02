@@ -85,7 +85,7 @@ namespace AnimalAdoption.Core.Services
 		{
 			await ValidationHelper.ValidateObject(requestId);
 
-			var currentRequest = _requestRepository.GetRequest(requestId.Value);
+			var currentRequest = await _requestRepository.GetRequest(requestId.Value);
 
 			if (currentRequest is null)
 			{
