@@ -13,12 +13,14 @@ namespace AnimalAdoption.Infrastructure.Db
         }
 
         public DbSet<AnimalProfile> AnimalProfiles { get; set; }
+		public DbSet<AnimalProfile> Requests { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
 
 			modelBuilder.Entity<AnimalProfile>().ToTable(nameof(AnimalProfiles));
+			modelBuilder.Entity<AnimalProfile>().ToTable(nameof(Requests));
 		}
 	}
 }
