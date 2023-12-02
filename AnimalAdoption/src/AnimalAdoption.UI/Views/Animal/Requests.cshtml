@@ -1,0 +1,38 @@
+﻿@model List<RequestResponse>
+
+@{
+	ViewBag.Title = "Requests";
+}
+
+<link rel="stylesheet" href="~/css/RequestsViewStyles.css">
+
+@foreach(var request in Model)
+{
+	<form asp-controller="Animal" method="post">
+		<div class="container">
+			<div class="request-container">
+				<h1>
+					Request
+				</h1>
+			</div>
+			<div class="content-container">
+				<div class="image-side">
+					<img class="image" src="@request.ImageUrl" />
+				</div>
+				<div class="request-content-side">
+					<h1 class="name">@request.Name</h1>
+					<h2 class="age-and-breed">@request.Age, @request.Breed</h2>
+					<p class="description">@request.Description</p>
+				</div>
+			</div>
+			<div class="buttons-container">
+				<button class="approve-button" asp-action="Approve">
+					Approve
+				</button>
+				<button class="reject-button" asp-action="Reject">
+					Reject
+				</button>
+			</div>
+		</div>
+	</form>
+}

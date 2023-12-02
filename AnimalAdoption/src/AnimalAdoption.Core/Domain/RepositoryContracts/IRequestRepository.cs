@@ -4,12 +4,12 @@ namespace AnimalAdoption.Core.Domain.RepositoryContracts
 {
 	public interface IRequestRepository
 	{
-		Task<bool> AddRequest(AnimalProfile request);
+		Task<bool> AddRequest(Request request);
 
 		Task<bool> DeleteRequest(Guid requestId);
 
-		Task<AnimalProfile?> GetRequest(Guid requestId);
+		Task<Request?> GetRequest(Guid requestId);
 
-		Task<List<AnimalProfile>?> GetAllRequests();
+		Task<List<Request>?> GetAllRequests();
 	}
 }

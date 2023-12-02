@@ -19,17 +19,17 @@ namespace AnimalAdoption.Core.Services
 			_animalRepository = animalRepository;
         }
 
-        public async Task<bool> AddRequest(AnimalProfileAddRequest? animalProfileAddRequest)
+        public async Task<bool> AddRequest(AddRequest? request)
 		{
-			await ValidationHelper.ValidateObject(animalProfileAddRequest);
+			await ValidationHelper.ValidateObject(request);
 
-			return await _requestRepository.AddRequest(new Domain.Entities.AnimalProfile()
+			return await _requestRepository.AddRequest(new Domain.Entities.Request()
 			{
-				Age = animalProfileAddRequest.Age,
-				Breed = animalProfileAddRequest.Breed,
-				Description = animalProfileAddRequest.Description,
-				ImageUrl = animalProfileAddRequest.ImageUrl,
-				Name = animalProfileAddRequest.Name,
+				Age = request.Age,
+				Breed = request.Breed,
+				Description = request.Description,
+				ImageUrl = request.ImageUrl,
+				Name = request.Name,
 				Id = Guid.NewGuid()
 			});
 		}
@@ -47,22 +47,30 @@ namespace AnimalAdoption.Core.Services
 
 			await _requestRepository.DeleteRequest(requestId.Value);
 
-			await _animalRepository.CreateAnimalProfile(currentRequest);
+			await _animalRepository.CreateAnimalProfile(new Domain.Entities.AnimalProfile()
+			{
+				Age = currentRequest.Age,
+				Breed = currentRequest.Breed,
+				Description = currentRequest.Description,
+				ImageUrl = currentRequest.ImageUrl,
+				Name = currentRequest.Name,
+				Id = currentRequest.Id
+			});
 
 			return true;
 		}
 
-		public async Task<List<AnimalProfileResponse>> GetRequests()
+		public async Task<List<RequestResponse>> GetRequests()
 		{
 			var requests = await _requestRepository.GetAllRequests();
 
 			if (requests is null)
 			{
-				return new List<AnimalProfileResponse>();
+				return new List<RequestResponse>();
 			}
 
 			return requests
-				.Select(temp => new AnimalProfileResponse()
+				.Select(temp => new RequestResponse()
 			{
 				Age = temp.Age,
 				Breed = temp.Breed,	

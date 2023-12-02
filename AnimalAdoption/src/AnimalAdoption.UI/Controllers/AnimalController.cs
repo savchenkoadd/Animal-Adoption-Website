@@ -52,9 +52,8 @@ namespace AnimalAdoption.UI.Controllers
 			return View(animalProfile);
 		}
 
-		[Authorize(Roles = $"{nameof(UserTypeOptions.Admin)}")]
 		[HttpGet]
-		[Route("")]
+		[Route("[action]")]
 		public async Task<IActionResult> Requests()
 		{
 			var requests = await _requestService.GetRequests();

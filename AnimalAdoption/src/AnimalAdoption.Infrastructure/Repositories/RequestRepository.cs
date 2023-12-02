@@ -1,5 +1,6 @@
 ﻿using AnimalAdoption.Core.Domain.Entities;
 using AnimalAdoption.Core.Domain.RepositoryContracts;
+using AnimalAdoption.Core.DTO;
 using AnimalAdoption.Infrastructure.Db;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,7 +17,7 @@ namespace AnimalAdoption.Infrastructure.Repositories
 			_db = applicationDbContext;
 		}
 
-		public async Task<bool> AddRequest(AnimalProfile request)
+		public async Task<bool> AddRequest(Request request)
 		{
 			await _db.Requests.AddAsync(request);
 			await _db.SaveChangesAsync();
@@ -39,12 +40,12 @@ namespace AnimalAdoption.Infrastructure.Repositories
 			return true;
 		}
 
-		public async Task<List<AnimalProfile>?> GetAllRequests()
+		public async Task<List<Request>?> GetAllRequests()
 		{
 			return await _db.Requests.ToListAsync();
 		}
 
-		public async Task<AnimalProfile?> GetRequest(Guid requestId)
+		public async Task<Request?> GetRequest(Guid requestId)
 		{
 			var animalProfile = await _db.Requests.FindAsync(requestId);
 

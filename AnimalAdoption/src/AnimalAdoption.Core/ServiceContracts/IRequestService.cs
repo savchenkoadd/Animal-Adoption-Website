@@ -4,12 +4,12 @@ namespace AnimalAdoption.Core.ServiceContracts
 {
 	public interface IRequestService
 	{
-		Task<bool> AddRequest(AnimalProfileAddRequest? animalProfileAddRequest);
+		Task<bool> AddRequest(AddRequest? request);
 
 		Task<bool> RejectRequest(Guid? requestId);
 
 		Task<bool> ApproveRequest(Guid? requestId);
 
-		Task<List<AnimalProfileResponse>> GetRequests();
+		Task<List<RequestResponse>> GetRequests();
 	}
 }
