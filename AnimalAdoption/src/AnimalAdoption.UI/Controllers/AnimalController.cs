@@ -59,6 +59,16 @@ namespace AnimalAdoption.UI.Controllers
 		}
 
 		[HttpGet]
+		[Authorize(Roles = $"{nameof(UserTypeOptions.Admin)}")]
+		[Route("[action]/{id}")]
+		public async Task<IActionResult> Delete(Guid? id)
+		{
+			await _animalService.DeleteAnimalProfile(id);
+
+			return RedirectToAction(nameof(this.Feed));
+		}
+
+		[HttpGet]
 		[Route("[action]")]
 		public async Task<IActionResult> Create()
 		{

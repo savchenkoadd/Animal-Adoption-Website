@@ -42,7 +42,7 @@ nav ul {
             border-radius: 3px;
         }
 
-a.active, a:hover {
+.nav-button.active, .nav-button:hover {
     background: #1b9bff;
     transition: .5s;
 }
@@ -98,7 +98,7 @@ a.active, a:hover {
             font-size: 20px;
         }
 
-    a:hover, a.active {
+    .nav-button:hover, .nav-button.active {
         background: none;
         color: #0082e6;
     }

@@ -41,6 +41,8 @@
 
 .animal-image {
     width: 95%;
+    object-fit: scale-down;
+    height: 250px;
 }
 
 button {
@@ -79,3 +81,17 @@ button {
     margin: 20px 40px;
     font-size: 18px;
 }
+
+.trash-icon {
+    width: 100%;
+    margin-left: 100%;
+}
+
+i {
+    color: black;
+    transition-duration: 200ms;
+}
+
+    i:hover {
+        color: red;
+    }
