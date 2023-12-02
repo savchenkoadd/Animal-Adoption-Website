@@ -13,5 +13,7 @@ namespace AnimalAdoption.Core.ServiceContracts
 		Task<List<AnimalProfileResponse>> GetAnimalProfiles();
 
 		Task<AnimalProfileResponse> GetAnimalProfileById(Guid? id);
+
+		Task<List<AnimalProfileResponse>> SearchByName(string? name);
 	}
 }

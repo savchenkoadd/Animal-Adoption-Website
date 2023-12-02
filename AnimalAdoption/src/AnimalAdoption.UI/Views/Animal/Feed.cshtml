@@ -6,6 +6,20 @@
 
 <link rel="stylesheet" href="~/css/FeedViewStyles.css" />
 
+
+<form asp-controller="Animal" asp-action="SearchByName" method="post">
+	<div class="input-area">
+		<div class="input-and-button">
+			<div>
+				<input class="input-name" placeholder="Search by name.." name="name" /><br />
+			</div>
+			<button class="search-button" type="submit">
+				Search
+			</button>
+		</div>
+	</div>
+</form>
+
 @if (Model.Count == 0)
 {
 	<div>
@@ -13,46 +27,44 @@
 		<p class="no-profiles-line">Currently, there are no profiles.</p>
 	</div>
 }
-else
+
+@foreach (var item in Model)
 {
-	@foreach (var item in Model)
-	{
-		<form asp-controller="Animal" asp-action="Details" asp-route-id="@item.Id" method="get">
-			<div class="feed-container">
-				<div class="container-content">
-					<div class="text-side">
-						<h1 class="animal-name">
-							@item.Name,
-						</h1>
-						<h2 class="animal-age">
-							@item.Age
-						</h2>
-						<div class="animal-description-container">
-							@if (item.Description?.Length > 200)
-							{
-								<p class="animal-description">
-									@item.Description.Substring(0, 200)..
-								</p>
-							}
-							else
-							{
-								<p class="animal-description">
-									@item.Description
-								</p>
-							}
-						</div>
-						<button type="submit">More..</button>
-					</div>
-					<div class="image-side">
-						<img class="animal-image" src="@item.ImageUrl">
-						@if (User.IsInRole("Admin"))
+	<form asp-controller="Animal" asp-action="Details" asp-route-id="@item.Id" method="get">
+		<div class="feed-container">
+			<div class="container-content">
+				<div class="text-side">
+					<h1 class="animal-name">
+						@item.Name,
+					</h1>
+					<h2 class="animal-age">
+						@item.Age
+					</h2>
+					<div class="animal-description-container">
+						@if (item.Description?.Length > 200)
 						{
-							<a class="trash-icon" asp-route-id="@item.Id" asp-action="Delete"><i class="fa fa-trash-o" style="font-size:24px"></i></a>
+							<p class="animal-description">
+								@item.Description.Substring(0, 200)..
+							</p>
+						}
+						else
+						{
+							<p class="animal-description">
+								@item.Description
+							</p>
 						}
 					</div>
+					<button class="more-button" type="submit">More..</button>
+				</div>
+				<div class="image-side">
+					<img class="animal-image" src="@item.ImageUrl">
+					@if (User.IsInRole("Admin"))
+					{
+						<a class="trash-icon" asp-route-id="@item.Id" asp-action="Delete"><i class="fa fa-trash-o" style="font-size:24px"></i></a>
+					}
 				</div>
 			</div>
+		</div>
 
-		</form>
-	}
+	</form>
 }

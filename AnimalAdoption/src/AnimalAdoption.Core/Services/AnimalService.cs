@@ -88,6 +88,28 @@ namespace AnimalAdoption.Core.Services
 			}).ToList();
 		}
 
+		public async Task<List<AnimalProfileResponse>> SearchByName(string? name)
+		{
+			await ValidationHelper.ValidateObject(name);
+
+			var results = await _animalRepository.SearchByName(name);
+
+			if (results is not null)
+			{
+				return results.Select(temp => new AnimalProfileResponse()
+				{
+					Id = temp.Id,
+					Name = temp.Name,
+					Age = temp.Age,
+					Breed = temp.Breed,
+					Description = temp.Description,
+					ImageUrl = temp.ImageUrl
+				}).ToList();
+			}
+
+			return new List<AnimalProfileResponse>();
+		}
+
 		public async Task<int> UpdateAnimalProfile(Guid? id, AnimalProfileUpdateRequest? animalProfileUpdateRequest)
 		{
 			if (id is null)
