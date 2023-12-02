@@ -50,6 +50,13 @@ namespace AnimalAdoption.Infrastructure.Repositories
 			return await _db.AnimalProfiles.ToListAsync();
 		}
 
+		public async Task<List<AnimalProfile>?> SearchByName(string name)
+		{
+			return await _db.AnimalProfiles
+				.Where(profile => profile.Name.Contains(name))
+				.ToListAsync();
+		}
+
 		public async Task<int> UpdateAnimalProfile(Guid id, AnimalProfile animalRequest)
 		{
 			var existingAnimalProfile = await _db.AnimalProfiles.FindAsync(id);
