@@ -68,13 +68,19 @@ namespace AnimalAdoption.UI.Controllers
 			return RedirectToAction(nameof(this.Feed));
 		}
 
-		[HttpGet]
-		[Route("[action]/{name}")]
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		[Route("[action]")]
 		public async Task<IActionResult> SearchByName(string? name)
 		{
+			if (name is null)
+			{
+				return RedirectToAction(nameof(this.Feed));
+			}
+
 			var results = await _animalService.SearchByName(name);
 
-			return View("Feed", results);
+			return View(nameof(this.Feed), results);
 		}
 
 		[HttpGet]
