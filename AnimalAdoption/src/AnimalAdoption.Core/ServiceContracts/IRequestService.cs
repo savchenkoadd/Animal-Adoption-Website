@@ -9,5 +9,7 @@ namespace AnimalAdoption.Core.ServiceContracts
 		Task<bool> RejectRequest(Guid? requestId);
 
 		Task<bool> ApproveRequest(Guid? requestId);
+
+		Task<List<AnimalProfileResponse>> GetRequests();
 	}
 }

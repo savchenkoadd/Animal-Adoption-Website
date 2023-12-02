@@ -52,6 +52,27 @@ namespace AnimalAdoption.Core.Services
 			return true;
 		}
 
+		public async Task<List<AnimalProfileResponse>> GetRequests()
+		{
+			var requests = await _requestRepository.GetAllRequests();
+
+			if (requests is null)
+			{
+				return new List<AnimalProfileResponse>();
+			}
+
+			return requests
+				.Select(temp => new AnimalProfileResponse()
+			{
+				Age = temp.Age,
+				Breed = temp.Breed,	
+				Description = temp.Description,
+				ImageUrl = temp.ImageUrl,
+				Name = temp.Name,
+				Id = temp.Id
+			}).ToList();
+		}
+
 		public async Task<bool> RejectRequest(Guid? requestId)
 		{
 			await ValidationHelper.ValidateObject(requestId);

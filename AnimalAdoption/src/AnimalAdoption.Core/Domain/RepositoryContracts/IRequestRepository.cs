@@ -7,5 +7,9 @@ namespace AnimalAdoption.Core.Domain.RepositoryContracts
 		Task<bool> AddRequest(AnimalProfile request);
 
 		Task<bool> DeleteRequest(Guid requestId);
+
+		Task<AnimalProfile?> GetRequest(Guid requestId);
+
+		Task<List<AnimalProfile>?> GetAllRequests();
 	}
 }
