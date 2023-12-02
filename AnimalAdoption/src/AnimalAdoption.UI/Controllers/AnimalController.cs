@@ -97,6 +97,7 @@ namespace AnimalAdoption.UI.Controllers
 			return View();
 		}
 
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		[Route("[action]")]
@@ -108,6 +109,34 @@ namespace AnimalAdoption.UI.Controllers
 			}
 
 			return RedirectToAction(nameof(ErrorController.Error), nameof(ErrorController.Error));
+		}
+
+		[HttpGet]
+		[Authorize(Roles = $"{nameof(UserTypeOptions.Admin)}")]
+		[Route("[action]")]
+		public async Task<IActionResult> Edit(Guid? id)
+		{
+			var profile = await _animalService.GetAnimalProfileById(id);
+
+			return View(profile);
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		[Authorize(Roles = $"{nameof(UserTypeOptions.Admin)}")]
+		[Route("[action]")]
+		public async Task<IActionResult> Edit(AnimalProfileResponse? animalProfileResponse)
+		{
+			await _animalService.UpdateAnimalProfile(animalProfileResponse.Id, new AnimalProfileUpdateRequest()
+			{
+				Age = animalProfileResponse.Age,
+				Breed = animalProfileResponse.Breed,
+				Description = animalProfileResponse.Description,
+				ImageUrl = animalProfileResponse.ImageUrl,
+				Name = animalProfileResponse.Name
+			});
+
+			return RedirectToAction(nameof(this.Feed));
 		}
 
 		[HttpPost]

@@ -1,28 +1,23 @@
-﻿@model AddRequest
+﻿@model AnimalProfileResponse
 
 @{
-	ViewBag.Title = "Create";
+	ViewBag.Title = "Edit";
 }
 
-<link rel="stylesheet" href="~/css/CreateViewStyles.css">
+<link rel="stylesheet" href="~/css/EditViewStyles.css" />
 
-<form asp-controller="Animal" asp-action="Create" method="post">
-	<div class="create-form">
-
-		<h1 class="create-form-heading">
-			Create your own pet's profile!
+<form asp-controller="Animal" asp-action="Edit" method="post">
+	<div class="edit-form">
+		<h1 class="edit-form-heading">
+			Edit
 		</h1>
-
-		<h3 class="create-form-line">
-			Please, fill out this form.
-		</h3>
 
 		<div class="input-area">
 			<div class="label-area">
 				<label asp-for="Name">Name</label>
 			</div>
 			<div>
-				<input class="input-name" asp-for="Name" placeholder="Animal name" /><br />
+				<input class="input-name" value="@Model.Name" asp-for="Name" placeholder="Animal name" /><br />
 				<span class="red-text" asp-validation-for="Name"></span>
 			</div>
 		</div>
@@ -32,7 +27,7 @@
 				<label asp-for="Age">Age</label>
 			</div>
 			<div>
-				<input class="input-age" asp-for="Age" placeholder="Animal age" /><br />
+				<input class="input-age" value="@Model.Age" asp-for="Age" placeholder="Animal age" /><br />
 				<span class="red-text" asp-validation-for="Age"></span>
 			</div>
 		</div>
@@ -42,7 +37,7 @@
 				<label asp-for="Breed">Breed</label>
 			</div>
 			<div>
-				<input class="input-breed" asp-for="Breed" placeholder="Breed" /><br />
+				<input class="input-breed" value="@Model.Breed" asp-for="Breed" placeholder="Breed" /><br />
 				<span class="red-text" asp-validation-for="Breed"></span>
 			</div>
 		</div>
@@ -52,7 +47,7 @@
 				<label asp-for="ImageUrl">Image url</label>
 			</div>
 			<div>
-				<input class="input-image-url" asp-for="ImageUrl" placeholder="Image url" /><br />
+				<input class="input-image-url" value="@Model.ImageUrl" asp-for="ImageUrl" placeholder="Image url" /><br />
 				<span class="red-text" asp-validation-for="ImageUrl"></span>
 			</div>
 		</div>
@@ -62,13 +57,15 @@
 				<label asp-for="Description">Description</label>
 			</div>
 			<div>
-				<input class="input-description" maxlength="1500" asp-for="Description" placeholder="Description" /><br />
+				<input class="input-description" value="@Model.Description" maxlength="1500" asp-for="Description" placeholder="Description" /><br />
 				<span class="red-text" asp-validation-for="Description"></span>
 			</div>
 		</div>
 
+		<input type="hidden" name="Id" value="@Model.Id">
+
 		<button class="submit-btn" type="submit">
-			Submit!
+			Edit!
 		</button>
 
 	</div>

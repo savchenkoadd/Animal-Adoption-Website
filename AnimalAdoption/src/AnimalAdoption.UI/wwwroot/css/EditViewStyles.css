@@ -1,0 +1,50 @@
+﻿.edit-form {
+    margin: 50px 60px;
+}
+
+    .edit-form heading {
+    }
+
+.edit-form-line {
+    margin-bottom: 40px;
+}
+
+label {
+    font-weight: 600;
+}
+
+input {
+    margin-top: 10px;
+    width: 25%;
+    height: 40px;
+    border-radius: 6px;
+    border: 0px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    padding: 0 20px;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.submit-btn {
+    margin-top: 30px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    width: 13%;
+    border-radius: 10px;
+    border: 0px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    height: 55px;
+    transition-duration: 400ms;
+}
+
+    .submit-btn:hover {
+        transform: scale(1.02);
+        cursor: pointer;
+        background-color: #343a40;
+        color: white;
+    }
+
+.red-text {
+    color: red;
+}

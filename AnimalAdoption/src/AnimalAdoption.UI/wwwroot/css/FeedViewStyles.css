@@ -82,9 +82,22 @@
     font-size: 18px;
 }
 
+.icons {
+    display: flex;
+    flex-direction: row;
+}
+
 .trash-icon {
     width: 100%;
     margin-left: 100%;
+}
+
+.edit-icon {
+
+}
+
+.fa-trash-o {
+    margin-right: 15px;
 }
 
 i {

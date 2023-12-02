@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\css\\DetailsViewStyles.css"
     },
     {
+      "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\EditViewStyles.css",
+      "PackagePath": "staticwebassets\\css\\EditViewStyles.css"
+    },
+    {
       "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\ErrorViewStyles.css",
       "PackagePath": "staticwebassets\\css\\ErrorViewStyles.css"
     },
@@ -43,6 +47,18 @@
     {
       "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\ThanksForCreatingStyles.css",
       "PackagePath": "staticwebassets\\css\\ThanksForCreatingStyles.css"
+    },
+    {
+      "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\images\\account-favicon.ico",
+      "PackagePath": "staticwebassets\\images\\account-favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\images\\animal-favicon.ico",
+      "PackagePath": "staticwebassets\\images\\animal-favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\images\\main-favicon.ico",
+      "PackagePath": "staticwebassets\\images\\main-favicon.ico"
     },
     {
       "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\js\\main.js",
