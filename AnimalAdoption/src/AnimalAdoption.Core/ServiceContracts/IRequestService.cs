@@ -10,6 +10,8 @@ namespace AnimalAdoption.Core.ServiceContracts
 
 		Task<bool> ApproveRequest(Guid? requestId);
 
-		Task<List<RequestResponse>> GetRequests();
+		Task<List<RequestResponse>> GetRequestsForAdmin();
+
+		Task<List<RequestResponse>> GetRequestsByUserId(Guid? userId);
 	}
 }

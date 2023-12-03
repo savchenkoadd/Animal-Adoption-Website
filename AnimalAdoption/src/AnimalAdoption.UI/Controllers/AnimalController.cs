@@ -1,7 +1,9 @@
-﻿using AnimalAdoption.Core.DTO;
+﻿using AnimalAdoption.Core.Domain.IdentityEntities;
+using AnimalAdoption.Core.DTO;
 using AnimalAdoption.Core.Enums;
 using AnimalAdoption.Core.ServiceContracts;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
@@ -12,14 +14,17 @@ namespace AnimalAdoption.UI.Controllers
 		private const int PROFILES_PER_PAGE = 5;
 		private readonly IAnimalService _animalService;
 		private readonly IRequestService _requestService;
+		private readonly UserManager<ApplicationUser> _userManager;
 
 		public AnimalController(
 				IAnimalService animalService,
-				IRequestService requestService
+				IRequestService requestService,
+				UserManager<ApplicationUser> userManager
 			)
 		{
 			_animalService = animalService;
 			_requestService = requestService;
+			_userManager = userManager;
 		}
 
 		[HttpGet]
@@ -57,7 +62,7 @@ namespace AnimalAdoption.UI.Controllers
 		[Route("[action]")]
 		public async Task<IActionResult> Requests()
 		{
-			var requests = await _requestService.GetRequests();
+			var requests = await _requestService.GetRequestsForAdmin();
 
 			return View(requests);
 		}
@@ -92,11 +97,22 @@ namespace AnimalAdoption.UI.Controllers
 
 		[HttpGet]
 		[Route("[action]")]
-		public async Task<IActionResult> Create()
+		public async Task<IActionResult> UserRequests()
 		{
-			return View();
+			var currentUserId = (await _userManager.GetUserAsync(User)).Id;
+			var userRequests = await _requestService.GetRequestsByUserId(currentUserId);
+
+			return View(userRequests);
 		}
 
+		[HttpGet]
+		[Route("[action]")]
+		public async Task<IActionResult> Create()
+		{
+			ViewBag.UserId = (await _userManager.GetUserAsync(HttpContext.User)).Id;
+
+			return View();
+		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]

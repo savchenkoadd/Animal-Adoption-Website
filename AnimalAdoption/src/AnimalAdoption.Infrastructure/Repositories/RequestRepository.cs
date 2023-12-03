@@ -51,5 +51,33 @@ namespace AnimalAdoption.Infrastructure.Repositories
 
 			return animalProfile;
 		}
+
+		public async Task<List<Request>?> GetRequestsByUserId(Guid userId)
+		{
+			return await _db.Requests.Where(x => x.UserId == userId).ToListAsync();
+		}
+
+		public async Task<bool> UpdateRequest(Guid requestId, Request updateRequest)
+		{
+			var request = await _db.Requests.FindAsync(requestId);
+
+			if (request is null)
+			{
+				return false;
+			}
+
+			request.Description = updateRequest.Description;
+			request.Age = updateRequest.Age;
+			request.Name = updateRequest.Name;
+			request.Breed = updateRequest.Breed;
+			request.ImageUrl = updateRequest.ImageUrl;
+			request.Status = updateRequest.Status;
+			request.AnimalId = updateRequest.AnimalId;
+			request.UserId = updateRequest.UserId;
+
+			await _db.SaveChangesAsync();
+			
+			return true;
+		}
 	}
 }

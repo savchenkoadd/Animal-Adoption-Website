@@ -54,7 +54,7 @@ namespace AnimalAdoption.Infrastructure.Migrations
 
             modelBuilder.Entity("AnimalAdoption.Core.Domain.Entities.Request", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("AnimalId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -77,7 +77,13 @@ namespace AnimalAdoption.Infrastructure.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasKey("Id");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("AnimalId");
 
                     b.ToTable("Requests", (string)null);
                 });

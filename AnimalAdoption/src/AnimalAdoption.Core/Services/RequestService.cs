@@ -1,5 +1,6 @@
 ﻿using AnimalAdoption.Core.Domain.RepositoryContracts;
 using AnimalAdoption.Core.DTO;
+using AnimalAdoption.Core.Enums;
 using AnimalAdoption.Core.Helpers;
 using AnimalAdoption.Core.ServiceContracts;
 
@@ -10,28 +11,76 @@ namespace AnimalAdoption.Core.Services
 		private readonly IRequestRepository _requestRepository;
 		private readonly IAnimalRepository _animalRepository;
 
-        public RequestService(
+		public RequestService(
 				IRequestRepository requestRepository,
 				IAnimalRepository animalRepository
 			)
-        {
-            _requestRepository = requestRepository;
+		{
+			_requestRepository = requestRepository;
 			_animalRepository = animalRepository;
-        }
+		}
 
-        public async Task<bool> AddRequest(AddRequest? request)
+		public async Task<bool> AddRequest(AddRequest? request)
 		{
 			await ValidationHelper.ValidateObject(request);
 
 			return await _requestRepository.AddRequest(new Domain.Entities.Request()
 			{
 				Age = request.Age,
+				UserId = request.UserId,
 				Breed = request.Breed,
 				Description = request.Description,
 				ImageUrl = request.ImageUrl,
 				Name = request.Name,
-				Id = Guid.NewGuid()
+				AnimalId = Guid.NewGuid()
 			});
+		}
+
+		public async Task<List<RequestResponse>> GetRequestsForAdmin()
+		{
+			var requests = await _requestRepository.GetAllRequests();
+
+			if (requests is null)
+			{
+				return new List<RequestResponse>();
+			}
+
+			return requests
+				.Where(x => x.Status == RequestStatus.InProcess)
+				.Select(temp => new RequestResponse()
+				{
+					Age = temp.Age,
+					Breed = temp.Breed,
+					Description = temp.Description,
+					ImageUrl = temp.ImageUrl,
+					Name = temp.Name,
+					Id = temp.AnimalId,
+					Status = temp.Status
+				}).ToList();
+		}
+
+		public async Task<List<RequestResponse>> GetRequestsByUserId(Guid? userId)
+		{
+			await ValidationHelper.ValidateObject(userId);
+
+			var requests = await _requestRepository.GetRequestsByUserId(userId.Value);
+
+			if (requests is null)
+			{
+				return new List<RequestResponse>();
+			}
+
+			return requests.Select(temp =>
+				new RequestResponse()
+				{
+					Age = temp.Age,
+					Breed = temp.Breed,
+					Description = temp.Description,
+					ImageUrl = temp.ImageUrl,
+					Name = temp.Name,
+					Id = temp.AnimalId,
+					Status = temp.Status
+				}).ToList();
 		}
 
 		public async Task<bool> ApproveRequest(Guid? requestId)
@@ -45,7 +94,17 @@ namespace AnimalAdoption.Core.Services
 				return false;
 			}
 
-			await _requestRepository.DeleteRequest(requestId.Value);
+			await _requestRepository.UpdateRequest(requestId.Value, new Domain.Entities.Request()
+			{
+				Age = currentRequest.Age,
+				Breed = currentRequest.Breed,
+				Description = currentRequest.Description,
+				ImageUrl = currentRequest.ImageUrl,
+				Name = currentRequest.Name,
+				AnimalId = currentRequest.AnimalId,
+				Status = RequestStatus.Approved,
+				UserId = currentRequest.UserId,
+			});
 
 			await _animalRepository.CreateAnimalProfile(new Domain.Entities.AnimalProfile()
 			{
@@ -54,31 +113,10 @@ namespace AnimalAdoption.Core.Services
 				Description = currentRequest.Description,
 				ImageUrl = currentRequest.ImageUrl,
 				Name = currentRequest.Name,
-				Id = currentRequest.Id
+				Id = currentRequest.AnimalId
 			});
 
 			return true;
-		}
-
-		public async Task<List<RequestResponse>> GetRequests()
-		{
-			var requests = await _requestRepository.GetAllRequests();
-
-			if (requests is null)
-			{
-				return new List<RequestResponse>();
-			}
-
-			return requests
-				.Select(temp => new RequestResponse()
-			{
-				Age = temp.Age,
-				Breed = temp.Breed,	
-				Description = temp.Description,
-				ImageUrl = temp.ImageUrl,
-				Name = temp.Name,
-				Id = temp.Id
-			}).ToList();
 		}
 
 		public async Task<bool> RejectRequest(Guid? requestId)
@@ -92,7 +130,19 @@ namespace AnimalAdoption.Core.Services
 				return false;
 			}
 
-			return await _requestRepository.DeleteRequest(requestId.Value);
+			await _requestRepository.UpdateRequest(requestId.Value, new Domain.Entities.Request()
+			{
+				UserId = currentRequest.UserId,
+				Age = currentRequest.Age,
+				Breed = currentRequest.Breed,
+				Description = currentRequest.Description,
+				ImageUrl = currentRequest.ImageUrl,
+				Name = currentRequest.Name,
+				AnimalId = currentRequest.AnimalId,
+				Status = RequestStatus.Rejected
+			});
+
+			return true;
 		}
 	}
 }

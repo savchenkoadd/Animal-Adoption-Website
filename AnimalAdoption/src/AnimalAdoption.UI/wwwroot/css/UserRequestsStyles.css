@@ -1,0 +1,129 @@
+﻿.container {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.request-container {
+    height: fit-content;
+    text-align: center;
+    background-color: whitesmoke;
+    padding: 5px 0px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.request-heading {
+    width: fit-content;
+    padding: 5px 0px;
+}
+
+
+.content-container {
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+}
+
+.image-side {
+    width: 50%;
+    padding: 15px 0px;
+    height: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.image {
+    width: 70%;
+    margin-left: 15%;
+}
+
+.request-content-side {
+    width: 50%;
+    height: fit-content;
+    padding: 10px 10px;
+}
+
+.name {
+}
+
+.age-and-breed {
+}
+
+.description {
+    width: 100%;
+}
+
+
+.buttons-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+}
+
+.approve-button {
+    width: 50%;
+    height: 50px;
+    transition-duration: 400ms;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 0;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+    .approve-button:hover {
+        background-color: green;
+        cursor: pointer;
+        color: white;
+        border: 0;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
+.reject-button {
+    width: 50%;
+    height: 50px;
+    transition-duration: 400ms;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 0;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+    .reject-button:hover {
+        background-color: darkred;
+        cursor: pointer;
+        color: white;
+        border: 0;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
+
+.no-requests-heading {
+    margin: 20px 40px;
+}
+
+.no-requests-line {
+    margin: 20px 40px;
+    font-size: 18px;
+}
+
+.default-color-text {
+    color: #343a40;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.green-text {
+    width: fit-content;
+    margin: 0 auto;
+    color: green;
+}
+
+.red-text {
+    width: fit-content;
+    margin: 0 auto;
+    color: red;
+}

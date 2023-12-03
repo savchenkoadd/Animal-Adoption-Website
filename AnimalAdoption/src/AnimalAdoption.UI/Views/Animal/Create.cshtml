@@ -10,9 +10,9 @@
 	<div class="create-form">
 
 		<h1 class="create-form-heading">
-			Create your own pet's profile!
+			Let's create your own pet's profile!
 		</h1>
-
+		
 		<h3 class="create-form-line">
 			Please, fill out this form.
 		</h3>
@@ -67,6 +67,8 @@
 				<span class="red-text" asp-validation-for="Description"></span>
 			</div>
 		</div>
+
+		<input type="hidden" name="UserId" value="@ViewBag.UserId" />
 
 		<button class="submit-btn" type="submit">
 			Submit!

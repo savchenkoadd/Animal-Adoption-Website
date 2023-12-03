@@ -1,13 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AnimalAdoption.Core.Enums;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AnimalAdoption.Core.Domain.Entities
 {
 	public class Request
 	{
 		[Key]
-		public Guid Id { get; set; }
+		public Guid AnimalId { get; set; }
+
+		public Guid UserId { get; set; }
 
 		public int? Age { get; set; }
+
+		public RequestStatus Status { get; set; } = RequestStatus.InProcess;
 
 		[StringLength(20)]
 		public string? Name { get; set; }
