@@ -88,6 +88,11 @@ namespace AnimalAdoption.Core.Services
 
 			var requests = await _requestRepository.GetRequestsByUserId(userId.Value);
 
+			if (requests is null)
+			{
+				return new List<RequestResponse>();
+			}
+
 			return requests.Select(temp =>
 				new RequestResponse()
 				{

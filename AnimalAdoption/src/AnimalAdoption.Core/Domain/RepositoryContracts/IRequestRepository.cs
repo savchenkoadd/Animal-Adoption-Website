@@ -11,5 +11,7 @@ namespace AnimalAdoption.Core.Domain.RepositoryContracts
 		Task<Request?> GetRequest(Guid requestId);
 
 		Task<List<Request>?> GetAllRequests();
+
+		Task<List<Request>?> GetRequestsByUserId(Guid userId);
 	}
 }
