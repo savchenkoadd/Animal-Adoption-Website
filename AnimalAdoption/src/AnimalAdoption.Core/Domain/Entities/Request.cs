@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AnimalAdoption.Core.Domain.Entities
 {
 	public class Request
 	{
 		[Key]
-		public Guid Id { get; set; }
+		public Guid AnimalId { get; set; }
+
+		public Guid UserId { get; set; }
 
 		public int? Age { get; set; }
 

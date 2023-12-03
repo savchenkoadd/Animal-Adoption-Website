@@ -30,7 +30,7 @@ namespace AnimalAdoption.Core.Services
 				Description = request.Description,
 				ImageUrl = request.ImageUrl,
 				Name = request.Name,
-				Id = Guid.NewGuid()
+				AnimalId = Guid.NewGuid()
 			});
 		}
 
@@ -54,7 +54,7 @@ namespace AnimalAdoption.Core.Services
 				Description = currentRequest.Description,
 				ImageUrl = currentRequest.ImageUrl,
 				Name = currentRequest.Name,
-				Id = currentRequest.Id
+				Id = currentRequest.AnimalId
 			});
 
 			return true;
@@ -77,7 +77,7 @@ namespace AnimalAdoption.Core.Services
 				Description = temp.Description,
 				ImageUrl = temp.ImageUrl,
 				Name = temp.Name,
-				Id = temp.Id
+				Id = temp.AnimalId
 			}).ToList();
 		}
 

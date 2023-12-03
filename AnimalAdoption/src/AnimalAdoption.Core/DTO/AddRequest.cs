@@ -4,6 +4,9 @@ namespace AnimalAdoption.Core.DTO
 {
 	public class AddRequest
 	{
+		[Required]
+		public Guid UserId { get; set; }
+
 		[Range(0, 100, ErrorMessage = "Age must be in range of 0 to 100")]
 		[Required(ErrorMessage = "Age can't be empty")]
 		public int? Age { get; set; }
