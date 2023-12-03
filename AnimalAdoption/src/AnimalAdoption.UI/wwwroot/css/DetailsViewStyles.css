@@ -26,13 +26,14 @@
     transition-duration: 200ms;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     border: 0;
-    font-size: 16px;
+    font-size: 17px;
+    font-weight: 500;
 }
 
     .adopt-button:hover {
         cursor: pointer;
         transform: scale(1.05);
-        background-color: palegreen;
+        background-color: lightgreen;
     }
 
 .animal-image {

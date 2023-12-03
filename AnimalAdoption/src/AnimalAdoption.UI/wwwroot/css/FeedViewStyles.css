@@ -118,7 +118,8 @@ i {
 .input-and-button {
     display: flex;
     flex-direction: row;
-    margin-left: 29%;
+    width: fit-content;
+    margin: 0 auto;
 }
 
 .input-name {
@@ -132,8 +133,14 @@ i {
     font-size: 16px;
     font-weight: 400;
     margin-bottom: 5px;
-    margin-right: 300px;
+    width: 400px;
+    transition-duration: 400ms;
+    font-family: 'Manrope', sans-serif;
 }
+
+    .input-name:hover {
+        width: 600px;
+    }
 
 .search-button {
     padding: 0px 30px;
@@ -142,8 +149,9 @@ i {
     height: 40px;
     margin-top: 10px;
     margin-left: 10px;
-    transition-duration: 200ms;
     font-size: 16px;
+    transition-duration: 400ms;
+    font-family: 'Manrope', sans-serif;
 }
 
     .search-button:hover {

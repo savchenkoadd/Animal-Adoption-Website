@@ -19,8 +19,6 @@
 		</label>
 		<label class="logo"></label>
 		<ul>
-			<li class="main-button"><a class="nav-button" asp-controller="Animal" asp-action="UserRequests">Your requests</a></li>
-			<li class="main-button"><a class="nav-button" asp-controller="Animal" asp-action="Create">Create</a></li>
 			<li class="main-button"><a class="nav-button" asp-controller="Animal" asp-action="Main">Main</a></li>
 			<li class="main-button">
 				<a class="nav-button" asp-controller="Animal" asp-action="Feed">Feed</a>
@@ -40,14 +38,39 @@
 			}
 		</ul>
 	</nav>
+
+	<div class="display-row">
+		<div id="leftPanel" class="left-panel">
+			<div class="button-panel">
+				<div id="mySidenav" class="sidenav">
+					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+					<a asp-controller="Animal" asp-action="UserRequests">Requests</a>
+					<a asp-controller="Animal" asp-action="Create">Create</a>
+				</div>
+				
+				<span style="font-size:30px;cursor:pointer;color:#636270;margin-left:30px;margin-top:-60px;position:sticky;position:fixed;" onclick="openNav()">&#9776;</span>
+			</div>
+		</div>
+	</div>
 	<div class="body">
 		@RenderBody()
 	</div>
+
 	<footer>
 		<p id="footer-heading">
 			© 2023 Animal Shelter App. All rights reserved.
 		</p>
 	</footer>
+
+	<script>
+		function openNav() {
+			document.getElementById("mySidenav").style.width = "300px";
+		}
+
+		function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+		}
+	</script>
 
 	@RenderSection("scripts", required: false)
 </body>
