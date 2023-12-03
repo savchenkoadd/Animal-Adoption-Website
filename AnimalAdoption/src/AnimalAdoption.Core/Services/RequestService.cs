@@ -10,22 +10,23 @@ namespace AnimalAdoption.Core.Services
 		private readonly IRequestRepository _requestRepository;
 		private readonly IAnimalRepository _animalRepository;
 
-        public RequestService(
+		public RequestService(
 				IRequestRepository requestRepository,
 				IAnimalRepository animalRepository
 			)
-        {
-            _requestRepository = requestRepository;
+		{
+			_requestRepository = requestRepository;
 			_animalRepository = animalRepository;
-        }
+		}
 
-        public async Task<bool> AddRequest(AddRequest? request)
+		public async Task<bool> AddRequest(AddRequest? request)
 		{
 			await ValidationHelper.ValidateObject(request);
 
 			return await _requestRepository.AddRequest(new Domain.Entities.Request()
 			{
 				Age = request.Age,
+				UserId = request.UserId,
 				Breed = request.Breed,
 				Description = request.Description,
 				ImageUrl = request.ImageUrl,
@@ -71,14 +72,32 @@ namespace AnimalAdoption.Core.Services
 
 			return requests
 				.Select(temp => new RequestResponse()
-			{
-				Age = temp.Age,
-				Breed = temp.Breed,	
-				Description = temp.Description,
-				ImageUrl = temp.ImageUrl,
-				Name = temp.Name,
-				Id = temp.AnimalId
-			}).ToList();
+				{
+					Age = temp.Age,
+					Breed = temp.Breed,
+					Description = temp.Description,
+					ImageUrl = temp.ImageUrl,
+					Name = temp.Name,
+					Id = temp.AnimalId
+				}).ToList();
+		}
+
+		public async Task<List<RequestResponse>> GetRequestsByUserId(Guid? userId)
+		{
+			await ValidationHelper.ValidateObject(userId);
+
+			var requests = await _requestRepository.GetRequestsByUserId(userId.Value);
+
+			return requests.Select(temp =>
+				new RequestResponse()
+				{
+					Age = temp.Age,
+					Breed = temp.Breed,
+					Description = temp.Description,
+					ImageUrl = temp.ImageUrl,
+					Name = temp.Name,
+					Id = temp.AnimalId
+				}).ToList();
 		}
 
 		public async Task<bool> RejectRequest(Guid? requestId)

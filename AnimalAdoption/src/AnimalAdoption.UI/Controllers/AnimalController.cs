@@ -5,7 +5,6 @@ using AnimalAdoption.Core.ServiceContracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 using X.PagedList;
 
 namespace AnimalAdoption.UI.Controllers
@@ -98,13 +97,22 @@ namespace AnimalAdoption.UI.Controllers
 
 		[HttpGet]
 		[Route("[action]")]
+		public async Task<IActionResult> UserRequests()
+		{
+			var currentUserId = (await _userManager.GetUserAsync(HttpContext.User)).Id;
+			var userRequests = await _requestService.GetRequestsByUserId(currentUserId);
+
+			return View(userRequests);
+		}
+
+		[HttpGet]
+		[Route("[action]")]
 		public async Task<IActionResult> Create()
 		{
 			ViewBag.UserId = (await _userManager.GetUserAsync(HttpContext.User)).Id;
 
 			return View();
 		}
-
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]

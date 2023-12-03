@@ -51,5 +51,10 @@ namespace AnimalAdoption.Infrastructure.Repositories
 
 			return animalProfile;
 		}
+
+		public async Task<List<Request>?> GetRequestsByUserId(Guid userId)
+		{
+			return await _db.Requests.Where(x => x.UserId == userId).ToListAsync();
+		}
 	}
 }
