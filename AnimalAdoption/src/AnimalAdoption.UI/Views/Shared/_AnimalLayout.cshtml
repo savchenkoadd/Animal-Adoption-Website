@@ -30,12 +30,6 @@
 					<span class="user-email">@User.Identity?.Name</span>
 				}
 			</li>
-			@if (User.IsInRole("Admin"))
-			{
-				<li>
-					<a class="nav-button" href="~/Requests">Requests</a>
-				</li>
-			}
 		</ul>
 	</nav>
 
@@ -45,6 +39,10 @@
 				<div id="mySidenav" class="sidenav">
 					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 					<a asp-controller="Animal" asp-action="UserRequests">Requests</a>
+					@if (User.IsInRole(nameof(AnimalAdoption.Core.Enums.UserTypeOptions.Admin)))
+					{
+						<a asp-controller="Animal" asp-action="Requests">User Requests</a>
+					}
 					<a asp-controller="Animal" asp-action="Create">Create</a>
 				</div>
 				
