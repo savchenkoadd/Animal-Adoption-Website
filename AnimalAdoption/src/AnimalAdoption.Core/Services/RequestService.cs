@@ -1,5 +1,6 @@
 ﻿using AnimalAdoption.Core.Domain.RepositoryContracts;
 using AnimalAdoption.Core.DTO;
+using AnimalAdoption.Core.Enums;
 using AnimalAdoption.Core.Helpers;
 using AnimalAdoption.Core.ServiceContracts;
 
@@ -33,32 +34,6 @@ namespace AnimalAdoption.Core.Services
 				Name = request.Name,
 				AnimalId = Guid.NewGuid()
 			});
-		}
-
-		public async Task<bool> ApproveRequest(Guid? requestId)
-		{
-			await ValidationHelper.ValidateObject(requestId);
-
-			var currentRequest = await _requestRepository.GetRequest(requestId.Value);
-
-			if (currentRequest is null)
-			{
-				return false;
-			}
-
-			await _requestRepository.DeleteRequest(requestId.Value);
-
-			await _animalRepository.CreateAnimalProfile(new Domain.Entities.AnimalProfile()
-			{
-				Age = currentRequest.Age,
-				Breed = currentRequest.Breed,
-				Description = currentRequest.Description,
-				ImageUrl = currentRequest.ImageUrl,
-				Name = currentRequest.Name,
-				Id = currentRequest.AnimalId
-			});
-
-			return true;
 		}
 
 		public async Task<List<RequestResponse>> GetRequests()
@@ -105,6 +80,32 @@ namespace AnimalAdoption.Core.Services
 				}).ToList();
 		}
 
+		public async Task<bool> ApproveRequest(Guid? requestId)
+		{
+			await ValidationHelper.ValidateObject(requestId);
+
+			var currentRequest = await _requestRepository.GetRequest(requestId.Value);
+
+			if (currentRequest is null)
+			{
+				return false;
+			}
+
+			currentRequest.Status = RequestStatus.Approved;
+
+			await _animalRepository.CreateAnimalProfile(new Domain.Entities.AnimalProfile()
+			{
+				Age = currentRequest.Age,
+				Breed = currentRequest.Breed,
+				Description = currentRequest.Description,
+				ImageUrl = currentRequest.ImageUrl,
+				Name = currentRequest.Name,
+				Id = currentRequest.AnimalId
+			});
+
+			return true;
+		}
+
 		public async Task<bool> RejectRequest(Guid? requestId)
 		{
 			await ValidationHelper.ValidateObject(requestId);
@@ -116,7 +117,9 @@ namespace AnimalAdoption.Core.Services
 				return false;
 			}
 
-			return await _requestRepository.DeleteRequest(requestId.Value);
+			currentRequest.Status = RequestStatus.Rejected;
+
+			return true;
 		}
 	}
 }
