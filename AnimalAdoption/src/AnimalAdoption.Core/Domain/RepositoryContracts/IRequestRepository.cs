@@ -1,4 +1,5 @@
 ﻿using AnimalAdoption.Core.Domain.Entities;
+using AnimalAdoption.Core.DTO;
 
 namespace AnimalAdoption.Core.Domain.RepositoryContracts
 {
@@ -13,5 +14,7 @@ namespace AnimalAdoption.Core.Domain.RepositoryContracts
 		Task<List<Request>?> GetAllRequests();
 
 		Task<List<Request>?> GetRequestsByUserId(Guid userId);
+
+		Task<bool> UpdateRequest(Guid requestId, Request updateRequest);
 	}
 }

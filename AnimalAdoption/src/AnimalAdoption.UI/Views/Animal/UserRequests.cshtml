@@ -4,4 +4,50 @@
 	ViewBag.Title = "Your Requests";
 }
 
-<h1>User Requests</h1>
+<link rel="stylesheet" href="~/css/UserRequestsStyles.css" />
+
+@if (Model.Count == 0)
+{
+	<div>
+		<h1 class="no-requests-heading">No Requests</h1>
+		<p class="no-requests-line">Currently, there are no requests.</p>
+	</div>
+}
+else
+{
+	@foreach (var request in Model)
+	{
+		<div class="container">
+			<div class="request-container">
+				<h1>
+					Request
+				</h1>
+			</div>
+			
+			@if (request.Status == AnimalAdoption.Core.Enums.RequestStatus.InProcess)
+			{
+				<h3 class="default-color-text">In process..</h3>
+			}
+			else if (request.Status == AnimalAdoption.Core.Enums.RequestStatus.Approved)
+			{
+				<h3 class="green-text">@request.Status</h3>
+			}
+			else
+			{
+				<h3 class="red-text">@request.Status</h3>
+			}
+
+			<div class="content-container">
+				<div class="image-side">
+					<img class="image" src="@request.ImageUrl" />
+				</div>
+				<div class="request-content-side">
+					<h1 class="name">@request.Name</h1>
+					<h2 class="age-and-breed">@request.Age, @request.Breed</h2>
+					<p class="description">@request.Description</p>
+
+				</div>
+			</div>
+		</div>
+	}
+}

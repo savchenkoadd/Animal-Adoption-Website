@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Kwh/GRLpD71/ZlCQlyQ43ptyiBcG2VvdZ4cCD5udFOw=",
+  "Hash": "FRsDV+huKLlynReYBsqE3gKHBdNzlXr7FWoWIAvRaXI=",
   "Source": "AnimalAdoption.UI",
   "BasePath": "_content/AnimalAdoption.UI",
   "Mode": "Default",
@@ -219,6 +219,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\ThanksForCreatingStyles.css"
+    },
+    {
+      "Identity": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\UserRequestsStyles.css",
+      "SourceId": "AnimalAdoption.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\",
+      "BasePath": "_content/AnimalAdoption.UI",
+      "RelativePath": "css/UserRequestsStyles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\UserRequestsStyles.css"
     },
     {
       "Identity": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\images\\account-favicon.ico",

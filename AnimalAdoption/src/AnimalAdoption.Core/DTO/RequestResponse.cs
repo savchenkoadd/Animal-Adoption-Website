@@ -1,10 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AnimalAdoption.Core.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace AnimalAdoption.Core.DTO
 {
 	public class RequestResponse
 	{
 		public Guid Id { get; set; }
+
+		public RequestStatus Status { get; set; }
 
 		public int? Age { get; set; }
 

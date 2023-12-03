@@ -62,7 +62,7 @@ namespace AnimalAdoption.UI.Controllers
 		[Route("[action]")]
 		public async Task<IActionResult> Requests()
 		{
-			var requests = await _requestService.GetRequests();
+			var requests = await _requestService.GetRequestsForAdmin();
 
 			return View(requests);
 		}
@@ -99,7 +99,7 @@ namespace AnimalAdoption.UI.Controllers
 		[Route("[action]")]
 		public async Task<IActionResult> UserRequests()
 		{
-			var currentUserId = (await _userManager.GetUserAsync(HttpContext.User)).Id;
+			var currentUserId = (await _userManager.GetUserAsync(User)).Id;
 			var userRequests = await _requestService.GetRequestsByUserId(currentUserId);
 
 			return View(userRequests);

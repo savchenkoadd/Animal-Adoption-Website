@@ -36,7 +36,7 @@ namespace AnimalAdoption.Core.Services
 			});
 		}
 
-		public async Task<List<RequestResponse>> GetRequests()
+		public async Task<List<RequestResponse>> GetRequestsForAdmin()
 		{
 			var requests = await _requestRepository.GetAllRequests();
 
@@ -46,6 +46,7 @@ namespace AnimalAdoption.Core.Services
 			}
 
 			return requests
+				.Where(x => x.Status == RequestStatus.InProcess)
 				.Select(temp => new RequestResponse()
 				{
 					Age = temp.Age,
@@ -53,7 +54,8 @@ namespace AnimalAdoption.Core.Services
 					Description = temp.Description,
 					ImageUrl = temp.ImageUrl,
 					Name = temp.Name,
-					Id = temp.AnimalId
+					Id = temp.AnimalId,
+					Status = temp.Status
 				}).ToList();
 		}
 
@@ -76,7 +78,8 @@ namespace AnimalAdoption.Core.Services
 					Description = temp.Description,
 					ImageUrl = temp.ImageUrl,
 					Name = temp.Name,
-					Id = temp.AnimalId
+					Id = temp.AnimalId,
+					Status = temp.Status
 				}).ToList();
 		}
 
@@ -91,7 +94,17 @@ namespace AnimalAdoption.Core.Services
 				return false;
 			}
 
-			currentRequest.Status = RequestStatus.Approved;
+			await _requestRepository.UpdateRequest(requestId.Value, new Domain.Entities.Request()
+			{
+				Age = currentRequest.Age,
+				Breed = currentRequest.Breed,
+				Description = currentRequest.Description,
+				ImageUrl = currentRequest.ImageUrl,
+				Name = currentRequest.Name,
+				AnimalId = currentRequest.AnimalId,
+				Status = RequestStatus.Approved,
+				UserId = currentRequest.UserId,
+			});
 
 			await _animalRepository.CreateAnimalProfile(new Domain.Entities.AnimalProfile()
 			{
@@ -117,7 +130,17 @@ namespace AnimalAdoption.Core.Services
 				return false;
 			}
 
-			currentRequest.Status = RequestStatus.Rejected;
+			await _requestRepository.UpdateRequest(requestId.Value, new Domain.Entities.Request()
+			{
+				UserId = currentRequest.UserId,
+				Age = currentRequest.Age,
+				Breed = currentRequest.Breed,
+				Description = currentRequest.Description,
+				ImageUrl = currentRequest.ImageUrl,
+				Name = currentRequest.Name,
+				AnimalId = currentRequest.AnimalId,
+				Status = RequestStatus.Rejected
+			});
 
 			return true;
 		}
