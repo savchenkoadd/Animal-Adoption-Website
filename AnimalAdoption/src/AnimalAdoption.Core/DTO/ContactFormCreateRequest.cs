@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AnimalAdoption.Core.DTO
 {
-	public class ContactFormRequest
+	public class ContactFormCreateRequest
 	{
 		[Required(ErrorMessage = "SenderId can't be blank")]
 		public Guid SenderId { get; set; }
@@ -24,5 +24,9 @@ namespace AnimalAdoption.Core.DTO
 		[StringLength(1500, ErrorMessage = "Description must not exceed 1500 characters")]
 		[Required(ErrorMessage = "Description can't be blank")]
 		public string? Description { get; set; }
+
+		[StringLength(1500, ErrorMessage = "Response must not exceed 2000 characters")]
+		[Required(ErrorMessage = "Response can't be blank")]
+		public string? Response { get; set; }
 	}
 }

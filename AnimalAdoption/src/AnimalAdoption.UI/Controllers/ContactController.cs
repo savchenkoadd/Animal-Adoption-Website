@@ -44,7 +44,7 @@ namespace AnimalAdoption.UI.Controllers
 		[HttpPost]
 		[Route("[action]")]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Create(ContactFormRequest? contactFormRequest)
+		public async Task<IActionResult> Create(ContactFormCreateRequest? contactFormRequest)
 		{
 			if (await _contactService.Create(contactFormRequest))
 			{
@@ -76,7 +76,7 @@ namespace AnimalAdoption.UI.Controllers
 		[ValidateAntiForgeryToken]
 		[Authorize(Roles = $"{nameof(UserTypeOptions.Admin)}")]
 		[Route("[action]")]
-		public async Task<IActionResult> Respond(ContactFormRequest? contactFormRequest)
+		public async Task<IActionResult> Respond(ContactFormCreateRequest? contactFormRequest)
 		{
 			if (await _contactService.Respond(contactFormRequest.SenderId, contactFormRequest.Id, contactFormRequest.Response))
 			{

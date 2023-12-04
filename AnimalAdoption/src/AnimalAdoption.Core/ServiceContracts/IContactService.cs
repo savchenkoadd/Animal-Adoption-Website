@@ -5,7 +5,7 @@ namespace AnimalAdoption.Core.ServiceContracts
 {
 	public interface IContactService
 	{
-		Task<bool> Create(ContactFormRequest? contactFormRequest);
+		Task<bool> Create(ContactFormCreateRequest? contactFormRequest);
 
 		Task<List<ContactFormResponse>> GetAll();
 

@@ -17,14 +17,13 @@ namespace AnimalAdoption.Core.Services
             _contactRepository = contactRepository;
         }
 
-        public async Task<bool> Create(ContactFormRequest? contactFormRequest)
+        public async Task<bool> Create(ContactFormCreateRequest? contactFormRequest)
 		{
 			await ValidationHelper.ValidateObject(contactFormRequest);
 
 			return await _contactRepository.Create(new ContactForm()
 			{
 				Description = contactFormRequest.Description,
-				SenderEmail = contactFormRequest.SenderEmail,
 				SenderId = contactFormRequest.SenderId,
 				Subject = contactFormRequest.Subject,
 				Id = Guid.NewGuid()
@@ -47,6 +46,7 @@ namespace AnimalAdoption.Core.Services
 				Response = temp.Response,
 				SenderId = temp.SenderId,
 				Subject = temp.Subject,
+				Id = temp.Id
 			}).ToList();
 		}
 
@@ -54,7 +54,7 @@ namespace AnimalAdoption.Core.Services
 		{
 			await ValidationHelper.ValidateObject(userId);
 
-			var responses = await _contactRepository.GetByUserId(userId);
+			var responses = await _contactRepository.GetByUserId(userId.Value);
 
 			if (responses is null)
 			{
@@ -71,13 +71,11 @@ namespace AnimalAdoption.Core.Services
 			}).ToList();
 		}
 
-		public async Task<bool> Respond(Guid? userId, Guid? formId, string? response)
+		public async Task<bool> Respond(ContactFormRespondRequest request)
 		{
-			await ValidationHelper.ValidateObject(userId);
-			await ValidationHelper.ValidateObject(formId);
-			await ValidationHelper.ValidateObject(response);
+			await ValidationHelper.ValidateObject(request);
 
-			return await _contactRepository.Respond(userId.Value, formId.Value, response);
+			return await _contactRepository.Respond(request.SenderId, request.Id, request.Response);
 		}
 	}
 }
