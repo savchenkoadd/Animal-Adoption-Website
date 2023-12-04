@@ -7,16 +7,18 @@ namespace AnimalAdoption.UI.StartupExtensions.Configuration
 {
     public static class AnimalExtensions
     {
-        public static void AddAnimalServicesScoped(this IServiceCollection services)
+        public static void AddServicesScoped(this IServiceCollection services)
         {
             services.AddScoped<IAnimalService, AnimalService>();
             services.AddScoped<IRequestService, RequestService>();
-        }
+			services.AddScoped<IContactService, ContactService>();
+		}
 
-        public static void AddAnimalRepositoriesScoped(this IServiceCollection services)
+        public static void AddRepositoriesScoped(this IServiceCollection services)
         {
             services.AddScoped<IAnimalRepository, AnimalRepository>();
 			services.AddScoped<IRequestRepository, RequestRepository>();
+			services.AddScoped<IContactRepository, ContactRepository>();
 		}
     }
 }

@@ -8,8 +8,8 @@ namespace AnimalAdoption.UI.StartupExtensions.Configuration
         {
             services.AddControllersWithViews();
 
-            services.AddAnimalServicesScoped();
-            services.AddAnimalRepositoriesScoped();
+            services.AddServicesScoped();
+            services.AddRepositoriesScoped();
             services.AddDbContextServices(configuration);
             services.AddIdentityServices();
             services.AddAuthorizationServices();

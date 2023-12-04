@@ -6,9 +6,9 @@ namespace AnimalAdoption.Core.Domain.RepositoryContracts
 	{
 		Task<bool> Create(ContactForm contactForm);
 
-		Task<List<ContactForm>> GetAll();
+		Task<List<ContactForm>?> GetAll();
 
-		Task<List<ContactForm>> GetByUserId(Guid userId);
+		Task<List<ContactForm>?> GetByUserId(Guid userId);
 
 		Task<bool> Respond(Guid userId, string response);
 	}
