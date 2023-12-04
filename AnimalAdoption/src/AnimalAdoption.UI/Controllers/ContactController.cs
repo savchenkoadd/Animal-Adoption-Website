@@ -27,17 +27,6 @@ namespace AnimalAdoption.UI.Controllers
 
 		[HttpGet]
 		[Route("[action]")]
-		public async Task<IActionResult> UserRequests()
-		{
-			var currentUserId = (await _userManager.GetUserAsync(User)).Id;
-
-			var responses = await _contactService.GetByUserId(currentUserId);
-
-			return View(responses);
-		}
-
-		[HttpGet]
-		[Route("[action]")]
 		public async Task<IActionResult> Create()
 		{
 			var currentUser = await _userManager.GetUserAsync(User);
@@ -55,18 +44,29 @@ namespace AnimalAdoption.UI.Controllers
 		{
 			if (await _contactService.Create(contactFormRequest))
 			{
-				return RedirectToAction(nameof(this.UserRequests));
+				return RedirectToAction(nameof(this.Requests));
 			}
 
 			return RedirectToAction(nameof(ErrorController.Error), nameof(ErrorController.Error));
 		}
 
 		[HttpGet]
-		[Authorize(Roles = $"{nameof(UserTypeOptions.Admin)}")]
 		[Route("[action]")]
 		public async Task<IActionResult> Requests(int? page)
 		{
-			var forms = await _contactService.GetAll();
+			List<ContactFormResponse> forms;
+
+			if (User.IsInRole($"{nameof(UserTypeOptions.User)}"))
+			{
+				var currentUser = await _userManager.GetUserAsync(User);
+
+				forms = await _contactService.GetByUserId(currentUser.Id);
+			}
+			else
+			{
+				forms = await _contactService.GetAll();
+			}
+
 
 			int pageNumber = (page ?? 1);
 

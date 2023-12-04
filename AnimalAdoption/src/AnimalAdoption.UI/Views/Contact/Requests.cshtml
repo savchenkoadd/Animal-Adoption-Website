@@ -20,9 +20,12 @@ else
 	{
 		<form asp-controller="Contact" asp-action="Respond" method="post">
 			<div class="contact-form">
-				<h1 class="sender-email">
-					From: @form.SenderEmail
-				</h1>
+				@if (User.IsInRole($"{nameof(UserTypeOptions.Admin)}"))
+				{
+					<h1 class="sender-email">
+						From: @form.SenderEmail
+					</h1>
+				}
 
 				<h1 class="heading">
 					@form.Subject
@@ -32,8 +35,36 @@ else
 					@form.Description
 				</p>
 
+				@if (form.Response is null)
+				{
+					@if (User.IsInRole($"{nameof(UserTypeOptions.Admin)}"))
+					{
+						<h1 class="heading font-25px">
+							Your Response
+						</h1>
 
-				@if (form.Response is not null)
+						<textarea maxlength="2000" name="Response" placeholder="Response"></textarea>
+						<br />
+
+						<input type="hidden" name="SenderId" value="@form.SenderId" />
+						<input type="hidden" name="Id" value="@form.Id" />
+
+						<div class="button-area">
+							<button type="submit" class="contact-button">
+								Respond
+							</button>
+						</div>
+					}
+					else
+					{
+						<h1 class="heading">
+							Response
+						</h1>
+
+						<p class="text">You haven't got any response yet</p>
+					}
+				}
+				else
 				{
 					<h1 class="heading">
 						Response
@@ -42,27 +73,6 @@ else
 					<p class="text">
 						@form.Response
 					</p>
-				}
-				else
-				{
-					<h1 class="heading font-25px">
-						Your Response
-					</h1>
-
-					<textarea maxlength="2000" name="Response" placeholder="Response"></textarea>
-					<br />
-
-
-
-					<input type="hidden" name="SenderId" value="@form.SenderId" />
-					<input type="hidden" name="Id" value="@form.Id" />
-
-
-					<div class="button-area">
-						<button type="submit" class="contact-button">
-							Respond
-						</button>
-					</div>
 				}
 
 			</div>
