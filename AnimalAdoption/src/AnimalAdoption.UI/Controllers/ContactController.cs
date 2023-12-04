@@ -69,14 +69,6 @@ namespace AnimalAdoption.UI.Controllers
 			return View(forms);
 		}
 
-		[HttpGet]
-		[Authorize(Roles = $"{nameof(UserTypeOptions.Admin)}")]
-		[Route("[action]")]
-		public async Task<IActionResult> Respond()
-		{
-			return View();
-		}
-
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		[Authorize(Roles = $"{nameof(UserTypeOptions.Admin)}")]
@@ -85,7 +77,7 @@ namespace AnimalAdoption.UI.Controllers
 		{
 			if (await _contactService.Respond(request))
 			{
-				return RedirectToAction(nameof(this.UserRequests));
+				return RedirectToAction(nameof(this.Requests));
 			}
 
 			return RedirectToAction(nameof(ErrorController.Error), nameof(ErrorController.Error));
