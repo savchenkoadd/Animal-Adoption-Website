@@ -76,9 +76,9 @@ namespace AnimalAdoption.UI.Controllers
 		[ValidateAntiForgeryToken]
 		[Authorize(Roles = $"{nameof(UserTypeOptions.Admin)}")]
 		[Route("[action]")]
-		public async Task<IActionResult> Respond(ContactFormCreateRequest? contactFormRequest)
+		public async Task<IActionResult> Respond(ContactFormRespondRequest? request)
 		{
-			if (await _contactService.Respond(contactFormRequest.SenderId, contactFormRequest.Id, contactFormRequest.Response))
+			if (await _contactService.Respond(request))
 			{
 				return RedirectToAction(nameof(this.UserRequests));
 			}

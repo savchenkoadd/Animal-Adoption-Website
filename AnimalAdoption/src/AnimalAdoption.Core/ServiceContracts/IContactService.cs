@@ -11,6 +11,6 @@ namespace AnimalAdoption.Core.ServiceContracts
 
 		Task<List<ContactFormResponse>> GetByUserId(Guid? userId);
 
-		Task<bool> Respond(Guid? userId, Guid? formId, string? response);
+		Task<bool> Respond(ContactFormRespondRequest request);
 	}
 }

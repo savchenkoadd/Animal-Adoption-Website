@@ -10,6 +10,6 @@ namespace AnimalAdoption.Core.Domain.RepositoryContracts
 
 		Task<List<ContactForm>?> GetByUserId(Guid userId);
 
-		Task<bool> Respond(Guid userId, string response);
+		Task<bool> Respond(Guid userId, Guid formId, string response);
 	}
 }
