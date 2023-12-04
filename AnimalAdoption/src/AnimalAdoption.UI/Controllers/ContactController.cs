@@ -5,12 +5,14 @@ using AnimalAdoption.Core.ServiceContracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace AnimalAdoption.UI.Controllers
 {
 	[Route("[controller]")]
 	public class ContactController : Controller
 	{
+		private readonly int FORMS_PER_PAGE = 3;
 		private readonly IContactService _contactService;
 		private readonly UserManager<ApplicationUser> _userManager;
 
@@ -62,11 +64,13 @@ namespace AnimalAdoption.UI.Controllers
 		[HttpGet]
 		[Authorize(Roles = $"{nameof(UserTypeOptions.Admin)}")]
 		[Route("[action]")]
-		public async Task<IActionResult> Requests()
+		public async Task<IActionResult> Requests(int? page)
 		{
 			var forms = await _contactService.GetAll();
 
-			return View(forms);
+			int pageNumber = (page ?? 1);
+
+			return View(await forms.ToPagedListAsync(pageNumber, FORMS_PER_PAGE));
 		}
 
 		[HttpPost]

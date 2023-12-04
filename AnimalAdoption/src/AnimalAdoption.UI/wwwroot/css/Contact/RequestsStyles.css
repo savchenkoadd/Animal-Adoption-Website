@@ -69,3 +69,7 @@ textarea {
 .font-25px {
     font-size: 25px;
 }
+
+#no-requests-area {
+    margin-left: 60px; 
+}

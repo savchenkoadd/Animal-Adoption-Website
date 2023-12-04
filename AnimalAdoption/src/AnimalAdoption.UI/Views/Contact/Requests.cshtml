@@ -1,4 +1,4 @@
-﻿@model List<ContactFormResponse>
+﻿@model IPagedList<ContactFormResponse>
 
 @{
 	ViewBag.Title = "Requests";
@@ -8,8 +8,10 @@
 
 @if (Model.Count == 0)
 {
-	<h1>No requests</h1>
-	<h3>Currently there are no requests</h3>
+	<div id="no-requests-area">
+		<h1>No requests</h1>
+		<p>Currently there are no requests</p>
+	</div>
 }
 else
 {
@@ -66,6 +68,14 @@ else
 			</div>
 		</form>
 	}
+
+	<br />
+	<div class="pagination-area">
+		<p class="page-count-line">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</p>
+
+		@Html.PagedListPager(Model, (page) => Url.Action("Requests",
+	new { page }) )
+	</div>
 }
 
 
