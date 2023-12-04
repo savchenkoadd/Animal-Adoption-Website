@@ -1,7 +1,9 @@
-﻿using AnimalAdoption.Core.DTO;
+﻿using AnimalAdoption.Core.Domain.IdentityEntities;
+using AnimalAdoption.Core.DTO;
 using AnimalAdoption.Core.Enums;
 using AnimalAdoption.Core.ServiceContracts;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AnimalAdoption.UI.Controllers
@@ -10,19 +12,26 @@ namespace AnimalAdoption.UI.Controllers
 	public class ContactController : Controller
 	{
 		private readonly IContactService _contactService;
+		private readonly UserManager<ApplicationUser> _userManager;
 
 		public ContactController(
-			IContactService contactService
+				IContactService contactService,
+				UserManager<ApplicationUser> userManager
 			)
 		{
 			_contactService = contactService;
+			_userManager = userManager;
 		}
 
 		[HttpGet]
-		[Route("")]
+		[Route("[action]")]
 		public async Task<IActionResult> UserRequests()
 		{
-			return View();
+			var currentUserId = (await _userManager.GetUserAsync(User)).Id;
+
+			var responses = await _contactService.GetByUserId(currentUserId);
+
+			return View(responses);
 		}
 
 		[HttpGet]
@@ -37,7 +46,12 @@ namespace AnimalAdoption.UI.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Create(ContactFormRequest? contactFormRequest)
 		{
-			return View();
+			if (await _contactService.Create(contactFormRequest))
+			{
+				return RedirectToAction(nameof(this.UserRequests));
+			}
+
+			return RedirectToAction(nameof(ErrorController.Error), nameof(ErrorController.Error));
 		}
 
 		[HttpGet]
@@ -45,7 +59,9 @@ namespace AnimalAdoption.UI.Controllers
 		[Route("[action]")]
 		public async Task<IActionResult> Requests()
 		{
-			return View();
+			var forms = await _contactService.GetAll();
+
+			return View(forms);
 		}
 
 		[HttpGet]
@@ -62,7 +78,12 @@ namespace AnimalAdoption.UI.Controllers
 		[Route("[action]")]
 		public async Task<IActionResult> Respond(ContactFormRequest? contactFormRequest)
 		{
-			return View();
+			if (await _contactService.Respond(contactFormRequest.SenderId, contactFormRequest.Id, contactFormRequest.Response))
+			{
+				return RedirectToAction(nameof(this.UserRequests));
+			}
+
+			return RedirectToAction(nameof(ErrorController.Error), nameof(ErrorController.Error));
 		}
 	}
 }

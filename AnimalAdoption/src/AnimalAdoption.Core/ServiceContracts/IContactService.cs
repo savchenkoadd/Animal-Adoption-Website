@@ -5,12 +5,12 @@ namespace AnimalAdoption.Core.ServiceContracts
 {
 	public interface IContactService
 	{
-		Task<bool> Create(ContactFormRequest contactFormRequest);
+		Task<bool> Create(ContactFormRequest? contactFormRequest);
 
 		Task<List<ContactFormResponse>> GetAll();
 
-		Task<List<ContactFormResponse>> GetByUserId(Guid userId);
+		Task<List<ContactFormResponse>> GetByUserId(Guid? userId);
 
-		Task<bool> Respond(Guid userId, string response);
+		Task<bool> Respond(Guid? userId, Guid? formId, string? response);
 	}
 }

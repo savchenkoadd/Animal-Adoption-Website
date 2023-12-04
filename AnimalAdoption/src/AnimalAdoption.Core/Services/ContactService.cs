@@ -71,12 +71,13 @@ namespace AnimalAdoption.Core.Services
 			}).ToList();
 		}
 
-		public async Task<bool> Respond(Guid userId, string response)
+		public async Task<bool> Respond(Guid? userId, Guid? formId, string? response)
 		{
 			await ValidationHelper.ValidateObject(userId);
+			await ValidationHelper.ValidateObject(formId);
 			await ValidationHelper.ValidateObject(response);
 
-			return await _contactRepository.Respond(userId, response);
+			return await _contactRepository.Respond(userId.Value, formId.Value, response);
 		}
 	}
 }
