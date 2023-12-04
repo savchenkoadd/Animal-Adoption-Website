@@ -1,0 +1,99 @@
+﻿@model IPagedList<ContactFormResponse>
+
+@{
+	ViewBag.Title = "Requests";
+}
+
+<link rel="stylesheet" href="~/css/Contact/RequestsStyles.css">
+
+@if (Model.Count == 0)
+{
+	<div id="no-requests-area">
+		<h1>No requests</h1>
+		<p>Currently there are no requests</p>
+	</div>
+}
+else
+{
+
+	@foreach (var form in Model)
+	{
+		<form asp-controller="Contact" asp-action="Respond" method="post">
+			<div class="contact-form">
+				@if (User.IsInRole($"{nameof(UserTypeOptions.Admin)}"))
+				{
+					<h1 class="sender-email">
+						From: @form.SenderEmail
+					</h1>
+				}
+
+				<h1 class="heading">
+					@form.Subject
+				</h1>
+
+				<p class="text">
+					@form.Description
+				</p>
+
+				@if (form.Response is null)
+				{
+					@if (User.IsInRole($"{nameof(UserTypeOptions.Admin)}"))
+					{
+						<h1 class="heading font-25px">
+							Your Response
+						</h1>
+
+						<textarea maxlength="2000" name="Response" placeholder="Response"></textarea>
+						<br />
+
+						<input type="hidden" name="SenderId" value="@form.SenderId" />
+						<input type="hidden" name="Id" value="@form.Id" />
+
+						<div class="button-area">
+							<button type="submit" class="contact-button">
+								Respond
+							</button>
+						</div>
+					}
+					else
+					{
+						<h1 class="heading">
+							Response
+						</h1>
+
+						<p class="text">You haven't got any response yet</p>
+					}
+				}
+				else
+				{
+					<h1 class="heading">
+						Response
+					</h1>
+
+					<p class="text">
+						@form.Response
+					</p>
+				}
+
+			</div>
+		</form>
+	}
+
+	<br />
+	<div class="pagination-area">
+		<p class="page-count-line">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</p>
+
+		@Html.PagedListPager(Model, (page) => Url.Action("Requests",
+	new { page }) )
+	</div>
+}
+
+
+@section scripts
+	{
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" asp-fallback-test="window.jQuery" asp-fallback-src="~/jquery.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.4/jquery.validate.min.js" asp-fallback-test="window.jQuery.validator" asp-fallback-src="~/jquery.validate.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" asp-fallback-test="window.jQuery.validator.unobstrusive" asp-fallback-src="~/jquery.validate.unobtrusive.min.js"></script>
+	}

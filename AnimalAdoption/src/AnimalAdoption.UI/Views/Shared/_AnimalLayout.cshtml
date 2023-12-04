@@ -38,12 +38,20 @@
 			<div class="button-panel">
 				<div id="mySidenav" class="sidenav">
 					<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-					<a asp-controller="Animal" asp-action="UserRequests">Requests</a>
 					@if (User.IsInRole(nameof(AnimalAdoption.Core.Enums.UserTypeOptions.Admin)))
 					{
-						<a asp-controller="Animal" asp-action="Requests">User Requests</a>
+						<a asp-controller="Animal" asp-action="Requests">Create Requests</a>
+						<a asp-controller="Contact" asp-action="Requests">Contact Requests</a>
 					}
-					<a asp-controller="Animal" asp-action="Create">Create</a>
+					else
+					{
+						<a asp-controller="Animal" asp-action="UserRequests">Requests</a>
+						<a asp-controller="Animal" asp-action="Create">Create</a>
+						<a asp-controller="Contact" asp-action="Create">Contact</a>
+						<a asp-controller="Contact" asp-action="Requests">Responses</a>
+					}
+
+
 				</div>
 				
 				<span style="font-size:30px;cursor:pointer;color:#636270;margin-left:30px;margin-top:-60px;position:sticky;position:fixed;" onclick="openNav()">&#9776;</span>

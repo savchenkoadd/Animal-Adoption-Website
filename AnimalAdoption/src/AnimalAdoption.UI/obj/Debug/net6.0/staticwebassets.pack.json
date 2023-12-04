@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\css\\AnimalLayoutViewStyles.css"
     },
     {
+      "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\Contact\\CreateStyles.css",
+      "PackagePath": "staticwebassets\\css\\Contact\\CreateStyles.css"
+    },
+    {
+      "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\Contact\\RequestsStyles.css",
+      "PackagePath": "staticwebassets\\css\\Contact\\RequestsStyles.css"
+    },
+    {
       "Id": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\AnimalAdoption.UI\\wwwroot\\css\\CreateViewStyles.css",
       "PackagePath": "staticwebassets\\css\\CreateViewStyles.css"
     },
