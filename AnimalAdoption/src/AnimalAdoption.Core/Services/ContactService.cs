@@ -26,6 +26,7 @@ namespace AnimalAdoption.Core.Services
 				Description = contactFormRequest.Description,
 				SenderId = contactFormRequest.SenderId,
 				Subject = contactFormRequest.Subject,
+				SenderEmail = contactFormRequest.SenderEmail,
 				Id = Guid.NewGuid()
 			});
 		}
@@ -46,7 +47,7 @@ namespace AnimalAdoption.Core.Services
 				Response = temp.Response,
 				SenderId = temp.SenderId,
 				Subject = temp.Subject,
-				Id = temp.Id
+				Id = temp.Id,
 			}).ToList();
 		}
 

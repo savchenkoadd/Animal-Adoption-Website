@@ -1,3 +1,32 @@
-﻿@{
+﻿@model List<ContactFormResponse>
+
+@{
 	ViewBag.Title = "Requests";
+}
+
+<link rel="stylesheet" href="~/css/Contact/RequestsStyles.css">
+
+@foreach (var form in Model)
+{
+	<form method="get">
+		<div class="contact-form">
+			<h1 class="sender-email">
+				From: @form.SenderEmail
+			</h1>
+
+			<h1 class="contact-subject">
+				@form.Subject
+			</h1>
+
+			<p class="contact-description">
+				@form.Description
+			</p>
+
+			<div class="button-area">
+				<button asp-controller="Contact" asp-action="Respond" type="submit" class="contact-button">
+					Respond
+				</button>
+			</div>
+		</div>
+	</form>
 }

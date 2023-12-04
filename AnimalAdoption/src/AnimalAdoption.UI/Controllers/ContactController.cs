@@ -38,9 +38,10 @@ namespace AnimalAdoption.UI.Controllers
 		[Route("[action]")]
 		public async Task<IActionResult> Create()
 		{
-			var currentUserId = (await _userManager.GetUserAsync(User)).Id;
+			var currentUser = await _userManager.GetUserAsync(User);
 
-			ViewBag.UserId = currentUserId;
+			ViewBag.UserId = currentUser.Id;
+			ViewBag.SenderEmail = currentUser.Email;
 
 			return View();
 		}

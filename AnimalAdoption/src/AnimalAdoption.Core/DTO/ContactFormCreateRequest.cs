@@ -12,6 +12,10 @@ namespace AnimalAdoption.Core.DTO
 		[Required(ErrorMessage = "SenderId can't be blank")]
 		public Guid SenderId { get; set; }
 
+		[Required(ErrorMessage = "Subject can't be blank")]
+		[EmailAddress]
+		public string? SenderEmail { get; set; }
+
 		[StringLength(50, ErrorMessage = "Subject must not exceed 50 characters")]
 		[Required(ErrorMessage = "Subject can't be blank")]
 		public string? Subject { get; set; }
