@@ -3,6 +3,7 @@ using AnimalAdoption.Core.Domain.RepositoryContracts;
 using AnimalAdoption.Core.DTO;
 using AnimalAdoption.Core.ServiceContracts;
 using AnimalAdoption.Core.Services;
+using AutoFixture;
 using FluentAssertions;
 using Moq;
 
@@ -13,9 +14,12 @@ namespace ServicesTests
 		private readonly IAnimalService _animalService;
 		private readonly Mock<IAnimalRepository> _animalRepositoryMock;
 		private readonly IAnimalRepository _animalRepository;
+		private readonly IFixture _fixture;
 
         public AnimalServiceTests()
         {
+			_fixture = new Fixture();
+
 			_animalRepositoryMock = new Mock<IAnimalRepository>();
 			_animalRepository = _animalRepositoryMock.Object;
 
@@ -382,6 +386,153 @@ namespace ServicesTests
 				.ReturnsAsync(animalProfiles);
 
 			var actual = await _animalService.GetAnimalProfiles();
+
+			actual.Should().BeEquivalentTo(expected);
+		}
+
+
+		#endregion
+
+
+		#region GetAnimalProfileById
+
+
+		[Fact]
+		public async Task GetAnimalProfileById_NullId_ToBeArgumentNullException()
+		{
+			Guid? id = null!;
+
+			Func<Task> action = async () =>
+			{
+				await _animalService.GetAnimalProfileById(id);
+			};
+
+			await action.Should().ThrowAsync<ArgumentNullException>();
+		}
+
+		[Fact]
+		public async Task GetAnimalProfileById_WrongId_ToBeArgumentException()
+		{
+			var id = Guid.NewGuid();
+
+			Func<Task> action = async () =>
+			{
+				await _animalService.GetAnimalProfileById(id);
+			};
+
+			await action.Should().ThrowAsync<ArgumentException>();
+		}
+
+		[Fact]
+		public async Task GetAnimalProfileById_ProperId_ToBeSuccesful()
+		{
+			var profile = new AnimalProfile()
+			{
+				Age = 1,
+				Breed = "Breed",
+				Description = "description",
+				Id = Guid.NewGuid(),
+				ImageUrl = "https://microsoft.com",
+				Name = "Name"
+			};
+
+			var expected = new AnimalProfileResponse()
+			{
+				Name = profile.Name,
+				Age = profile.Age,
+				Breed = profile.Breed,
+				Description = profile.Description,
+				Id = profile.Id,
+				ImageUrl = profile.ImageUrl
+			};
+
+			_animalRepositoryMock
+				.Setup(temp => temp.GetAnimalProfileById(It.IsAny<Guid>()))
+				.ReturnsAsync(profile);
+
+			var actual = await _animalService.GetAnimalProfileById(Guid.NewGuid());
+
+			actual.Should().BeEquivalentTo(expected);
+		}
+
+
+		#endregion
+
+
+		#region SearchByName
+
+
+		[Fact]
+		public async Task SearchByName_NullName_ToBeArgumentNullException()
+		{
+			string? name = null!;
+
+			Func<Task> action = async () =>
+			{
+				await _animalService.SearchByName(name);
+			};
+
+			await action.Should().ThrowAsync<ArgumentNullException>();
+		}
+
+		[Fact]
+		public async Task SearchByName_WrongName_ToBeEmptyList()
+		{
+			_animalRepositoryMock
+				.Setup(temp => temp.SearchByName(It.IsAny<string>()))
+				.ReturnsAsync(new List<AnimalProfile>());
+
+			var actual = await _animalService.SearchByName(_fixture.Create<string>());
+
+			actual.Should().BeEmpty();
+		}
+
+		[Fact]
+		public async Task SearchByName_ProperName_ToBeSuccesful()
+		{
+			var mockList = new List<AnimalProfile>()
+			{
+				_fixture.Build<AnimalProfile>()
+						.With(temp => temp.Age, 12)
+						.With(temp => temp.ImageUrl, "https://microsoft.com")
+						.With(temp => temp.Name, "Test")
+						.Create(),
+
+				_fixture.Build<AnimalProfile>()
+						.With(temp => temp.Age, 13)
+						.With(temp => temp.ImageUrl, "https://microsoft.com")
+						.With(temp => temp.Name, "Test1")
+						.Create(),
+			};
+
+			var expected = new List<AnimalProfileResponse>()
+			{
+				new AnimalProfileResponse()
+				{
+					Name = mockList[0].Name,
+					Age = mockList[0].Age,
+					ImageUrl = mockList[0].ImageUrl,
+					Breed = mockList[0].Breed,
+					Description = mockList[0].Description,
+					Id = mockList[0].Id
+				},
+
+				new AnimalProfileResponse()
+				{
+					Name = mockList[1].Name,
+					Age = mockList[1].Age,
+					ImageUrl = mockList[1].ImageUrl,
+					Breed = mockList[1].Breed,
+					Description = mockList[1].Description,
+					Id = mockList[1].Id
+				},
+			};
+			
+			_animalRepositoryMock
+				.Setup(temp => temp.SearchByName(It.IsAny<string>()))
+				.ReturnsAsync(mockList);
+
+			var actual = await _animalService.SearchByName(_fixture.Create<string>());
 
 			actual.Should().BeEquivalentTo(expected);
 		}

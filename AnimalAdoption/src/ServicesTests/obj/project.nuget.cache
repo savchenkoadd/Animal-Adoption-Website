@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "CNMeyshbieUqfHClLsGKBfYkQ9xwhwB3he0yn3QV0qMT7VIc+4aAyCopR77JairGxjWSA7pUNFpLl975rlSbCQ==",
+  "dgSpecHash": "uG3fAPdAXLGuh+EkcpRbq78v+Mfq6gYq/si+65u+7sO5qB9cL90aRfYSxt/toHXX8qWK6WPEFz0TEVxfWaFVmQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Artem\\Documents\\GitHub\\Animal-Adoption-Website\\AnimalAdoption\\src\\ServicesTests\\ServicesTests.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Artem\\.nuget\\packages\\autofixture\\4.18.1\\autofixture.4.18.1.nupkg.sha512",
     "C:\\Users\\Artem\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\Artem\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",
+    "C:\\Users\\Artem\\.nuget\\packages\\fare\\2.1.1\\fare.2.1.1.nupkg.sha512",
     "C:\\Users\\Artem\\.nuget\\packages\\fluentassertions\\6.12.0\\fluentassertions.6.12.0.nupkg.sha512",
     "C:\\Users\\Artem\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.1.1\\microsoft.aspnetcore.antiforgery.2.1.1.nupkg.sha512",
     "C:\\Users\\Artem\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.1.1\\microsoft.aspnetcore.authentication.2.1.1.nupkg.sha512",

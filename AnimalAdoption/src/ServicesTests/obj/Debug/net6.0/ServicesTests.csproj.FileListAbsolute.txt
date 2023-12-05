@@ -199,3 +199,5 @@ C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\Servi
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\ServicesTests\obj\Debug\net6.0\ServicesTests.pdb
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\ServicesTests\obj\Debug\net6.0\ServicesTests.genruntimeconfig.cache
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\ServicesTests\obj\Debug\net6.0\ref\ServicesTests.dll
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\ServicesTests\bin\Debug\net6.0\AutoFixture.dll
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\ServicesTests\bin\Debug\net6.0\Fare.dll

@@ -55,7 +55,7 @@ namespace AnimalAdoption.Core.Services
 
 			if (animalProfile is null)
 			{
-				throw new InvalidOperationException();
+				throw new ArgumentException();
 			}
 
 			return new AnimalProfileResponse()
