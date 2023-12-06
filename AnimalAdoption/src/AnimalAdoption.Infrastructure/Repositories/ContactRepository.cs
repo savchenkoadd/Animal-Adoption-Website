@@ -9,14 +9,14 @@ namespace AnimalAdoption.Infrastructure.Repositories
 	{
 		private readonly ApplicationDbContext _db;
 
-        public ContactRepository(
+		public ContactRepository(
 			ApplicationDbContext applicationDbContext
 			)
-        {
-            _db = applicationDbContext;
-        }
+		{
+			_db = applicationDbContext;
+		}
 
-        public async Task<bool> Create(ContactForm contactForm)
+		public async Task<bool> Create(ContactForm contactForm)
 		{
 			await _db.ContactForms.AddAsync(contactForm);
 			await _db.SaveChangesAsync();
@@ -36,16 +36,16 @@ namespace AnimalAdoption.Infrastructure.Repositories
 
 		public async Task<bool> Respond(Guid userId, Guid formId, string response)
 		{
-			var form = await _db.ContactForms.Where(temp => temp.SenderId == userId && temp.Id == formId).FirstOrDefaultAsync();
+			var match = await _db.ContactForms.FindAsync(userId, formId);
 
-			if (form is null)
+			if (match is null)
 			{
 				return false;
 			}
 
-			form.Response = response;
+			match.Response = response;
 
-			_db.Update(form);
+			_db.ContactForms.Update(match);
 			await _db.SaveChangesAsync();
 
 			return true;

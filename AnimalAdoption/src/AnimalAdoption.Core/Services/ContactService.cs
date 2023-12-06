@@ -69,14 +69,15 @@ namespace AnimalAdoption.Core.Services
 				Response = temp.Response,
 				SenderId = temp.SenderId,
 				Subject = temp.Subject,
+				Id = temp.Id,
 			}).ToList();
 		}
 
-		public async Task<bool> Respond(ContactFormRespondRequest request)
+		public async Task<bool> Respond(ContactFormRespondRequest? request)
 		{
 			await ValidationHelper.ValidateObject(request);
 
-			return await _contactRepository.Respond(request.SenderId, request.Id, request.Response);
+			return await _contactRepository.Respond(request.SenderId.Value, request.Id.Value, request.Response);
 		}
 	}
 }
