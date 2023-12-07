@@ -2,6 +2,7 @@
 using AnimalAdoption.Core.Domain.RepositoryContracts;
 using AnimalAdoption.Core.DTO;
 using AnimalAdoption.Infrastructure.Db;
+using AnimalAdoption.Infrastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace AnimalAdoption.Infrastructure.Repositories
@@ -19,10 +20,9 @@ namespace AnimalAdoption.Infrastructure.Repositories
 
 		public async Task<bool> AddRequest(Request request)
 		{
-			await _db.Requests.AddAsync(request);
-			await _db.SaveChangesAsync();
+			var rowsAffected = await OperationHelper.PerformOperationAndSaveAsync(_db, async () => await _db.Requests.AddAsync(request));
 
-			return true;
+			return rowsAffected > 0;
 		}
 
 		public async Task<bool> DeleteRequest(Guid requestId)
@@ -34,10 +34,9 @@ namespace AnimalAdoption.Infrastructure.Repositories
 				return false;
 			}
 
-			_db.Requests.Remove(animalProfile);
-			await _db.SaveChangesAsync();
+			var rowsAffected = await OperationHelper.PerformOperationAndSaveAsync(_db, async () => _db.Requests.Remove(animalProfile));
 
-			return true;
+			return rowsAffected > 0;
 		}
 
 		public async Task<List<Request>?> GetAllRequests()
@@ -66,18 +65,25 @@ namespace AnimalAdoption.Infrastructure.Repositories
 				return false;
 			}
 
-			request.Description = updateRequest.Description;
-			request.Age = updateRequest.Age;
-			request.Name = updateRequest.Name;
-			request.Breed = updateRequest.Breed;
-			request.ImageUrl = updateRequest.ImageUrl;
-			request.Status = updateRequest.Status;
-			request.AnimalId = updateRequest.AnimalId;
-			request.UserId = updateRequest.UserId;
+			await CopyProperties(updateRequest, request);
 
-			await _db.SaveChangesAsync();
+			var rowsAffected = await OperationHelper.PerformOperationAndSaveAsync(_db, async () => _db.Requests.Update(request));
 			
-			return true;
+			return rowsAffected > 0;
+		}
+
+		private async Task CopyProperties(Request from, Request to)
+		{
+			to.Description = from.Description;
+			to.Age = from.Age;
+			to.Name = from.Name;
+			to.Breed = from.Breed;
+			to.ImageUrl = from.ImageUrl;
+			to.Status = from.Status;
+			to.AnimalId = from.AnimalId;
+			to.UserId = from.UserId;
+
+			await Task.CompletedTask;
 		}
 	}
 }
