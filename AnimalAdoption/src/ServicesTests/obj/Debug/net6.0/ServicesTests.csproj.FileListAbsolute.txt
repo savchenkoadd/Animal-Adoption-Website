@@ -201,3 +201,5 @@ C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\Servi
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\ServicesTests\obj\Debug\net6.0\ref\ServicesTests.dll
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\ServicesTests\bin\Debug\net6.0\AutoFixture.dll
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\ServicesTests\bin\Debug\net6.0\Fare.dll
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\ServicesTests\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\ServicesTests\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

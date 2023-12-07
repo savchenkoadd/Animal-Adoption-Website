@@ -1,7 +1,9 @@
 ﻿using AnimalAdoption.Core.Domain.Entities;
 using AnimalAdoption.Core.Domain.IdentityEntities;
+using AnimalAdoption.Infrastructure.Helpers;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace AnimalAdoption.Infrastructure.Db
 {
@@ -20,9 +22,26 @@ namespace AnimalAdoption.Infrastructure.Db
 		{
 			base.OnModelCreating(modelBuilder);
 
-			modelBuilder.Entity<AnimalProfile>().ToTable(nameof(AnimalProfiles));
-			modelBuilder.Entity<Request>().ToTable(nameof(Requests));
-			modelBuilder.Entity<ContactForm>().ToTable(nameof(ContactForms));
+			InitializeBindHelper(modelBuilder);
+
+			var contexts = CreateBindingContextList();
+
+			BindingHelper.BindEntitiesToTables(contexts);
+		}
+
+		private List<BindingContext> CreateBindingContextList()
+		{
+			return new List<BindingContext>
+			{
+				new BindingContext(typeof(AnimalProfile), nameof(AnimalProfiles)),
+				new BindingContext(typeof(Request), nameof(Requests)),
+				new BindingContext(typeof(ContactForm), nameof(ContactForms))
+			};
+		}
+
+		private void InitializeBindHelper(ModelBuilder modelBuilder)
+		{
+			BindingHelper.InitializeBuilder(modelBuilder);
 		}
 	}
 }

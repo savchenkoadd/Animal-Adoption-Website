@@ -2,6 +2,7 @@
 using AnimalAdoption.Core.Domain.RepositoryContracts;
 using AnimalAdoption.Core.DTO;
 using AnimalAdoption.Infrastructure.Db;
+using AnimalAdoption.Infrastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace AnimalAdoption.Infrastructure.Repositories
@@ -19,25 +20,23 @@ namespace AnimalAdoption.Infrastructure.Repositories
 
 		public async Task<bool> AddRequest(Request request)
 		{
-			await _db.Requests.AddAsync(request);
-			await _db.SaveChangesAsync();
+			var rowsAffected = await AddAndSaveAsync(request);
 
-			return true;
+			return rowsAffected > 0;
 		}
 
 		public async Task<bool> DeleteRequest(Guid requestId)
 		{
-			var animalProfile = await _db.Requests.FindAsync(requestId);
+			var request = await _db.Requests.FindAsync(requestId);
 
-			if (animalProfile is null)
+			if (request is null)
 			{
 				return false;
 			}
 
-			_db.Requests.Remove(animalProfile);
-			await _db.SaveChangesAsync();
+			var rowsAffected = await DeleteAndSaveAsync(request);
 
-			return true;
+			return rowsAffected > 0;
 		}
 
 		public async Task<List<Request>?> GetAllRequests()
@@ -66,18 +65,44 @@ namespace AnimalAdoption.Infrastructure.Repositories
 				return false;
 			}
 
-			request.Description = updateRequest.Description;
-			request.Age = updateRequest.Age;
-			request.Name = updateRequest.Name;
-			request.Breed = updateRequest.Breed;
-			request.ImageUrl = updateRequest.ImageUrl;
-			request.Status = updateRequest.Status;
-			request.AnimalId = updateRequest.AnimalId;
-			request.UserId = updateRequest.UserId;
+			await CopyProperties(updateRequest, request);
 
-			await _db.SaveChangesAsync();
+			var rowsAffected = await UpdateAndSaveAsync(request);
 			
-			return true;
+			return rowsAffected > 0;
 		}
+
+		#region Private Methods
+
+		private async Task<int> UpdateAndSaveAsync(Request request)
+		{
+			return await OperationHelper.PerformOperationAndSaveAsync(_db, async () => _db.Requests.Update(request));
+		}
+
+		private async Task<int> DeleteAndSaveAsync(Request request)
+		{
+			return await OperationHelper.PerformOperationAndSaveAsync(_db, async () => _db.Requests.Remove(request));
+		}
+
+		private async Task<int> AddAndSaveAsync(Request request)
+		{
+			return await OperationHelper.PerformOperationAndSaveAsync(_db, async () => await _db.Requests.AddAsync(request));
+		}
+
+		private async Task CopyProperties(Request from, Request to)
+		{
+			to.Description = from.Description;
+			to.Age = from.Age;
+			to.Name = from.Name;
+			to.Breed = from.Breed;
+			to.ImageUrl = from.ImageUrl;
+			to.Status = from.Status;
+			to.AnimalId = from.AnimalId;
+			to.UserId = from.UserId;
+
+			await Task.CompletedTask;
+		}
+
+		#endregion
 	}
 }

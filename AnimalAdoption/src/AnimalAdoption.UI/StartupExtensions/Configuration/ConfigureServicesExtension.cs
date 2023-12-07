@@ -13,8 +13,9 @@ namespace AnimalAdoption.UI.StartupExtensions.Configuration
             services.AddDbContextServices(configuration);
             services.AddIdentityServices();
             services.AddAuthorizationServices();
+			services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddHttpLogging(options =>
+			services.AddHttpLogging(options =>
             {
                 options.LoggingFields = Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.RequestProperties | Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.ResponsePropertiesAndHeaders;
             });
