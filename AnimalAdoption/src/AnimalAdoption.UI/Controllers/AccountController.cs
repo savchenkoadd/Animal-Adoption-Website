@@ -1,6 +1,7 @@
 ﻿using AnimalAdoption.Core.Domain.IdentityEntities;
 using AnimalAdoption.Core.DTO.Identity;
 using AnimalAdoption.Core.Enums;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,16 +11,19 @@ namespace AnimalAdoption.UI.Controllers
     [AllowAnonymous]
 	public class AccountController : Controller
 	{
+		private readonly IMapper _mapper;
 		private readonly UserManager<ApplicationUser> _userManager;
 		private readonly SignInManager<ApplicationUser> _signInManager;
 		private readonly RoleManager<ApplicationRole> _roleManager;
 
         public AccountController(
+				IMapper mapper,
 				UserManager<ApplicationUser> userManager,
 				SignInManager<ApplicationUser> signInManager,
 				RoleManager<ApplicationRole> roleManager
 			)
         {
+			_mapper = mapper;
             _userManager = userManager;
 			_signInManager = signInManager;
 			_roleManager = roleManager; 
@@ -44,13 +48,7 @@ namespace AnimalAdoption.UI.Controllers
 				return View(registerDTO);
 			}
 
-			ApplicationUser user = new ApplicationUser()
-			{
-				Email = registerDTO.Email,
-				PhoneNumber = registerDTO.Phone,
-				UserName = registerDTO.Email,
-				PersonName = registerDTO.PersonName,
-			};
+			ApplicationUser user = _mapper.Map<ApplicationUser>(registerDTO);
 
 			IdentityResult result = await _userManager.CreateAsync(user, registerDTO.Password);
 
