@@ -9,8 +9,6 @@
       "AnimalAdoption.Infrastructure/1.0.0": {
         "dependencies": {
           "AnimalAdoption.Core": "1.0.0",
-          "AutoMapper": "12.0.1",
-          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
           "Microsoft.EntityFrameworkCore.Design": "6.0.25",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.25",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.25"
@@ -1756,6 +1754,7 @@
       },
       "AnimalAdoption.Core/1.0.0": {
         "dependencies": {
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
           "Microsoft.AspNetCore.Identity": "2.1.39",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.25",
           "Microsoft.AspNetCore.Mvc.ViewFeatures": "2.1.3"

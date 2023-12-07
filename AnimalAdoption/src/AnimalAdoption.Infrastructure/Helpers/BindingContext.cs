@@ -25,5 +25,4 @@ namespace AnimalAdoption.Infrastructure.Helpers
 			TableName = tableName;
 		}
 	}
-
 }

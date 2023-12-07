@@ -1,8 +1,8 @@
-﻿using AnimalAdoption.Core.DTO;
+﻿using AnimalAdoption.Core.DTO.AnimalProfile;
 
 namespace AnimalAdoption.Core.ServiceContracts
 {
-	public interface IAnimalService
+    public interface IAnimalService
 	{
 		Task<bool> CreateAnimalProfile(AnimalProfileAddRequest? animalProfileAddRequest);
 

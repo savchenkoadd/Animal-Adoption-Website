@@ -1,39 +1,38 @@
-﻿using AnimalAdoption.Core.Domain.RepositoryContracts;
-using AnimalAdoption.Core.DTO;
+﻿using AnimalAdoption.Core.Domain.Entities;
+using AnimalAdoption.Core.Domain.RepositoryContracts;
+using AnimalAdoption.Core.DTO.Request;
 using AnimalAdoption.Core.Enums;
 using AnimalAdoption.Core.Helpers;
 using AnimalAdoption.Core.ServiceContracts;
+using AutoMapper;
 
 namespace AnimalAdoption.Core.Services
 {
-	public class RequestService : IRequestService
+    public class RequestService : IRequestService
 	{
+		private readonly IMapper _mapper;
 		private readonly IRequestRepository _requestRepository;
 		private readonly IAnimalRepository _animalRepository;
 
 		public RequestService(
+				IMapper mapper,
 				IRequestRepository requestRepository,
 				IAnimalRepository animalRepository
 			)
 		{
+			_mapper = mapper;
 			_requestRepository = requestRepository;
 			_animalRepository = animalRepository;
 		}
 
-		public async Task<bool> AddRequest(AddRequest? request)
+		public async Task<bool> AddRequest(AddRequest? addRequest)
 		{
-			await ValidationHelper.ValidateObject(request);
+			await ValidationHelper.ValidateObjects(addRequest);
 
-			return await _requestRepository.AddRequest(new Domain.Entities.Request()
-			{
-				Age = request.Age,
-				UserId = request.UserId,
-				Breed = request.Breed,
-				Description = request.Description,
-				ImageUrl = request.ImageUrl,
-				Name = request.Name,
-				AnimalId = Guid.NewGuid()
-			});
+			var request = _mapper.Map<Request>(addRequest);
+			request.AnimalId = Guid.NewGuid();
+
+			return await _requestRepository.AddRequest(request);
 		}
 
 		public async Task<List<RequestResponse>> GetRequestsForAdmin()
@@ -45,23 +44,15 @@ namespace AnimalAdoption.Core.Services
 				return new List<RequestResponse>();
 			}
 
-			return requests
-				.Where(x => x.Status == RequestStatus.InProcess)
-				.Select(temp => new RequestResponse()
-				{
-					Age = temp.Age,
-					Breed = temp.Breed,
-					Description = temp.Description,
-					ImageUrl = temp.ImageUrl,
-					Name = temp.Name,
-					Id = temp.AnimalId,
-					Status = temp.Status
-				}).ToList();
+			var foundRequests = requests
+				.Where(x => x.Status == RequestStatus.InProcess);
+
+			return _mapper.Map<List<RequestResponse>>(foundRequests);
 		}
 
 		public async Task<List<RequestResponse>> GetRequestsByUserId(Guid? userId)
 		{
-			await ValidationHelper.ValidateObject(userId);
+			await ValidationHelper.ValidateObjects(userId);
 
 			var requests = await _requestRepository.GetRequestsByUserId(userId.Value);
 
@@ -70,77 +61,47 @@ namespace AnimalAdoption.Core.Services
 				return new List<RequestResponse>();
 			}
 
-			return requests.Select(temp =>
-				new RequestResponse()
-				{
-					Age = temp.Age,
-					Breed = temp.Breed,
-					Description = temp.Description,
-					ImageUrl = temp.ImageUrl,
-					Name = temp.Name,
-					Id = temp.AnimalId,
-					Status = temp.Status
-				}).ToList();
+			return _mapper.Map<List<RequestResponse>>(requests);
 		}
 
 		public async Task<bool> ApproveRequest(Guid? requestId)
 		{
-			await ValidationHelper.ValidateObject(requestId);
+			await ValidationHelper.ValidateObjects(requestId);
 
-			var currentRequest = await _requestRepository.GetRequest(requestId.Value);
+			var currentRequest = await _requestRepository.GetRequest(requestId!.Value);
 
 			if (currentRequest is null)
 			{
 				return false;
 			}
 
-			await _requestRepository.UpdateRequest(requestId.Value, new Domain.Entities.Request()
-			{
-				Age = currentRequest.Age,
-				Breed = currentRequest.Breed,
-				Description = currentRequest.Description,
-				ImageUrl = currentRequest.ImageUrl,
-				Name = currentRequest.Name,
-				AnimalId = currentRequest.AnimalId,
-				Status = RequestStatus.Approved,
-				UserId = currentRequest.UserId,
-			});
+			var updatedRequest = _mapper.Map<Request>(currentRequest);
+			updatedRequest.Status = RequestStatus.Approved;
 
-			await _animalRepository.CreateAnimalProfile(new Domain.Entities.AnimalProfile()
-			{
-				Age = currentRequest.Age,
-				Breed = currentRequest.Breed,
-				Description = currentRequest.Description,
-				ImageUrl = currentRequest.ImageUrl,
-				Name = currentRequest.Name,
-				Id = currentRequest.AnimalId
-			});
+			await _requestRepository.UpdateRequest(requestId.Value, updatedRequest);
+
+			var animalProfile = _mapper.Map<AnimalProfile>(currentRequest);
+
+			await _animalRepository.CreateAnimalProfile(animalProfile);
 
 			return true;
 		}
 
 		public async Task<bool> RejectRequest(Guid? requestId)
 		{
-			await ValidationHelper.ValidateObject(requestId);
+			await ValidationHelper.ValidateObjects(requestId);
 
-			var currentRequest = await _requestRepository.GetRequest(requestId.Value);
+			var currentRequest = await _requestRepository.GetRequest(requestId!.Value);
 
 			if (currentRequest is null)
 			{
 				return false;
 			}
 
-			await _requestRepository.UpdateRequest(requestId.Value, new Domain.Entities.Request()
-			{
-				UserId = currentRequest.UserId,
-				Age = currentRequest.Age,
-				Breed = currentRequest.Breed,
-				Description = currentRequest.Description,
-				ImageUrl = currentRequest.ImageUrl,
-				Name = currentRequest.Name,
-				AnimalId = currentRequest.AnimalId,
-				Status = RequestStatus.Rejected
-			});
+			var updatedRequest = _mapper.Map<Request>(currentRequest);
+			updatedRequest.Status = RequestStatus.Rejected;
+
+			await _requestRepository.UpdateRequest(requestId.Value, updatedRequest);
 
 			return true;
 		}

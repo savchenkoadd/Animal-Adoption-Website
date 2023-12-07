@@ -1,6 +1,6 @@
 using AnimalAdoption.Core.Domain.Entities;
 using AnimalAdoption.Core.Domain.RepositoryContracts;
-using AnimalAdoption.Core.DTO;
+using AnimalAdoption.Core.DTO.AnimalProfile;
 using AnimalAdoption.Core.ServiceContracts;
 using AnimalAdoption.Core.Services;
 using AutoFixture;
@@ -9,7 +9,7 @@ using Moq;
 
 namespace ServicesTests
 {
-	public class AnimalServiceTests
+    public class AnimalServiceTests
 	{
 		private readonly IAnimalService _animalService;
 		private readonly Mock<IAnimalRepository> _animalRepositoryMock;

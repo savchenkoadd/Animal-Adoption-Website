@@ -1,5 +1,4 @@
 ﻿using AnimalAdoption.Core.Domain.Entities;
-using AnimalAdoption.Core.DTO;
 
 namespace AnimalAdoption.Core.Domain.RepositoryContracts
 {

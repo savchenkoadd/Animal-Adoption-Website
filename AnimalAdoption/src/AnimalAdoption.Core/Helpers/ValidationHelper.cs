@@ -4,19 +4,27 @@ namespace AnimalAdoption.Core.Helpers
 {
 	internal class ValidationHelper
 	{
-		internal static async Task ValidateObject(object? obj)
+		internal static async Task ValidateObjects(params object?[]? objects)
 		{
-			if (obj is null)
+			if (objects is null)
 			{
 				throw new ArgumentNullException();
 			}
 
-			List<ValidationResult> results = new List<ValidationResult>();
-			ValidationContext validationContext = new ValidationContext(obj);
-
-			if (!Validator.TryValidateObject(obj, validationContext, validationResults: results, validateAllProperties: true))
+			foreach (var obj in objects)
 			{
-				throw new ArgumentException(results.First().ErrorMessage);
+				if (obj is null)
+				{
+					throw new ArgumentNullException();
+				}
+
+				List<ValidationResult> results = new List<ValidationResult>();
+				ValidationContext validationContext = new ValidationContext(obj);
+
+				if (!Validator.TryValidateObject(obj, validationContext, validationResults: results, validateAllProperties: true))
+				{
+					throw new ArgumentException(results.First().ErrorMessage);
+				}
 			}
 
 			await Task.CompletedTask;

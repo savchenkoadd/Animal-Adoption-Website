@@ -1,5 +1,5 @@
 ﻿using AnimalAdoption.Core.Domain.IdentityEntities;
-using AnimalAdoption.Core.DTO;
+using AnimalAdoption.Core.DTO.ContactForm;
 using AnimalAdoption.Core.Enums;
 using AnimalAdoption.Core.ServiceContracts;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +9,7 @@ using X.PagedList;
 
 namespace AnimalAdoption.UI.Controllers
 {
-	[Route("[controller]")]
+    [Route("[controller]")]
 	public class ContactController : Controller
 	{
 		private readonly int FORMS_PER_PAGE = 3;
