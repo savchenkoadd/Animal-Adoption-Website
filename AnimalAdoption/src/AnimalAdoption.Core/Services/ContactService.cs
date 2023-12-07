@@ -19,7 +19,7 @@ namespace AnimalAdoption.Core.Services
 
         public async Task<bool> Create(ContactFormCreateRequest? contactFormRequest)
 		{
-			await ValidationHelper.ValidateObject(contactFormRequest);
+			await ValidationHelper.ValidateObjects(contactFormRequest);
 
 			return await _contactRepository.Create(new ContactForm()
 			{
@@ -53,7 +53,7 @@ namespace AnimalAdoption.Core.Services
 
 		public async Task<List<ContactFormResponse>> GetByUserId(Guid? userId)
 		{
-			await ValidationHelper.ValidateObject(userId);
+			await ValidationHelper.ValidateObjects(userId);
 
 			var responses = await _contactRepository.GetByUserId(userId.Value);
 
@@ -75,7 +75,7 @@ namespace AnimalAdoption.Core.Services
 
 		public async Task<bool> Respond(ContactFormRespondRequest? request)
 		{
-			await ValidationHelper.ValidateObject(request);
+			await ValidationHelper.ValidateObjects(request);
 
 			return await _contactRepository.Respond(request.SenderId.Value, request.Id.Value, request.Response);
 		}

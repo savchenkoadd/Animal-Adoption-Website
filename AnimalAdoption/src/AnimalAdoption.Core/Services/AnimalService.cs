@@ -3,53 +3,45 @@ using AnimalAdoption.Core.ServiceContracts;
 using AnimalAdoption.Core.Domain.Entities;
 using AnimalAdoption.Core.Helpers;
 using AnimalAdoption.Core.DTO.AnimalProfile;
+using AutoMapper;
 
 namespace AnimalAdoption.Core.Services
 {
-    public class AnimalService : IAnimalService
+	public class AnimalService : IAnimalService
 	{
+		private readonly IMapper _mapper;
 		private readonly IAnimalRepository _animalRepository;
 
-        public AnimalService(
+		public AnimalService(
+				IMapper mapper,
 				IAnimalRepository animalRepository
 			)
-        {
-            _animalRepository = animalRepository;
-        }
+		{
+			_mapper = mapper;
+			_animalRepository = animalRepository;
+		}
 
 		public async Task<bool> CreateAnimalProfile(AnimalProfileAddRequest? animalProfileAddRequest)
 		{
-			await ValidationHelper.ValidateObject(animalProfileAddRequest);
+			await ValidationHelper.ValidateObjects(animalProfileAddRequest);
 
-			var animalProfile = new AnimalProfile()
-			{
-				Id = Guid.NewGuid(),
-				Name = animalProfileAddRequest!.Name,
-				Age = animalProfileAddRequest!.Age,
-				Breed = animalProfileAddRequest!.Breed,
-				Description = animalProfileAddRequest!.Description,
-				ImageUrl = animalProfileAddRequest!.ImageUrl,
-			};
+			var animalProfile = _mapper.Map<AnimalProfile>(animalProfileAddRequest);
+
+			animalProfile.Id = Guid.NewGuid();
 
 			return await _animalRepository.CreateAnimalProfile(animalProfile);
 		}
 
 		public async Task<int> DeleteAnimalProfile(Guid? id)
 		{
-			if (id is null)
-			{
-				throw new ArgumentNullException();
-			}
+			await ValidationHelper.ValidateObjects(id);
 
 			return await _animalRepository.DeleteAnimalProfile(id.Value);
 		}
 
 		public async Task<AnimalProfileResponse> GetAnimalProfileById(Guid? id)
 		{
-			if (id is null)
-			{
-				throw new ArgumentNullException();
-			}
+			await ValidationHelper.ValidateObjects(id);
 
 			var animalProfile = await _animalRepository.GetAnimalProfileById(id.Value);
 
@@ -58,15 +50,7 @@ namespace AnimalAdoption.Core.Services
 				throw new ArgumentException();
 			}
 
-			return new AnimalProfileResponse()
-			{
-				Id = animalProfile.Id,
-				Name = animalProfile.Name,
-				Age = animalProfile.Age,
-				Breed = animalProfile.Breed,
-				Description = animalProfile.Description,
-				ImageUrl = animalProfile.ImageUrl
-			};
+			return _mapper.Map<AnimalProfileResponse>(animalProfile);
 		}
 
 		public async Task<List<AnimalProfileResponse>> GetAnimalProfiles()
@@ -78,33 +62,18 @@ namespace AnimalAdoption.Core.Services
 				return new List<AnimalProfileResponse>();
 			}
 
-			return profiles.Select(x => new AnimalProfileResponse() {
-				Id = x.Id,
-				Name = x.Name,
-				Age = x.Age,
-				Breed = x.Breed,
-				Description = x.Description,
-				ImageUrl = x.ImageUrl,
-			}).ToList();
+			return _mapper.Map<List<AnimalProfileResponse>>(profiles);
 		}
 
 		public async Task<List<AnimalProfileResponse>> SearchByName(string? name)
 		{
-			await ValidationHelper.ValidateObject(name);
+			await ValidationHelper.ValidateObjects(name);
 
 			var results = await _animalRepository.SearchByName(name);
 
 			if (results is not null)
 			{
-				return results.Select(temp => new AnimalProfileResponse()
-				{
-					Id = temp.Id,
-					Name = temp.Name,
-					Age = temp.Age,
-					Breed = temp.Breed,
-					Description = temp.Description,
-					ImageUrl = temp.ImageUrl
-				}).ToList();
+				return _mapper.Map<List<AnimalProfileResponse>>(results);
 			}
 
 			return new List<AnimalProfileResponse>();
@@ -112,21 +81,9 @@ namespace AnimalAdoption.Core.Services
 
 		public async Task<int> UpdateAnimalProfile(Guid? id, AnimalProfileUpdateRequest? animalProfileUpdateRequest)
 		{
-			if (id is null)
-			{
-				throw new ArgumentNullException();
-			}
+			await ValidationHelper.ValidateObjects(id, animalProfileUpdateRequest);
 
-			await ValidationHelper.ValidateObject(animalProfileUpdateRequest);
-
-			return await _animalRepository.UpdateAnimalProfile(id.Value, new AnimalProfile()
-			{
-				ImageUrl = animalProfileUpdateRequest?.ImageUrl,
-				Breed = animalProfileUpdateRequest?.Breed,
-				Name = animalProfileUpdateRequest?.Name,
-				Description = animalProfileUpdateRequest?.Description,
-				Age = animalProfileUpdateRequest?.Age
-			});
+			return await _animalRepository.UpdateAnimalProfile(id.Value, _mapper.Map<AnimalProfile>(animalProfileUpdateRequest));
 		}
 	}
 }

@@ -485,3 +485,5 @@ C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\Integ
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\IntegrationTests\bin\Debug\net6.0\Microsoft.Web.Infrastructure.dll
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\IntegrationTests\bin\Debug\net6.0\X.PagedList.dll
 C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\IntegrationTests\bin\Debug\net6.0\X.PagedList.Mvc.Core.dll
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\IntegrationTests\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\Artem\Documents\GitHub\Animal-Adoption-Website\AnimalAdoption\src\IntegrationTests\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

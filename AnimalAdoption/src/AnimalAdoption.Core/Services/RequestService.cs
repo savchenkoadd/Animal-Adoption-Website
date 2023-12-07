@@ -22,7 +22,7 @@ namespace AnimalAdoption.Core.Services
 
 		public async Task<bool> AddRequest(AddRequest? request)
 		{
-			await ValidationHelper.ValidateObject(request);
+			await ValidationHelper.ValidateObjects(request);
 
 			return await _requestRepository.AddRequest(new Domain.Entities.Request()
 			{
@@ -61,7 +61,7 @@ namespace AnimalAdoption.Core.Services
 
 		public async Task<List<RequestResponse>> GetRequestsByUserId(Guid? userId)
 		{
-			await ValidationHelper.ValidateObject(userId);
+			await ValidationHelper.ValidateObjects(userId);
 
 			var requests = await _requestRepository.GetRequestsByUserId(userId.Value);
 
@@ -85,7 +85,7 @@ namespace AnimalAdoption.Core.Services
 
 		public async Task<bool> ApproveRequest(Guid? requestId)
 		{
-			await ValidationHelper.ValidateObject(requestId);
+			await ValidationHelper.ValidateObjects(requestId);
 
 			var currentRequest = await _requestRepository.GetRequest(requestId.Value);
 
@@ -121,7 +121,7 @@ namespace AnimalAdoption.Core.Services
 
 		public async Task<bool> RejectRequest(Guid? requestId)
 		{
-			await ValidationHelper.ValidateObject(requestId);
+			await ValidationHelper.ValidateObjects(requestId);
 
 			var currentRequest = await _requestRepository.GetRequest(requestId.Value);
 
