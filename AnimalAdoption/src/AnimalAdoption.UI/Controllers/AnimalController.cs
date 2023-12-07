@@ -3,6 +3,7 @@ using AnimalAdoption.Core.DTO.AnimalProfile;
 using AnimalAdoption.Core.DTO.Request;
 using AnimalAdoption.Core.Enums;
 using AnimalAdoption.Core.ServiceContracts;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,16 +14,20 @@ namespace AnimalAdoption.UI.Controllers
     public class AnimalController : Controller
 	{
 		private const int PROFILES_PER_PAGE = 5;
+
+		private readonly IMapper _mapper;
 		private readonly IAnimalService _animalService;
 		private readonly IRequestService _requestService;
 		private readonly UserManager<ApplicationUser> _userManager;
 
 		public AnimalController(
+				IMapper mapper,
 				IAnimalService animalService,
 				IRequestService requestService,
 				UserManager<ApplicationUser> userManager
 			)
 		{
+			_mapper = mapper;
 			_animalService = animalService;
 			_requestService = requestService;
 			_userManager = userManager;
@@ -54,7 +59,7 @@ namespace AnimalAdoption.UI.Controllers
 		{
 			var animalProfile = await _animalService.GetAnimalProfileById(id.Value);
 
-			ViewBag.Title = "Details";
+			ViewBag.Title = nameof(this.Details);
 			return View(animalProfile);
 		}
 
@@ -144,14 +149,7 @@ namespace AnimalAdoption.UI.Controllers
 		[Route("[action]")]
 		public async Task<IActionResult> Edit(AnimalProfileResponse? animalProfileResponse)
 		{
-			await _animalService.UpdateAnimalProfile(animalProfileResponse.Id, new AnimalProfileUpdateRequest()
-			{
-				Age = animalProfileResponse.Age,
-				Breed = animalProfileResponse.Breed,
-				Description = animalProfileResponse.Description,
-				ImageUrl = animalProfileResponse.ImageUrl,
-				Name = animalProfileResponse.Name
-			});
+			await _animalService.UpdateAnimalProfile(animalProfileResponse.Id, _mapper.Map<AnimalProfileUpdateRequest>(animalProfileResponse));
 
 			return RedirectToAction(nameof(this.Feed));
 		}
@@ -179,7 +177,7 @@ namespace AnimalAdoption.UI.Controllers
 				return RedirectToAction(nameof(this.Requests));
 			}
 
-			return RedirectToAction("Error", "Error");
+			return RedirectToAction(nameof(ErrorController.Error), nameof(ErrorController.Error));
 		}
 
 		[HttpPost]
@@ -195,7 +193,7 @@ namespace AnimalAdoption.UI.Controllers
 				return RedirectToAction(nameof(this.Requests));
 			}
 
-			return RedirectToAction("Error", "Error");
+			return RedirectToAction(nameof(ErrorController.Error), nameof(ErrorController.Error));
 		}
 	}
 }
