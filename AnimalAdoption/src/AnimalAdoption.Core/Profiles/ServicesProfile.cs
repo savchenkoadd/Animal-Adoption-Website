@@ -6,9 +6,15 @@ using AutoMapper;
 
 namespace AnimalAdoption.Core.Profiles
 {
+	/// <summary>
+	/// AutoMapper profile for mapping between DTOs and domain entities in Animal Adoption services.
+	/// </summary>
 	public class ServicesProfile : Profile
 	{
-        public ServicesProfile()
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ServicesProfile"/> class.
+		/// </summary>
+		public ServicesProfile()
         {
 			//source -> target
 			CreateMap<AnimalProfileAddRequest, AnimalProfile>();

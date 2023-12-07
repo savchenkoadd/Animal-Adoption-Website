@@ -2,8 +2,18 @@
 
 namespace AnimalAdoption.Core.Helpers
 {
+	/// <summary>
+	/// Helper class for validating objects using data annotations.
+	/// </summary>
 	internal class ValidationHelper
 	{
+		/// <summary>
+		/// Validates the specified objects using data annotations.
+		/// </summary>
+		/// <param name="objects">The objects to validate.</param>
+		/// <exception cref="ArgumentNullException">Thrown when the input array or any object in it is null.</exception>
+		/// <exception cref="ArgumentException">Thrown when validation fails. The exception message contains the first validation error.</exception>
+		/// <returns>A completed task.</returns>
 		internal static async Task ValidateObjects(params object?[]? objects)
 		{
 			if (objects is null)
