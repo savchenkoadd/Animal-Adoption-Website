@@ -19,10 +19,9 @@ namespace AnimalAdoption.Infrastructure.Repositories
 
 		public async Task<bool> Create(ContactForm contactForm)
 		{
-			var changed = await OperationHelper.PerformOperationAndSaveAsync(_db,
-				async () => await _db.ContactForms.AddAsync(contactForm));
+			var rowsAffected = await AddAndSaveAsync(contactForm);
 
-			return changed > 0;
+			return rowsAffected > 0;
 		}
 
 		public async Task<List<ContactForm>?> GetAll()
@@ -30,15 +29,14 @@ namespace AnimalAdoption.Infrastructure.Repositories
 			return await _db.ContactForms.ToListAsync();
 		}
 
-		public async Task<List<ContactForm>> GetByUserId(Guid userId)
+		public async Task<List<ContactForm>?> GetByUserId(Guid userId)
 		{
 			return await _db.ContactForms.Where(temp => temp.SenderId == userId).ToListAsync();
 		}
 
 		public async Task<bool> Respond(Guid userId, Guid formId, string response)
 		{
-			var contactForm = await _db.ContactForms
-				.FirstOrDefaultAsync(temp => temp.SenderId == userId && temp.Id == formId);
+			var contactForm = await FindContactForm(userId, formId);
 
 			if (contactForm == null)
 			{
@@ -47,19 +45,33 @@ namespace AnimalAdoption.Infrastructure.Repositories
 
 			contactForm.Response = response;
 
-			var rowsAffected = await OperationHelper.PerformOperationAndSaveAsync(_db, async () =>
-			{
-				_db.ContactForms.Update(contactForm);
-			});
+			var rowsAffected = await UpdateAndSaveAsync(contactForm);
 
 			return rowsAffected > 0;
 		}
 
-		private async Task<ContactForm?> FindForm(params Guid[] ids)
-		{
-			var form = await _db.ContactForms.FindAsync(ids);
+		#region Private Methods
 
-			return form;
+		private async Task<int> AddAndSaveAsync(ContactForm form)
+		{
+			return await OperationHelper.PerformOperationAndSaveAsync(_db,
+				async () => await _db.ContactForms.AddAsync(form));
 		}
+
+		private async Task<int> UpdateAndSaveAsync(ContactForm form)
+		{
+			return await OperationHelper.PerformOperationAndSaveAsync(_db, async () =>
+			{
+				_db.ContactForms.Update(form);
+			}); ;
+		} 
+
+		private async Task<ContactForm?> FindContactForm(Guid userId, Guid formId)
+		{
+			return await _db.ContactForms
+				.FirstOrDefaultAsync(temp => temp.SenderId == userId && temp.Id == formId);
+		}
+
+		#endregion
 	}
 }

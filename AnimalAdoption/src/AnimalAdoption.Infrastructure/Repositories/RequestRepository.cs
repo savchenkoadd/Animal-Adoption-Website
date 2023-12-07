@@ -20,21 +20,21 @@ namespace AnimalAdoption.Infrastructure.Repositories
 
 		public async Task<bool> AddRequest(Request request)
 		{
-			var rowsAffected = await OperationHelper.PerformOperationAndSaveAsync(_db, async () => await _db.Requests.AddAsync(request));
+			var rowsAffected = await AddAndSaveAsync(request);
 
 			return rowsAffected > 0;
 		}
 
 		public async Task<bool> DeleteRequest(Guid requestId)
 		{
-			var animalProfile = await _db.Requests.FindAsync(requestId);
+			var request = await _db.Requests.FindAsync(requestId);
 
-			if (animalProfile is null)
+			if (request is null)
 			{
 				return false;
 			}
 
-			var rowsAffected = await OperationHelper.PerformOperationAndSaveAsync(_db, async () => _db.Requests.Remove(animalProfile));
+			var rowsAffected = await DeleteAndSaveAsync(request);
 
 			return rowsAffected > 0;
 		}
@@ -67,9 +67,26 @@ namespace AnimalAdoption.Infrastructure.Repositories
 
 			await CopyProperties(updateRequest, request);
 
-			var rowsAffected = await OperationHelper.PerformOperationAndSaveAsync(_db, async () => _db.Requests.Update(request));
+			var rowsAffected = await UpdateAndSaveAsync(request);
 			
 			return rowsAffected > 0;
+		}
+
+		#region Private Methods
+
+		private async Task<int> UpdateAndSaveAsync(Request request)
+		{
+			return await OperationHelper.PerformOperationAndSaveAsync(_db, async () => _db.Requests.Update(request));
+		}
+
+		private async Task<int> DeleteAndSaveAsync(Request request)
+		{
+			return await OperationHelper.PerformOperationAndSaveAsync(_db, async () => _db.Requests.Remove(request));
+		}
+
+		private async Task<int> AddAndSaveAsync(Request request)
+		{
+			return await OperationHelper.PerformOperationAndSaveAsync(_db, async () => await _db.Requests.AddAsync(request));
 		}
 
 		private async Task CopyProperties(Request from, Request to)
@@ -85,5 +102,7 @@ namespace AnimalAdoption.Infrastructure.Repositories
 
 			await Task.CompletedTask;
 		}
+
+		#endregion
 	}
 }
