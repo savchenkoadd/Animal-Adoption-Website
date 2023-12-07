@@ -1,12 +1,12 @@
 ﻿using AnimalAdoption.Core.Domain.RepositoryContracts;
-using AnimalAdoption.Core.DTO;
+using AnimalAdoption.Core.DTO.Request;
 using AnimalAdoption.Core.Enums;
 using AnimalAdoption.Core.Helpers;
 using AnimalAdoption.Core.ServiceContracts;
 
 namespace AnimalAdoption.Core.Services
 {
-	public class RequestService : IRequestService
+    public class RequestService : IRequestService
 	{
 		private readonly IRequestRepository _requestRepository;
 		private readonly IAnimalRepository _animalRepository;

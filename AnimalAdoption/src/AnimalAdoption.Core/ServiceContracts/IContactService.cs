@@ -1,9 +1,8 @@
-﻿using AnimalAdoption.Core.Domain.Entities;
-using AnimalAdoption.Core.DTO;
+﻿using AnimalAdoption.Core.DTO.ContactForm;
 
 namespace AnimalAdoption.Core.ServiceContracts
 {
-	public interface IContactService
+    public interface IContactService
 	{
 		Task<bool> Create(ContactFormCreateRequest? contactFormRequest);
 

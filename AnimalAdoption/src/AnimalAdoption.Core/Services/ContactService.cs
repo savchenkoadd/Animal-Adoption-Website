@@ -1,12 +1,12 @@
 ﻿using AnimalAdoption.Core.Domain.RepositoryContracts;
-using AnimalAdoption.Core.DTO;
 using AnimalAdoption.Core.Helpers;
 using AnimalAdoption.Core.ServiceContracts;
 using AnimalAdoption.Core.Domain.Entities;
+using AnimalAdoption.Core.DTO.ContactForm;
 
 namespace AnimalAdoption.Core.Services
 {
-	public class ContactService : IContactService
+    public class ContactService : IContactService
 	{
 		private readonly IContactRepository _contactRepository;
 

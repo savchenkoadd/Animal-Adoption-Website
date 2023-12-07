@@ -1,5 +1,6 @@
 ﻿using AnimalAdoption.Core.Domain.IdentityEntities;
-using AnimalAdoption.Core.DTO;
+using AnimalAdoption.Core.DTO.AnimalProfile;
+using AnimalAdoption.Core.DTO.Request;
 using AnimalAdoption.Core.Enums;
 using AnimalAdoption.Core.ServiceContracts;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +10,7 @@ using X.PagedList;
 
 namespace AnimalAdoption.UI.Controllers
 {
-	public class AnimalController : Controller
+    public class AnimalController : Controller
 	{
 		private const int PROFILES_PER_PAGE = 5;
 		private readonly IAnimalService _animalService;

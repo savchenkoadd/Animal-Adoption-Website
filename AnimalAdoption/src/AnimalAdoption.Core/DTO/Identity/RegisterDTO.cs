@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
-namespace AnimalAdoption.Core.DTO
+namespace AnimalAdoption.Core.DTO.Identity
 {
 	public class RegisterDTO
 	{

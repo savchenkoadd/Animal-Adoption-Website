@@ -1,5 +1,5 @@
 ﻿using AnimalAdoption.Core.Domain.IdentityEntities;
-using AnimalAdoption.Core.DTO;
+using AnimalAdoption.Core.DTO.Identity;
 using AnimalAdoption.Core.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AnimalAdoption.UI.Controllers
 {
-	[AllowAnonymous]
+    [AllowAnonymous]
 	public class AccountController : Controller
 	{
 		private readonly UserManager<ApplicationUser> _userManager;

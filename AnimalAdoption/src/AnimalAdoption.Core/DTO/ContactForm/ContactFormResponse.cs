@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AnimalAdoption.Core.DTO
+namespace AnimalAdoption.Core.DTO.ContactForm
 {
 	public class ContactFormResponse
 	{

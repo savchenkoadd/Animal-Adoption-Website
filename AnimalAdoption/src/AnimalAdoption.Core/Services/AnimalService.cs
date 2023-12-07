@@ -1,12 +1,12 @@
 ﻿using AnimalAdoption.Core.Domain.RepositoryContracts;
-using AnimalAdoption.Core.DTO;
 using AnimalAdoption.Core.ServiceContracts;
 using AnimalAdoption.Core.Domain.Entities;
 using AnimalAdoption.Core.Helpers;
+using AnimalAdoption.Core.DTO.AnimalProfile;
 
 namespace AnimalAdoption.Core.Services
 {
-	public class AnimalService : IAnimalService
+    public class AnimalService : IAnimalService
 	{
 		private readonly IAnimalRepository _animalRepository;
 

@@ -1,8 +1,8 @@
-﻿using AnimalAdoption.Core.DTO;
+﻿using AnimalAdoption.Core.DTO.Request;
 
 namespace AnimalAdoption.Core.ServiceContracts
 {
-	public interface IRequestService
+    public interface IRequestService
 	{
 		Task<bool> AddRequest(AddRequest? request);
 

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AnimalAdoption.Core.DTO
+namespace AnimalAdoption.Core.DTO.Request
 {
-	public class AddRequest
+	public class UpdateRequest
 	{
 		[Required]
 		public Guid UserId { get; set; }
