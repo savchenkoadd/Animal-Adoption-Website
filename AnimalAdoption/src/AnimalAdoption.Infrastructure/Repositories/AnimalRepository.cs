@@ -19,7 +19,7 @@ namespace AnimalAdoption.Infrastructure.Repositories
 
 		public async Task<bool> CreateAnimalProfile(AnimalProfile animalProfile)
 		{
-			return (await PerformOperationAndSaveAsync(
+			return (await OperationHelper.PerformOperationAndSaveAsync(_db,
 				async () =>
 				await _db.AnimalProfiles.AddAsync(animalProfile))) > 0;
 		}
@@ -33,7 +33,7 @@ namespace AnimalAdoption.Infrastructure.Repositories
 				return 0;
 			}
 
-			return await PerformOperationAndSaveAsync(
+			return await OperationHelper.PerformOperationAndSaveAsync(_db,
 				async () =>
 				_db.AnimalProfiles.Remove(animalProfile));
 		}
@@ -67,13 +67,6 @@ namespace AnimalAdoption.Infrastructure.Repositories
 			await CopyHelper.CopyAnimalProfileFields(animalRequest, existingAnimalProfile);
 
 			await MarkEntityState(existingAnimalProfile, EntityState.Modified);
-
-			return await _db.SaveChangesAsync();
-		}
-
-		private async Task<int> PerformOperationAndSaveAsync(Func<Task> operation)
-		{
-			await operation.Invoke();
 
 			return await _db.SaveChangesAsync();
 		}

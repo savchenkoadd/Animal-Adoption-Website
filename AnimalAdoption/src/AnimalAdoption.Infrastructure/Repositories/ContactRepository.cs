@@ -1,6 +1,7 @@
 ﻿using AnimalAdoption.Core.Domain.Entities;
 using AnimalAdoption.Core.Domain.RepositoryContracts;
 using AnimalAdoption.Infrastructure.Db;
+using AnimalAdoption.Infrastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace AnimalAdoption.Infrastructure.Repositories
@@ -18,10 +19,10 @@ namespace AnimalAdoption.Infrastructure.Repositories
 
 		public async Task<bool> Create(ContactForm contactForm)
 		{
-			await _db.ContactForms.AddAsync(contactForm);
-			await _db.SaveChangesAsync();
+			var changed = await OperationHelper.PerformOperationAndSaveAsync(_db,
+				async () => await _db.ContactForms.AddAsync(contactForm));
 
-			return true;
+			return changed > 0;
 		}
 
 		public async Task<List<ContactForm>?> GetAll()
@@ -36,19 +37,29 @@ namespace AnimalAdoption.Infrastructure.Repositories
 
 		public async Task<bool> Respond(Guid userId, Guid formId, string response)
 		{
-			var match = await _db.ContactForms.FindAsync(userId, formId);
+			var contactForm = await _db.ContactForms
+				.FirstOrDefaultAsync(temp => temp.SenderId == userId && temp.Id == formId);
 
-			if (match is null)
+			if (contactForm == null)
 			{
-				return false;
+				return false; 
 			}
 
-			match.Response = response;
+			contactForm.Response = response;
 
-			_db.ContactForms.Update(match);
-			await _db.SaveChangesAsync();
+			var rowsAffected = await OperationHelper.PerformOperationAndSaveAsync(_db, async () =>
+			{
+				_db.ContactForms.Update(contactForm);
+			});
 
-			return true;
+			return rowsAffected > 0;
+		}
+
+		private async Task<ContactForm?> FindForm(params Guid[] ids)
+		{
+			var form = await _db.ContactForms.FindAsync(ids);
+
+			return form;
 		}
 	}
 }
