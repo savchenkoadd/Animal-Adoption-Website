@@ -14,7 +14,6 @@ namespace AnimalAdoption.UI.Controllers
     public class AnimalController : Controller
 	{
 		private const int PROFILES_PER_PAGE = 5;
-
 		private readonly IMapper _mapper;
 		private readonly IAnimalService _animalService;
 		private readonly IRequestService _requestService;
