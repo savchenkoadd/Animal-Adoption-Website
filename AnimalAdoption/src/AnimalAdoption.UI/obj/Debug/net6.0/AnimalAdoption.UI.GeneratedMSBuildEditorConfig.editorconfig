@@ -48,10 +48,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsXEZlZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Artem/Documents/GitHub/Animal-Adoption-Website/AnimalAdoption/src/AnimalAdoption.UI/Views/Animal/Main.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsXE1haW4uY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Artem/Documents/GitHub/Animal-Adoption-Website/AnimalAdoption/src/AnimalAdoption.UI/Views/Animal/Requests.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsXFJlcXVlc3RzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -86,6 +82,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Artem/Documents/GitHub/Animal-Adoption-Website/AnimalAdoption/src/AnimalAdoption.UI/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Artem/Documents/GitHub/Animal-Adoption-Website/AnimalAdoption/src/AnimalAdoption.UI/Views/Shared/Main.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE1haW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Artem/Documents/GitHub/Animal-Adoption-Website/AnimalAdoption/src/AnimalAdoption.UI/Views/Shared/_AccountLayout.cshtml]
