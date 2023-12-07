@@ -1,6 +1,7 @@
 ﻿using AnimalAdoption.Core.Domain.Entities;
 using AnimalAdoption.Core.Domain.RepositoryContracts;
 using AnimalAdoption.Infrastructure.Db;
+using AnimalAdoption.Infrastructure.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace AnimalAdoption.Infrastructure.Repositories
@@ -18,31 +19,28 @@ namespace AnimalAdoption.Infrastructure.Repositories
 
 		public async Task<bool> CreateAnimalProfile(AnimalProfile animalProfile)
 		{
-			await _db.AnimalProfiles.AddAsync(animalProfile);
-			await _db.SaveChangesAsync();
-
-			return true;
+			return (await PerformOperationAndSaveAsync(
+				async () =>
+				await _db.AnimalProfiles.AddAsync(animalProfile))) > 0;
 		}
 
 		public async Task<int> DeleteAnimalProfile(Guid animalId)
 		{
-			var animalProfile = await _db.AnimalProfiles.FindAsync(animalId);
+			var animalProfile = await FindProfile(animalId);
 
 			if (animalProfile == null)
 			{
 				return 0;
 			}
 
-			_db.AnimalProfiles.Remove(animalProfile);
-
-			return await _db.SaveChangesAsync();
+			return await PerformOperationAndSaveAsync(
+				async () =>
+				_db.AnimalProfiles.Remove(animalProfile));
 		}
 
 		public async Task<AnimalProfile?> GetAnimalProfileById(Guid id)
 		{
-			var profile = await _db.AnimalProfiles.FindAsync(id);
-
-			return profile;
+			return await FindProfile(id);
 		}
 
 		public async Task<List<AnimalProfile>?> GetAnimalProfiles()
@@ -59,22 +57,39 @@ namespace AnimalAdoption.Infrastructure.Repositories
 
 		public async Task<int> UpdateAnimalProfile(Guid id, AnimalProfile animalRequest)
 		{
-			var existingAnimalProfile = await _db.AnimalProfiles.FindAsync(id);
+			var existingAnimalProfile = await FindProfile(id);
 
 			if (existingAnimalProfile == null)
 			{
 				return 0;
 			}
 
-			existingAnimalProfile.Name = animalRequest.Name;
-			existingAnimalProfile.Age = animalRequest.Age;
-			existingAnimalProfile.Description = animalRequest.Description;
-			existingAnimalProfile.Breed = animalRequest.Breed;
-			existingAnimalProfile.ImageUrl = animalRequest.ImageUrl;
-			
-			_db.Entry(existingAnimalProfile).State = EntityState.Modified;
+			await CopyHelper.CopyAnimalProfileFields(animalRequest, existingAnimalProfile);
+
+			await MarkEntityState(existingAnimalProfile, EntityState.Modified);
 
 			return await _db.SaveChangesAsync();
+		}
+
+		private async Task<int> PerformOperationAndSaveAsync(Func<Task> operation)
+		{
+			await operation.Invoke();
+
+			return await _db.SaveChangesAsync();
+		}
+
+		private async Task MarkEntityState(AnimalProfile animalProfile, EntityState entityState)
+		{
+			_db.Entry(animalProfile).State = entityState;
+
+			await Task.CompletedTask;
+		}
+
+		private async Task<AnimalProfile?> FindProfile(Guid guid)
+		{
+			var profile = await _db.AnimalProfiles.FindAsync(guid);
+
+			return profile;
 		}
 	}
 }
